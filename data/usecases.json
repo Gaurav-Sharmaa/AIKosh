@@ -1,0 +1,428 @@
+[
+  {
+    "id": 1,
+    "title": "AI-Driven Assessment, Diagnostics for Joint Function and Muscle Health",
+    "description": "Delivers insight into joint function, muscle health, and recovery needs using EMG and ROM - ideal for post-op, chronic pain and neuro and orthopedic rehabilitation settings.",
+    "image_url": "https://example.com/joint-health.png",
+    "tags": [
+      "Joint Function",
+      "AI in Healthcare",
+      "StartoonLabs",
+      "Neuro",
+      "Ortho"
+    ],
+    "likes_count": 2,
+    "downloads_count": 664,
+    "source_org": "STARTOON LABS PRIVATE LIMITED",
+    "updated_at": "2025-08-15",
+    "category": "Healthcare"
+  },
+  {
+    "id": 2,
+    "title": "AI-Driven Smart Energy Management",
+    "description": "The use case leverages AI to optimize energy distribution, improve grid efficiency, detect fraud, and integrate renewables for a smarter power sector.",
+    "image_url": "https://example.com/energy-management.png",
+    "tags": [
+      "Energy Forecasting",
+      "AI for Power Distribution",
+      "Smart Energy Consumption"
+    ],
+    "likes_count": 1,
+    "downloads_count": 2674,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-08-15",
+    "category": "Energy"
+  },
+  {
+    "id": 3,
+    "title": "AI Enabled Power Sector Regulatory Assistant",
+    "description": "To develop an AI-powered Regulatory Assistant that helps Discoms and Regulators prepare, analyse, and interpret tariff petitions and regulatory orders.",
+    "image_url": "https://example.com/regulatory-assistant.png",
+    "tags": [
+      "power distribution",
+      "Power Supply",
+      "electricity",
+      "power consumption"
+    ],
+    "likes_count": 2,
+    "downloads_count": 99,
+    "source_org": "MINISTRY OF POWER",
+    "updated_at": "2025-10-28",
+    "category": "Energy"
+  },
+  {
+    "id": 4,
+    "title": "AI-Powered Conversational Agents for Rural E-Governance",
+    "description": "This use case enables rural citizens to access government services via AI voice assistants that understand dialects, resolve queries, and assist with applications seamlessly.",
+    "image_url": "https://example.com/conversational-agents.png",
+    "tags": [
+      "Low-Resource NLP",
+      "AI for Public Services",
+      "Rural Digital Inclusion"
+    ],
+    "likes_count": 0,
+    "downloads_count": 2768,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-08-15",
+    "category": "Governance"
+  },
+  {
+    "id": 5,
+    "title": "AI-Powered Urban Growth Planning",
+    "description": "This use case is about leveraging AI to track urban expansion, detect slums, and support data-driven smart city planning for sustainable urban development.",
+    "image_url": "https://example.com/urban-growth.png",
+    "tags": [
+      "Geospatial AI",
+      "Public Policy",
+      "Urban Planning",
+      "Smart Cities",
+      "AI"
+    ],
+    "likes_count": 1,
+    "downloads_count": 772,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-08-15",
+    "category": "Urban Development"
+  },
+  {
+    "id": 6,
+    "title": "AI-Powered Voice Assistant for Farmers",
+    "description": "This use case focuses on voice assistant using Automatic Speech Recognition (ASR) to help farmers access agricultural insights (regional languages, pest control, weather, etc.).",
+    "image_url": "https://example.com/voice-assistant-farmers.png",
+    "tags": [
+      "Farmers",
+      "Rural Development",
+      "Digital India",
+      "Smart Farming",
+      "Government"
+    ],
+    "likes_count": 3,
+    "downloads_count": 3021,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-08-15",
+    "category": "Agriculture"
+  },
+  {
+    "id": 7,
+    "title": "A Multilingual Gateway to India's Parliamentary Proceedings",
+    "description": "Sansad.in is an initiative offering real-time, AI-powered multilingual transcription and translation of Indian parliamentary proceedings, making legislative content accessible.",
+    "image_url": "https://example.com/sansad.png",
+    "tags": [
+      "language:ori",
+      "AI-assistant",
+      "language"
+    ],
+    "likes_count": 0,
+    "downloads_count": 48,
+    "source_org": "PowerCoin",
+    "updated_at": "2025-10-28",
+    "category": "Governance"
+  },
+  {
+    "id": 8,
+    "title": "AI-Powered Fair Price Shop Optimization and Fraud Detection",
+    "description": "This use case leverages AI to optimize ration distribution, detect fraudulent transactions, and enhance Fair Price Shop efficiency.",
+    "image_url": "https://example.com/fair-price-shop.png",
+    "tags": [
+      "AI for Social Welfare",
+      "Fraud Detection in Food Security",
+      "Smart Ration"
+    ],
+    "likes_count": 1,
+    "downloads_count": 1622,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-08-15",
+    "category": "Social Welfare"
+  },
+  {
+    "id": 9,
+    "title": "AI-Powered Smart Rural Development Planning",
+    "description": "This use case leverages AI to identify rural infrastructure gaps, optimize resource allocation for sustainable development.",
+    "image_url": "https://example.com/rural-development.png",
+    "tags": [
+      "Geospatial AI",
+      "Public Policy",
+      "AI for Infrastructure",
+      "Smart Villages"
+    ],
+    "likes_count": 2,
+    "downloads_count": 1007,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-10-28",
+    "category": "Rural Development"
+  },
+  {
+    "id": 10,
+    "title": "Intelligent Traffic Management System",
+    "description": "AI-powered system for real-time traffic flow optimization, accident detection, and automated signal control in urban areas.",
+    "image_url": "https://example.com/traffic-management.png",
+    "tags": [
+      "Traffic",
+      "Computer Vision",
+      "Smart Cities",
+      "Urban Planning"
+    ],
+    "likes_count": 15,
+    "downloads_count": 894,
+    "source_org": "Municipal Corporation Delhi",
+    "updated_at": "2025-09-20",
+    "category": "Transportation"
+  },
+  {
+    "id": 11,
+    "title": "Automated Tax Filing Assistant",
+    "description": "AI-based chatbot that helps citizens understand tax regulations and file their returns accurately using natural language processing.",
+    "image_url": "https://example.com/tax-assistant.png",
+    "tags": [
+      "Finance",
+      "NLP",
+      "Chatbot",
+      "Tax",
+      "E-Governance"
+    ],
+    "likes_count": 22,
+    "downloads_count": 1567,
+    "source_org": "Income Tax Department",
+    "updated_at": "2025-11-10",
+    "category": "Finance"
+  },
+  {
+    "id": 12,
+    "title": "Predictive Maintenance for Railway Infrastructure",
+    "description": "Machine learning model for predicting maintenance needs of railway tracks, bridges, and rolling stock to prevent failures.",
+    "image_url": "https://example.com/railway-maintenance.png",
+    "tags": [
+      "Railways",
+      "Predictive Maintenance",
+      "Infrastructure",
+      "Safety"
+    ],
+    "likes_count": 18,
+    "downloads_count": 723,
+    "source_org": "Indian Railways",
+    "updated_at": "2025-10-05",
+    "category": "Transportation"
+  },
+  {
+    "id": 13,
+    "title": "Smart Waste Management System",
+    "description": "IoT and AI-based solution for optimizing waste collection routes and monitoring bin fill levels in real-time.",
+    "image_url": "https://example.com/waste-management.png",
+    "tags": [
+      "Environment",
+      "IoT",
+      "Smart Cities",
+      "Optimization"
+    ],
+    "likes_count": 12,
+    "downloads_count": 456,
+    "source_org": "Swachh Bharat Mission",
+    "updated_at": "2025-08-25",
+    "category": "Environment"
+  },
+  {
+    "id": 14,
+    "title": "AI-Driven Telemedicine Platform",
+    "description": "Remote healthcare platform using AI for preliminary diagnosis, symptom checking, and doctor-patient matching.",
+    "image_url": "https://example.com/telemedicine.png",
+    "tags": [
+      "Healthcare",
+      "Telemedicine",
+      "AI Diagnosis",
+      "Remote Health"
+    ],
+    "likes_count": 28,
+    "downloads_count": 2134,
+    "source_org": "National Health Mission",
+    "updated_at": "2025-11-22",
+    "category": "Healthcare"
+  },
+  {
+    "id": 15,
+    "title": "Flood Prediction and Early Warning System",
+    "description": "Machine learning model for predicting floods using weather data, river levels, and historical patterns to enable timely evacuations.",
+    "image_url": "https://example.com/flood-prediction.png",
+    "tags": [
+      "Disaster Management",
+      "Weather",
+      "Prediction",
+      "Safety"
+    ],
+    "likes_count": 24,
+    "downloads_count": 1289,
+    "source_org": "NDMA",
+    "updated_at": "2025-09-15",
+    "category": "Disaster Management"
+  },
+  {
+    "id": 16,
+    "title": "Automated Legal Document Analysis",
+    "description": "NLP-based system for analyzing legal documents, extracting key clauses, and identifying potential issues.",
+    "image_url": "https://example.com/legal-analysis.png",
+    "tags": [
+      "Legal Tech",
+      "NLP",
+      "Document Analysis",
+      "Automation"
+    ],
+    "likes_count": 16,
+    "downloads_count": 678,
+    "source_org": "Department of Justice",
+    "updated_at": "2025-10-18",
+    "category": "Governance"
+  },
+  {
+    "id": 17,
+    "title": "Personalized Learning Platform",
+    "description": "AI-powered adaptive learning system that customizes educational content based on student performance and learning style.",
+    "image_url": "https://example.com/personalized-learning.png",
+    "tags": [
+      "Education",
+      "EdTech",
+      "Personalization",
+      "ML"
+    ],
+    "likes_count": 31,
+    "downloads_count": 1945,
+    "source_org": "Ministry of Education",
+    "updated_at": "2025-12-05",
+    "category": "Education"
+  },
+  {
+    "id": 18,
+    "title": "Livestock Health Monitoring System",
+    "description": "IoT and computer vision-based system for monitoring livestock health, detecting diseases early, and optimizing veterinary care.",
+    "image_url": "https://example.com/livestock-health.png",
+    "tags": [
+      "Agriculture",
+      "Livestock",
+      "Computer Vision",
+      "IoT"
+    ],
+    "likes_count": 14,
+    "downloads_count": 534,
+    "source_org": "Department of Animal Husbandry",
+    "updated_at": "2025-09-08",
+    "category": "Agriculture"
+  },
+  {
+    "id": 19,
+    "title": "Air Quality Prediction and Advisory",
+    "description": "Machine learning model for predicting air quality indices and providing health advisories to citizens.",
+    "image_url": "https://example.com/air-quality.png",
+    "tags": [
+      "Environment",
+      "Pollution",
+      "Prediction",
+      "Health"
+    ],
+    "likes_count": 20,
+    "downloads_count": 1123,
+    "source_org": "CPCB",
+    "updated_at": "2025-11-15",
+    "category": "Environment"
+  },
+  {
+    "id": 20,
+    "title": "Digital Identity Verification System",
+    "description": "AI-based biometric verification system for secure and instant identity verification using face and fingerprint recognition.",
+    "image_url": "https://example.com/identity-verification.png",
+    "tags": [
+      "Security",
+      "Biometrics",
+      "Identity",
+      "Face Recognition"
+    ],
+    "likes_count": 26,
+    "downloads_count": 1678,
+    "source_org": "UIDAI",
+    "updated_at": "2025-10-30",
+    "category": "Governance"
+  },
+  {
+    "id": 21,
+    "title": "Smart Grid Energy Distribution",
+    "description": "AI-optimized power distribution system that balances load, reduces transmission losses, and integrates renewable energy sources.",
+    "image_url": "https://example.com/smart-grid.png",
+    "tags": [
+      "Energy",
+      "Smart Grid",
+      "Renewable",
+      "Optimization"
+    ],
+    "likes_count": 17,
+    "downloads_count": 845,
+    "source_org": "Power Grid Corporation",
+    "updated_at": "2025-09-28",
+    "category": "Energy"
+  },
+  {
+    "id": 22,
+    "title": "Tourism Recommendation Engine",
+    "description": "Personalized tourism recommendation system using user preferences, weather data, and seasonal trends.",
+    "image_url": "https://example.com/tourism-engine.png",
+    "tags": [
+      "Tourism",
+      "Recommendation",
+      "ML",
+      "Personalization"
+    ],
+    "likes_count": 13,
+    "downloads_count": 592,
+    "source_org": "Ministry of Tourism",
+    "updated_at": "2025-08-12",
+    "category": "Tourism"
+  },
+  {
+    "id": 23,
+    "title": "Employment Matching Platform",
+    "description": "AI-powered job matching system that connects job seekers with suitable opportunities based on skills, experience, and preferences.",
+    "image_url": "https://example.com/employment-matching.png",
+    "tags": [
+      "Employment",
+      "Job Matching",
+      "ML",
+      "Skills"
+    ],
+    "likes_count": 25,
+    "downloads_count": 1456,
+    "source_org": "Ministry of Labour",
+    "updated_at": "2025-11-08",
+    "category": "Social Welfare"
+  },
+  {
+    "id": 24,
+    "title": "Building Safety Assessment System",
+    "description": "Computer vision-based system for assessing structural integrity of buildings and identifying potential safety hazards.",
+    "image_url": "https://example.com/building-safety.png",
+    "tags": [
+      "Infrastructure",
+      "Computer Vision",
+      "Safety",
+      "Urban Development"
+    ],
+    "likes_count": 11,
+    "downloads_count": 423,
+    "source_org": "BIS",
+    "updated_at": "2025-10-12",
+    "category": "Urban Development"
+  },
+  {
+    "id": 25,
+    "title": "Financial Literacy Chatbot",
+    "description": "Multilingual AI chatbot that provides financial education, answers queries about banking, and helps with basic financial planning.",
+    "image_url": "https://example.com/financial-literacy.png",
+    "tags": [
+      "Finance",
+      "Chatbot",
+      "Education",
+      "NLP",
+      "Multilingual"
+    ],
+    "likes_count": 19,
+    "downloads_count": 1234,
+    "source_org": "RBI",
+    "updated_at": "2025-12-10",
+    "category": "Finance"
+  }
+]

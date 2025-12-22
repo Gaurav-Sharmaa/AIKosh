@@ -1,0 +1,73 @@
+### ================================
+### AIKosh Backend API Tests
+### ================================
+
+@host = http://127.0.0.1:3000
+
+### ================================
+### HEALTH & DASHBOARD
+### ================================
+
+### Health Check
+GET {{host}}/health
+
+### Dashboard
+GET {{host}}/api/dashboard
+
+### ================================
+### DATASETS
+### ================================
+
+### Get All Datasets
+GET {{host}}/api/datasets
+
+### Get Dataset by ID
+GET {{host}}/api/datasets/1
+
+### ================================
+### MODELS
+### ================================
+
+### Get All Models
+GET {{host}}/api/models
+
+### Get Model by ID
+GET {{host}}/api/models/1
+
+### ================================
+### USER PROFILE (with tests)
+### ================================
+
+### Get User Profile
+GET {{host}}/api/users/profile
+
+> {%
+    client.test("Status is 200", function () {
+        client.assert(response.status === 200);
+    });
+
+    client.test("Has user data", function () {
+        const body = response.body;
+        client.assert(body.full_name !== undefined);
+        client.assert(body.bio !== undefined);
+    });
+%}
+
+### Update User Profile
+PATCH {{host}}/api/users/profile
+Content-Type: application/json
+
+{
+  "full_name": "Gaurav Sharma",
+  "bio": "Backend Developer",
+  "employee_id": "EMP12345"
+}
+
+> {%
+    if (response.status === 200) {
+        client.log("✅ Profile updated successfully!");
+        client.log("Response: " + JSON.stringify(response.body, null, 2));
+    } else {
+        client.log("❌ Update failed");
+    }
+%}

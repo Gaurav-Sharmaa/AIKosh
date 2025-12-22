@@ -1,0 +1,428 @@
+[
+  {
+    "id": 1,
+    "title": "A2TTS-Bengali Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample. We present a speaker-adaptive text-to-speech system designed for generating high-quality, natural speech across multiple low-resource Indian languages, including Bengali, Gujarati, Hindi, Marathi, Tamil, and Telugu.",
+    "image_url": "https://example.com/a2tts-bengali.png",
+    "tags": [
+      "multilingual-TTS",
+      "SpeechSynthesis",
+      "TextToSpeech"
+    ],
+    "likes_count": 1,
+    "downloads_count": 6,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 2,
+    "title": "A2TTS-Gujarati Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample for Gujarati language.",
+    "image_url": "https://example.com/a2tts-gujarati.png",
+    "tags": [
+      "multilingual-TTS",
+      "SpeechSynthesis",
+      "TextToSpeech"
+    ],
+    "likes_count": 2,
+    "downloads_count": 6,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 3,
+    "title": "A2TTS-Kannada Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample for Kannada language.",
+    "image_url": "https://example.com/a2tts-kannada.png",
+    "tags": [
+      "multilingual-TTS",
+      "SpeechSynthesis",
+      "TextToSpeech"
+    ],
+    "likes_count": 2,
+    "downloads_count": 7,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 4,
+    "title": "A2TTS-Malayalam Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample for Malayalam language.",
+    "image_url": "https://example.com/a2tts-malayalam.png",
+    "tags": [
+      "multilingual-TTS",
+      "SpeechSynthesis",
+      "TextToSpeech"
+    ],
+    "likes_count": 2,
+    "downloads_count": 6,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 5,
+    "title": "A2TTS-Marathi Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample for Marathi language.",
+    "image_url": "https://example.com/a2tts-marathi.png",
+    "tags": [
+      "multilingual-TTS",
+      "SpeechSynthesis",
+      "TextToSpeech"
+    ],
+    "likes_count": 1,
+    "downloads_count": 8,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 6,
+    "title": "A2TTS-Punjabi Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample for Punjabi language.",
+    "image_url": "https://example.com/a2tts-punjabi.png",
+    "tags": [
+      "SpeechSynthesis",
+      "multilingual-TTS",
+      "TextToSpeech"
+    ],
+    "likes_count": 2,
+    "downloads_count": 29,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 7,
+    "title": "A2TTS-Tamil Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample for Tamil language.",
+    "image_url": "https://example.com/a2tts-tamil.png",
+    "tags": [
+      "SpeechSynthesis",
+      "TextToSpeech",
+      "multilingual-TTS"
+    ],
+    "likes_count": 2,
+    "downloads_count": 26,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 8,
+    "title": "A2TTS-Telugu Speaker Adaptive TTS (Text-to-Speech)-v0.5",
+    "description": "Text-to-speech synthesis model tailored to match a given speaker's voice sample for Telugu language.",
+    "image_url": "https://example.com/a2tts-telugu.png",
+    "tags": [
+      "multilingual-TTS",
+      "TextToSpeech",
+      "SpeechSynthesis"
+    ],
+    "likes_count": 2,
+    "downloads_count": 13,
+    "source_org": "BHARATGEN",
+    "updated_at": "2025-07-29",
+    "model_format": "PyTorch",
+    "size": "1.62 GB"
+  },
+  {
+    "id": 9,
+    "title": "IndicBERT - Multilingual BERT for Indian Languages",
+    "description": "Pre-trained BERT model supporting 12 major Indian languages for NLP tasks including text classification, named entity recognition, and question answering.",
+    "image_url": "https://example.com/indicbert.png",
+    "tags": [
+      "NLP",
+      "BERT",
+      "Multilingual",
+      "Indian Languages"
+    ],
+    "likes_count": 24,
+    "downloads_count": 156,
+    "source_org": "AI4Bharat",
+    "updated_at": "2025-06-15",
+    "model_format": "PyTorch",
+    "size": "1.3 GB"
+  },
+  {
+    "id": 10,
+    "title": "IndicTranslate - Neural Machine Translation",
+    "description": "State-of-the-art neural machine translation model for translating between English and 22 Indian languages.",
+    "image_url": "https://example.com/indictranslate.png",
+    "tags": [
+      "Machine Translation",
+      "NMT",
+      "Multilingual"
+    ],
+    "likes_count": 31,
+    "downloads_count": 203,
+    "source_org": "AI4Bharat",
+    "updated_at": "2025-08-20",
+    "model_format": "PyTorch",
+    "size": "2.8 GB"
+  },
+  {
+    "id": 11,
+    "title": "Hindi OCR Model - Document Recognition",
+    "description": "Optical character recognition model optimized for Hindi text in printed and handwritten documents.",
+    "image_url": "https://example.com/hindi-ocr.png",
+    "tags": [
+      "OCR",
+      "Hindi",
+      "Document Processing"
+    ],
+    "likes_count": 18,
+    "downloads_count": 97,
+    "source_org": "CDAC",
+    "updated_at": "2025-09-10",
+    "model_format": "TensorFlow",
+    "size": "876 MB"
+  },
+  {
+    "id": 12,
+    "title": "AgriVision - Crop Disease Detection",
+    "description": "Computer vision model for detecting diseases in major Indian crops including rice, wheat, and cotton.",
+    "image_url": "https://example.com/agrivision.png",
+    "tags": [
+      "Computer Vision",
+      "Agriculture",
+      "Disease Detection"
+    ],
+    "likes_count": 27,
+    "downloads_count": 134,
+    "source_org": "ICAR",
+    "updated_at": "2025-07-05",
+    "model_format": "PyTorch",
+    "size": "945 MB"
+  },
+  {
+    "id": 13,
+    "title": "MediScan - Medical Image Analysis",
+    "description": "Deep learning model for analyzing X-ray and CT scan images to detect abnormalities and assist in diagnosis.",
+    "image_url": "https://example.com/mediscan.png",
+    "tags": [
+      "Medical Imaging",
+      "Deep Learning",
+      "Healthcare"
+    ],
+    "likes_count": 35,
+    "downloads_count": 187,
+    "source_org": "AIIMS",
+    "updated_at": "2025-10-12",
+    "model_format": "PyTorch",
+    "size": "3.4 GB"
+  },
+  {
+    "id": 14,
+    "title": "TrafficNet - Vehicle Detection and Counting",
+    "description": "Real-time vehicle detection and counting model for traffic management and analysis.",
+    "image_url": "https://example.com/trafficnet.png",
+    "tags": [
+      "Computer Vision",
+      "Traffic",
+      "Object Detection"
+    ],
+    "likes_count": 15,
+    "downloads_count": 82,
+    "source_org": "IIT Delhi",
+    "updated_at": "2025-06-28",
+    "model_format": "ONNX",
+    "size": "567 MB"
+  },
+  {
+    "id": 15,
+    "title": "SentimentIndia - Multilingual Sentiment Analysis",
+    "description": "Sentiment analysis model supporting 10 Indian languages for social media and customer feedback analysis.",
+    "image_url": "https://example.com/sentiment-india.png",
+    "tags": [
+      "NLP",
+      "Sentiment Analysis",
+      "Multilingual"
+    ],
+    "likes_count": 22,
+    "downloads_count": 118,
+    "source_org": "IIIT Hyderabad",
+    "updated_at": "2025-08-15",
+    "model_format": "PyTorch",
+    "size": "1.1 GB"
+  },
+  {
+    "id": 16,
+    "title": "FaceRecognIndia - Face Recognition System",
+    "description": "Robust face recognition model trained on diverse Indian facial features for secure authentication.",
+    "image_url": "https://example.com/face-recog.png",
+    "tags": [
+      "Computer Vision",
+      "Face Recognition",
+      "Security"
+    ],
+    "likes_count": 19,
+    "downloads_count": 104,
+    "source_org": "IIT Bombay",
+    "updated_at": "2025-09-22",
+    "model_format": "TensorFlow",
+    "size": "734 MB"
+  },
+  {
+    "id": 17,
+    "title": "WeatherPredict - Monsoon Forecasting Model",
+    "description": "Advanced weather prediction model specifically designed for Indian monsoon forecasting.",
+    "image_url": "https://example.com/weather-predict.png",
+    "tags": [
+      "Weather",
+      "Forecasting",
+      "Climate"
+    ],
+    "likes_count": 26,
+    "downloads_count": 142,
+    "source_org": "IMD",
+    "updated_at": "2025-11-08",
+    "model_format": "PyTorch",
+    "size": "2.2 GB"
+  },
+  {
+    "id": 18,
+    "title": "EnergyOptimizer - Smart Grid Prediction",
+    "description": "Machine learning model for predicting energy demand and optimizing power grid distribution.",
+    "image_url": "https://example.com/energy-optimizer.png",
+    "tags": [
+      "Energy",
+      "Smart Grid",
+      "Prediction"
+    ],
+    "likes_count": 14,
+    "downloads_count": 76,
+    "source_org": "Ministry of Power",
+    "updated_at": "2025-10-25",
+    "model_format": "PyTorch",
+    "size": "892 MB"
+  },
+  {
+    "id": 19,
+    "title": "FinFraud - Financial Fraud Detection",
+    "description": "Advanced fraud detection model for identifying suspicious financial transactions and patterns.",
+    "image_url": "https://example.com/finfraud.png",
+    "tags": [
+      "Finance",
+      "Fraud Detection",
+      "Security"
+    ],
+    "likes_count": 29,
+    "downloads_count": 167,
+    "source_org": "RBI",
+    "updated_at": "2025-11-18",
+    "model_format": "XGBoost",
+    "size": "456 MB"
+  },
+  {
+    "id": 20,
+    "title": "UrbanPlanner - City Growth Prediction",
+    "description": "Predictive model for urban growth patterns and infrastructure planning for smart cities.",
+    "image_url": "https://example.com/urban-planner.png",
+    "tags": [
+      "Urban Planning",
+      "Prediction",
+      "Smart Cities"
+    ],
+    "likes_count": 17,
+    "downloads_count": 89,
+    "source_org": "NIUA",
+    "updated_at": "2025-09-30",
+    "model_format": "PyTorch",
+    "size": "1.5 GB"
+  },
+  {
+    "id": 21,
+    "title": "EduAssist - Student Performance Predictor",
+    "description": "Model for predicting student performance and providing personalized learning recommendations.",
+    "image_url": "https://example.com/edu-assist.png",
+    "tags": [
+      "Education",
+      "ML",
+      "Personalization"
+    ],
+    "likes_count": 21,
+    "downloads_count": 112,
+    "source_org": "NCERT",
+    "updated_at": "2025-08-08",
+    "model_format": "Scikit-learn",
+    "size": "234 MB"
+  },
+  {
+    "id": 22,
+    "title": "AquaMonitor - Water Quality Prediction",
+    "description": "Model for predicting water quality parameters and detecting contamination in water bodies.",
+    "image_url": "https://example.com/aqua-monitor.png",
+    "tags": [
+      "Environment",
+      "Water Quality",
+      "Prediction"
+    ],
+    "likes_count": 16,
+    "downloads_count": 84,
+    "source_org": "CPCB",
+    "updated_at": "2025-10-05",
+    "model_format": "PyTorch",
+    "size": "678 MB"
+  },
+  {
+    "id": 23,
+    "title": "RetailPredict - Demand Forecasting",
+    "description": "Retail demand forecasting model for inventory optimization and supply chain management.",
+    "image_url": "https://example.com/retail-predict.png",
+    "tags": [
+      "Retail",
+      "Forecasting",
+      "Supply Chain"
+    ],
+    "likes_count": 13,
+    "downloads_count": 71,
+    "source_org": "IIM Ahmedabad",
+    "updated_at": "2025-07-20",
+    "model_format": "Prophet",
+    "size": "345 MB"
+  },
+  {
+    "id": 24,
+    "title": "ForestGuard - Deforestation Detection",
+    "description": "Satellite image analysis model for detecting and monitoring deforestation activities.",
+    "image_url": "https://example.com/forest-guard.png",
+    "tags": [
+      "Environment",
+      "Satellite Imagery",
+      "Forest"
+    ],
+    "likes_count": 25,
+    "downloads_count": 138,
+    "source_org": "FSI",
+    "updated_at": "2025-11-12",
+    "model_format": "PyTorch",
+    "size": "2.1 GB"
+  },
+  {
+    "id": 25,
+    "title": "HealthRisk - Disease Risk Assessment",
+    "description": "Predictive model for assessing disease risk based on demographic and health parameters.",
+    "image_url": "https://example.com/health-risk.png",
+    "tags": [
+      "Healthcare",
+      "Risk Assessment",
+      "Prevention"
+    ],
+    "likes_count": 33,
+    "downloads_count": 195,
+    "source_org": "ICMR",
+    "updated_at": "2025-12-01",
+    "model_format": "PyTorch",
+    "size": "823 MB"
+  }
+]

@@ -1,0 +1,119 @@
+use axum::{extract::Path, http::StatusCode, Json};
+use std::fs;
+
+use crate::errors::AppError;
+use crate::models::*;
+
+// Helper function to read JSON files
+fn read_json_file<T: serde::de::DeserializeOwned>(path: &str) -> Result<T, AppError> {
+    let content = fs::read_to_string(path)?;
+    let data: T = serde_json::from_str(&content)?;
+    Ok(data)
+}
+
+// Dashboard handler
+pub async fn get_dashboard() -> Result<Json<Dashboard>, AppError> {
+    let dashboard = read_json_file::<Dashboard>("data/dashboard.json")?;
+    Ok(Json(dashboard))
+}
+
+// Dataset handlers
+pub async fn get_datasets() -> Result<Json<Vec<Dataset>>, AppError> {
+    let datasets = read_json_file::<Vec<Dataset>>("data/datasets.json")?;
+    Ok(Json(datasets))
+}
+
+pub async fn get_dataset_by_id(Path(id): Path<u64>) -> Result<Json<Dataset>, AppError> {
+    let datasets = read_json_file::<Vec<Dataset>>("data/datasets.json")?;
+
+    datasets
+        .into_iter()
+        .find(|d| d.id == id)
+        .map(Json)
+        .ok_or(AppError::NotFound)
+}
+
+// Model handlers
+pub async fn get_models() -> Result<Json<Vec<Model>>, AppError> {
+    let models = read_json_file::<Vec<Model>>("data/models.json")?;
+    Ok(Json(models))
+}
+
+pub async fn get_model_by_id(Path(id): Path<u64>) -> Result<Json<Model>, AppError> {
+    let models = read_json_file::<Vec<Model>>("data/models.json")?;
+
+    models
+        .into_iter()
+        .find(|m| m.id == id)
+        .map(Json)
+        .ok_or(AppError::NotFound)
+}
+
+// UseCase handlers
+pub async fn get_usecases() -> Result<Json<Vec<UseCase>>, AppError> {
+    let usecases = read_json_file::<Vec<UseCase>>("data/usecases.json")?;
+    Ok(Json(usecases))
+}
+
+pub async fn get_usecase_by_id(Path(id): Path<u64>) -> Result<Json<UseCase>, AppError> {
+    let usecases = read_json_file::<Vec<UseCase>>("data/usecases.json")?;
+
+    usecases
+        .into_iter()
+        .find(|u| u.id == id)
+        .map(Json)
+        .ok_or(AppError::NotFound)
+}
+
+// Tutorial handlers
+pub async fn get_tutorials() -> Result<Json<Vec<Tutorial>>, AppError> {
+    let tutorials = read_json_file::<Vec<Tutorial>>("data/tutorials.json")?;
+    Ok(Json(tutorials))
+}
+
+// Article handlers
+pub async fn get_articles() -> Result<Json<Vec<Article>>, AppError> {
+    let articles = read_json_file::<Vec<Article>>("data/articles.json")?;
+    Ok(Json(articles))
+}
+
+// User profile handlers
+pub async fn get_user_profile() -> Result<Json<User>, AppError> {
+    let user = read_json_file::<User>("data/user.json")?;
+    Ok(Json(user))
+}
+
+pub async fn update_user_profile(
+    Json(payload): Json<UpdateUserProfile>,
+) -> Result<Json<User>, AppError> {
+    let mut user = read_json_file::<User>("data/user.json")?;
+
+    // Update fields if provided
+    if let Some(full_name) = payload.full_name {
+        if full_name.trim().is_empty() {
+            return Err(AppError::ValidationError(
+                "Full name cannot be empty".to_string(),
+            ));
+        }
+        user.full_name = full_name;
+    }
+
+    if let Some(bio) = payload.bio {
+        user.bio = bio;
+    }
+
+    if let Some(employee_id) = payload.employee_id {
+        user.employee_id = Some(employee_id);
+    }
+
+    // Write back to file
+    let json_string = serde_json::to_string_pretty(&user)?;
+    fs::write("data/user.json", json_string)?;
+
+    Ok(Json(user))
+}
+
+// Health check endpoint
+pub async fn health_check() -> (StatusCode, &'static str) {
+    (StatusCode::OK, "OK")
+}

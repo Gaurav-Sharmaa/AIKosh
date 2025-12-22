@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Dataset Upload on AIKosh",
+    "description": "Learn how to upload your dataset to AIKosh platform. This tutorial covers the complete process from preparing your data to making it available for the community.",
+    "duration": "2 Min 35 Sec",
+    "video_url": "https://youtube.com/dummy-video-1",
+    "author": "Admin",
+    "uploaded_date": "2025-03-05"
+  },
+  {
+    "id": 2,
+    "title": "Use-cases upload on AIKosh",
+    "description": "Learn how to upload your AI use case to AIKosh. Understand the documentation requirements and best practices for sharing your implementation.",
+    "duration": "1 Min 45 Sec",
+    "video_url": "https://youtube.com/dummy-video-2",
+    "author": "Admin",
+    "uploaded_date": "2025-03-05"
+  },
+  {
+    "id": 3,
+    "title": "Model upload on AIKosh",
+    "description": "Step-by-step guide to uploading machine learning models to AIKosh. Learn about model formats, metadata requirements, and versioning.",
+    "duration": "1 Min 33 Sec",
+    "video_url": "https://youtube.com/dummy-video-3",
+    "author": "Admin",
+    "uploaded_date": "2025-03-05"
+  },
+  {
+    "id": 4,
+    "title": "Getting Started with AIKosh Platform",
+    "description": "Introduction to AIKosh platform features and navigation. Learn how to browse, search, and access AI resources effectively.",
+    "duration": "3 Min 20 Sec",
+    "video_url": "https://youtube.com/dummy-video-4",
+    "author": "Admin",
+    "uploaded_date": "2025-03-10"
+  },
+  {
+    "id": 5,
+    "title": "How to Download Datasets",
+    "description": "Learn the process of downloading datasets from AIKosh, including format selection and license compliance.",
+    "duration": "2 Min 10 Sec",
+    "video_url": "https://youtube.com/dummy-video-5",
+    "author": "Admin",
+    "uploaded_date": "2025-03-12"
+  },
+  {
+    "id": 6,
+    "title": "Understanding Data Licenses",
+    "description": "Comprehensive guide to different data licenses available on AIKosh and how to choose the right one for your project.",
+    "duration": "4 Min 15 Sec",
+    "video_url": "https://youtube.com/dummy-video-6",
+    "author": "Admin",
+    "uploaded_date": "2025-03-15"
+  },
+  {
+    "id": 7,
+    "title": "Creating Your AIKosh Profile",
+    "description": "Set up and optimize your AIKosh profile to showcase your contributions and connect with the AI community.",
+    "duration": "2 Min 50 Sec",
+    "video_url": "https://youtube.com/dummy-video-7",
+    "author": "Admin",
+    "uploaded_date": "2025-03-18"
+  },
+  {
+    "id": 8,
+    "title": "Collaborating on AI Projects",
+    "description": "Learn how to collaborate with other users on AIKosh, share resources, and work on joint AI initiatives.",
+    "duration": "3 Min 40 Sec",
+    "video_url": "https://youtube.com/dummy-video-8",
+    "author": "Admin",
+    "uploaded_date": "2025-03-22"
+  },
+  {
+    "id": 9,
+    "title": "Best Practices for Data Documentation",
+    "description": "Essential guidelines for documenting your datasets to make them more discoverable and usable by others.",
+    "duration": "5 Min 05 Sec",
+    "video_url": "https://youtube.com/dummy-video-9",
+    "author": "Data Specialist",
+    "uploaded_date": "2025-03-25"
+  },
+  {
+    "id": 10,
+    "title": "Using AIKosh API",
+    "description": "Introduction to AIKosh API for programmatic access to datasets, models, and use cases.",
+    "duration": "6 Min 30 Sec",
+    "video_url": "https://youtube.com/dummy-video-10",
+    "author": "Technical Team",
+    "uploaded_date": "2025-03-28"
+  }
+]

@@ -1,0 +1,322 @@
+[
+  {
+    "id": 1,
+    "title": "From Bengaluru to Boston: The global ascent of Indian AI startups",
+    "description": "India's AI startup ecosystem is rapidly growing, driven by investments in AI, ML, and deep learning. Major companies and global investors are recognizing the potential.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/bengaluru-boston.jpg",
+    "author": "Dr Nivash Jeevanandam",
+    "read_time": "5 Min Read",
+    "published_date": "2025-12-18",
+    "tags": [
+      "AI Startups",
+      "Innovation",
+      "Global Tech",
+      "Indian AI"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Research combines solar astronomy with AI, helping in understanding the sun better",
+    "description": "Research by astronomers and computer scientists at the University of Hawai'i Institute for Astronomy combines solar astronomy with AI to better understand the sun.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/solar-ai.jpg",
+    "author": "Anjali Raja",
+    "read_time": "3 Min Read",
+    "published_date": "2025-12-17",
+    "tags": [
+      "Solar Research",
+      "Astronomy",
+      "AI in Science",
+      "Space"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Advancing Telugu NLP: Telugu LLM Labs with native and optimized language models",
+    "description": "Telugu LLM Labs is a significant step towards advancing the Telugu language in natural language processing domain.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/telugu-nlp.jpg",
+    "author": "Dr Nivash Jeevanandam",
+    "read_time": "4 Min Read",
+    "published_date": "2025-12-16",
+    "tags": [
+      "NLP",
+      "Telugu",
+      "Language Models",
+      "Regional Languages"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "AI4Bharat unveils BhasaAnuvaad: Speech-to-speech translation for Indian languages",
+    "description": "AI4Bharat introduces the largest speech translation dataset for Indian languages with advanced speech-to-speech translation capabilities.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/bhasa-anuvaad.jpg",
+    "author": "Dr Nivash Jeevanandam",
+    "read_time": "3 Min Read",
+    "published_date": "2025-12-15",
+    "tags": [
+      "Speech Translation",
+      "Indian Languages",
+      "AI4Bharat",
+      "Multilingual"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "The Rise of Edge AI: Bringing Intelligence to IoT Devices",
+    "description": "Exploring how edge AI is revolutionizing IoT by enabling real-time processing and reducing latency for critical applications.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/edge-ai.jpg",
+    "author": "Rajesh Kumar",
+    "read_time": "6 Min Read",
+    "published_date": "2025-12-14",
+    "tags": [
+      "Edge AI",
+      "IoT",
+      "Real-time Processing",
+      "Hardware"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Ethical AI: Balancing Innovation with Responsibility",
+    "description": "A deep dive into the ethical considerations of AI development, including bias, privacy, and accountability.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ethical-ai.jpg",
+    "author": "Priya Sharma",
+    "read_time": "7 Min Read",
+    "published_date": "2025-12-13",
+    "tags": [
+      "Ethics",
+      "AI Governance",
+      "Bias",
+      "Privacy"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "How AI is Transforming Indian Agriculture",
+    "description": "Examining the impact of AI-powered solutions on crop yield prediction, pest control, and sustainable farming practices in India.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ai-agriculture.jpg",
+    "author": "Vikram Singh",
+    "read_time": "5 Min Read",
+    "published_date": "2025-12-12",
+    "tags": [
+      "Agriculture",
+      "AI Applications",
+      "Farming",
+      "Sustainability"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Healthcare Revolution: AI in Medical Diagnosis",
+    "description": "How machine learning models are improving diagnostic accuracy and enabling early disease detection in healthcare.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ai-healthcare.jpg",
+    "author": "Dr. Meera Patel",
+    "read_time": "6 Min Read",
+    "published_date": "2025-12-11",
+    "tags": [
+      "Healthcare",
+      "Medical AI",
+      "Diagnosis",
+      "Deep Learning"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Natural Language Processing: Breaking Language Barriers",
+    "description": "The latest advances in NLP technology and their applications in multilingual communication and translation.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/nlp-barriers.jpg",
+    "author": "Anita Desai",
+    "read_time": "4 Min Read",
+    "published_date": "2025-12-10",
+    "tags": [
+      "NLP",
+      "Translation",
+      "Language Technology",
+      "Communication"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Computer Vision in Smart Cities",
+    "description": "Exploring how computer vision technology is enabling traffic management, surveillance, and urban planning in smart cities.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/cv-smart-cities.jpg",
+    "author": "Suresh Reddy",
+    "read_time": "5 Min Read",
+    "published_date": "2025-12-09",
+    "tags": [
+      "Computer Vision",
+      "Smart Cities",
+      "Urban Planning",
+      "Traffic"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "The Future of Work: AI and Automation",
+    "description": "Analyzing how AI and automation are reshaping the workforce and creating new opportunities in the job market.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/future-work.jpg",
+    "author": "Kavita Menon",
+    "read_time": "7 Min Read",
+    "published_date": "2025-12-08",
+    "tags": [
+      "Automation",
+      "Future of Work",
+      "AI Impact",
+      "Employment"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Quantum Computing Meets AI: The Next Frontier",
+    "description": "Understanding the intersection of quantum computing and artificial intelligence and its potential implications.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/quantum-ai.jpg",
+    "author": "Dr. Ashok Verma",
+    "read_time": "8 Min Read",
+    "published_date": "2025-12-07",
+    "tags": [
+      "Quantum Computing",
+      "AI Research",
+      "Future Tech",
+      "Innovation"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "AI for Climate Change: Environmental Applications",
+    "description": "How artificial intelligence is being deployed to address climate change through prediction, monitoring, and mitigation.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ai-climate.jpg",
+    "author": "Nisha Iyer",
+    "read_time": "6 Min Read",
+    "published_date": "2025-12-06",
+    "tags": [
+      "Climate Change",
+      "Environment",
+      "AI Applications",
+      "Sustainability"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Cybersecurity in the Age of AI",
+    "description": "Examining both the threats and opportunities that AI presents for cybersecurity and data protection.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ai-cybersecurity.jpg",
+    "author": "Rohan Malhotra",
+    "read_time": "5 Min Read",
+    "published_date": "2025-12-05",
+    "tags": [
+      "Cybersecurity",
+      "AI Security",
+      "Data Protection",
+      "Threats"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Explainable AI: Making Black Boxes Transparent",
+    "description": "The importance of interpretability in AI systems and techniques for making machine learning models more understandable.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/explainable-ai.jpg",
+    "author": "Dr. Sanjay Gupta",
+    "read_time": "6 Min Read",
+    "published_date": "2025-12-04",
+    "tags": [
+      "Explainable AI",
+      "Interpretability",
+      "Machine Learning",
+      "Transparency"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "AI in Education: Personalized Learning Experiences",
+    "description": "How adaptive learning systems powered by AI are transforming education and improving student outcomes.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ai-education.jpg",
+    "author": "Lakshmi Nair",
+    "read_time": "5 Min Read",
+    "published_date": "2025-12-03",
+    "tags": [
+      "Education",
+      "EdTech",
+      "Personalization",
+      "Learning"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Blockchain and AI: A Powerful Combination",
+    "description": "Exploring synergies between blockchain technology and artificial intelligence for secure and transparent systems.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/blockchain-ai.jpg",
+    "author": "Arun Krishnan",
+    "read_time": "7 Min Read",
+    "published_date": "2025-12-02",
+    "tags": [
+      "Blockchain",
+      "AI",
+      "Security",
+      "Decentralization"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "The Role of AI in Financial Services",
+    "description": "How AI is revolutionizing banking, insurance, and investment through fraud detection, risk assessment, and automation.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ai-finance.jpg",
+    "author": "Deepak Shah",
+    "read_time": "6 Min Read",
+    "published_date": "2025-12-01",
+    "tags": [
+      "Finance",
+      "Banking",
+      "AI Applications",
+      "FinTech"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Reinforcement Learning: Teaching Machines to Learn",
+    "description": "An introduction to reinforcement learning techniques and their applications in robotics, gaming, and optimization.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/reinforcement-learning.jpg",
+    "author": "Dr. Pooja Rao",
+    "read_time": "8 Min Read",
+    "published_date": "2025-11-30",
+    "tags": [
+      "Reinforcement Learning",
+      "Machine Learning",
+      "Robotics",
+      "AI Techniques"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "AI and the Future of Transportation",
+    "description": "Examining autonomous vehicles, traffic optimization, and how AI is reshaping transportation infrastructure.",
+    "content": "Full article content would go here...",
+    "image_url": "https://example.com/ai-transportation.jpg",
+    "author": "Manish Bhatt",
+    "read_time": "5 Min Read",
+    "published_date": "2025-11-29",
+    "tags": [
+      "Transportation",
+      "Autonomous Vehicles",
+      "AI Applications",
+      "Smart Mobility"
+    ]
+  }
+]

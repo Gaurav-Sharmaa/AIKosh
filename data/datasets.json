@@ -1,0 +1,477 @@
+[
+  {
+    "id": 1,
+    "title": "Bhind District, Madhya Pradesh - CAB 2014 Survey",
+    "description": "This dataset contains 2014 CAB (Clinical, Anthropometric and Biochemical) survey data for Bhind district, Madhya Pradesh - covering measurements such as height, weight, BMI, haemoglobin levels, blood pressure, blood glucose (if recorded), and other health / nutrition biomarkers of sampled individuals.",
+    "image_url": "https://example.com/bhind-district.png",
+    "tags": [
+      "CAB Survey",
+      "Nutrition",
+      "health",
+      "Madhya Pradesh"
+    ],
+    "likes_count": 1,
+    "downloads_count": 1,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-12-21",
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "license": "Open Government License, India",
+    "size": "N.A."
+  },
+  {
+    "id": 2,
+    "title": "Bengali Female Mono (indicTTS Phase 3)",
+    "description": "Bengali Female Monolingual dataset containing about 10 hours of standard Studio quality audios along with text.",
+    "image_url": "https://example.com/bengali-tts.png",
+    "tags": [
+      "indicTTS",
+      "TTS training",
+      "studio-recorded TTS data",
+      "TTS corpus"
+    ],
+    "likes_count": 1,
+    "downloads_count": 3,
+    "source_org": "DIGITAL INDIA BHASHINI DIVISION",
+    "updated_at": "2025-12-21",
+    "sector": "Language",
+    "license": "MIT",
+    "size": "2.74 GB"
+  },
+  {
+    "id": 3,
+    "title": "Geomorphology Map of Karnataka and Andhra Pradesh",
+    "description": "A geomorphology map of parts of Karnataka and Andhra Pradesh, depicting various landforms and surface features.",
+    "image_url": "https://example.com/geomorphology-map.png",
+    "tags": [
+      "ponds",
+      "hills",
+      "Geology",
+      "valleys"
+    ],
+    "likes_count": 6,
+    "downloads_count": 257,
+    "source_org": "GSI (MINISTRY OF MINES)",
+    "updated_at": "2025-12-15",
+    "sector": "Earth Sciences",
+    "license": "Open Government License, India",
+    "size": "20.97 MB"
+  },
+  {
+    "id": 4,
+    "title": "Location wise daily Ambient Air Quality of Mizoram for the year 2015",
+    "description": "The Dataset contains daily ambient air quality readings for various locations in Mizoram for the year 2015.",
+    "image_url": "https://example.com/mizoram-air-quality.png",
+    "tags": [
+      "Historical",
+      "RSPM",
+      "SPM",
+      "NO2",
+      "Unit",
+      "station",
+      "Monitoring"
+    ],
+    "likes_count": 2,
+    "downloads_count": 0,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-09-22",
+    "sector": "Environment",
+    "license": "Open Government License, India",
+    "size": "N.A."
+  },
+  {
+    "id": 5,
+    "title": "Hazaribagh District, Jharkhand - CAB 2014 Survey",
+    "description": "This dataset contains 2014 CAB (Clinical, Anthropometric and Biochemical) survey data for Hazaribagh district, Jharkhand.",
+    "image_url": "https://example.com/hazaribagh.png",
+    "tags": [
+      "CAB Survey",
+      "Nutrition",
+      "health",
+      "Jharkhand"
+    ],
+    "likes_count": 1,
+    "downloads_count": 1,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-12-01",
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "license": "Open Government License, India",
+    "size": "N.A."
+  },
+  {
+    "id": 6,
+    "title": "Farrukhabad District, Uttar Pradesh - CAB 2014 Survey",
+    "description": "This dataset contains 2014 CAB survey data for Farrukhabad district, Uttar Pradesh.",
+    "image_url": "https://example.com/farrukhabad.png",
+    "tags": [
+      "CAB Survey",
+      "Nutrition",
+      "health",
+      "Uttar Pradesh"
+    ],
+    "likes_count": 1,
+    "downloads_count": 1,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-12-01",
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "license": "Open Government License, India",
+    "size": "N.A."
+  },
+  {
+    "id": 7,
+    "title": "Gram Panchayat Sanitation - Nainital, Uttarakhand",
+    "description": "Dataset tracking sanitation metrics at the gram panchayat level in Nainital district, Uttarakhand.",
+    "image_url": "https://example.com/sanitation.png",
+    "tags": [
+      "Sanitation",
+      "Rural Development",
+      "Uttarakhand"
+    ],
+    "likes_count": 3,
+    "downloads_count": 12,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-11-11",
+    "sector": "Rural Development",
+    "license": "Open Government License, India",
+    "size": "458 KB"
+  },
+  {
+    "id": 8,
+    "title": "Bhopal Madhya Pradesh Teacher Data UDISE Plus 2020-21",
+    "description": "Comprehensive teacher data from UDISE Plus for Bhopal district covering the 2020-21 academic year.",
+    "image_url": "https://example.com/teacher-data.png",
+    "tags": [
+      "Education",
+      "Teacher Data",
+      "UDISE",
+      "Madhya Pradesh"
+    ],
+    "likes_count": 4,
+    "downloads_count": 23,
+    "source_org": "INDIAAI",
+    "updated_at": "2025-10-15",
+    "sector": "Education",
+    "license": "Open Government License, India",
+    "size": "3.2 MB"
+  },
+  {
+    "id": 9,
+    "title": "Agricultural Production Data - Punjab 2022",
+    "description": "Detailed agricultural production statistics for major crops in Punjab for the year 2022.",
+    "image_url": "https://example.com/punjab-agriculture.png",
+    "tags": [
+      "Agriculture",
+      "Production",
+      "Punjab",
+      "Crops"
+    ],
+    "likes_count": 8,
+    "downloads_count": 45,
+    "source_org": "Ministry of Agriculture",
+    "updated_at": "2025-09-30",
+    "sector": "Agriculture, Forestry and Rural Development",
+    "license": "Open Government License, India",
+    "size": "1.8 GB"
+  },
+  {
+    "id": 10,
+    "title": "COVID-19 Vaccination Data - Kerala District-wise",
+    "description": "District-wise COVID-19 vaccination coverage data for Kerala state.",
+    "image_url": "https://example.com/kerala-vaccination.png",
+    "tags": [
+      "Healthcare",
+      "COVID-19",
+      "Vaccination",
+      "Kerala"
+    ],
+    "likes_count": 15,
+    "downloads_count": 89,
+    "source_org": "Ministry of Health and Family Welfare",
+    "updated_at": "2025-08-12",
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "license": "Open Government License, India",
+    "size": "542 MB"
+  },
+  {
+    "id": 11,
+    "title": "Road Accident Statistics - Tamil Nadu 2021",
+    "description": "Comprehensive road accident statistics for Tamil Nadu including casualty data and accident types.",
+    "image_url": "https://example.com/road-accidents.png",
+    "tags": [
+      "Transportation",
+      "Safety",
+      "Accidents",
+      "Tamil Nadu"
+    ],
+    "likes_count": 5,
+    "downloads_count": 34,
+    "source_org": "Ministry of Road Transport and Highways",
+    "updated_at": "2025-07-25",
+    "sector": "Transportation",
+    "license": "Open Government License, India",
+    "size": "890 MB"
+  },
+  {
+    "id": 12,
+    "title": "Rainfall Data - Maharashtra Monsoon 2023",
+    "description": "Daily rainfall measurements across Maharashtra during the 2023 monsoon season.",
+    "image_url": "https://example.com/rainfall.png",
+    "tags": [
+      "Weather",
+      "Monsoon",
+      "Climate",
+      "Maharashtra"
+    ],
+    "likes_count": 12,
+    "downloads_count": 67,
+    "source_org": "India Meteorological Department",
+    "updated_at": "2025-10-05",
+    "sector": "Environment",
+    "license": "Open Government License, India",
+    "size": "1.1 GB"
+  },
+  {
+    "id": 13,
+    "title": "Tourism Statistics - Rajasthan 2022",
+    "description": "Tourist arrival statistics and revenue data for major tourist destinations in Rajasthan.",
+    "image_url": "https://example.com/rajasthan-tourism.png",
+    "tags": [
+      "Tourism",
+      "Economic Data",
+      "Rajasthan"
+    ],
+    "likes_count": 7,
+    "downloads_count": 28,
+    "source_org": "Ministry of Tourism",
+    "updated_at": "2025-06-18",
+    "sector": "Arts, Culture and Tourism",
+    "license": "Open Government License, India",
+    "size": "345 MB"
+  },
+  {
+    "id": 14,
+    "title": "Industrial Production Index - Gujarat 2023",
+    "description": "Monthly industrial production index data for various sectors in Gujarat.",
+    "image_url": "https://example.com/industrial-production.png",
+    "tags": [
+      "Industry",
+      "Economics",
+      "Production",
+      "Gujarat"
+    ],
+    "likes_count": 9,
+    "downloads_count": 41,
+    "source_org": "Ministry of Commerce and Industry",
+    "updated_at": "2025-11-30",
+    "sector": "Commerce, Finance, Banking and Insurance",
+    "license": "Open Government License, India",
+    "size": "678 MB"
+  },
+  {
+    "id": 15,
+    "title": "Water Quality Monitoring - Ganga River 2023",
+    "description": "Comprehensive water quality parameters measured at various points along the Ganga river.",
+    "image_url": "https://example.com/ganga-water.png",
+    "tags": [
+      "Water Quality",
+      "Environment",
+      "River",
+      "Pollution"
+    ],
+    "likes_count": 18,
+    "downloads_count": 92,
+    "source_org": "Central Pollution Control Board",
+    "updated_at": "2025-12-10",
+    "sector": "Environment",
+    "license": "Open Government License, India",
+    "size": "2.3 GB"
+  },
+  {
+    "id": 16,
+    "title": "Power Generation Data - India 2023",
+    "description": "State-wise power generation data including renewable and non-renewable sources.",
+    "image_url": "https://example.com/power-generation.png",
+    "tags": [
+      "Energy",
+      "Power",
+      "Renewable",
+      "Infrastructure"
+    ],
+    "likes_count": 14,
+    "downloads_count": 73,
+    "source_org": "Ministry of Power",
+    "updated_at": "2025-11-20",
+    "sector": "Energy and Power",
+    "license": "Open Government License, India",
+    "size": "1.5 GB"
+  },
+  {
+    "id": 17,
+    "title": "Census Village Directory - West Bengal",
+    "description": "Village-level demographic and infrastructure data from census records for West Bengal.",
+    "image_url": "https://example.com/census-wb.png",
+    "tags": [
+      "Census",
+      "Demographics",
+      "Villages",
+      "West Bengal"
+    ],
+    "likes_count": 11,
+    "downloads_count": 56,
+    "source_org": "Office of the Registrar General & Census Commissioner",
+    "updated_at": "2025-05-30",
+    "sector": "Social Welfare",
+    "license": "Open Government License, India",
+    "size": "4.2 GB"
+  },
+  {
+    "id": 18,
+    "title": "Financial Inclusion Data - Assam 2022",
+    "description": "Banking penetration and financial inclusion metrics for districts in Assam.",
+    "image_url": "https://example.com/financial-inclusion.png",
+    "tags": [
+      "Banking",
+      "Finance",
+      "Inclusion",
+      "Assam"
+    ],
+    "likes_count": 6,
+    "downloads_count": 31,
+    "source_org": "Reserve Bank of India",
+    "updated_at": "2025-08-22",
+    "sector": "Commerce, Finance, Banking and Insurance",
+    "license": "Open Government License, India",
+    "size": "567 MB"
+  },
+  {
+    "id": 19,
+    "title": "Forest Cover Data - Madhya Pradesh 2023",
+    "description": "Satellite-based forest cover assessment data for Madhya Pradesh including change detection.",
+    "image_url": "https://example.com/forest-cover.png",
+    "tags": [
+      "Forest",
+      "Environment",
+      "Satellite",
+      "Madhya Pradesh"
+    ],
+    "likes_count": 10,
+    "downloads_count": 48,
+    "source_org": "Forest Survey of India",
+    "updated_at": "2025-10-28",
+    "sector": "Agriculture, Forestry and Rural Development",
+    "license": "Open Government License, India",
+    "size": "3.8 GB"
+  },
+  {
+    "id": 20,
+    "title": "Crime Statistics - Delhi 2022",
+    "description": "Comprehensive crime statistics for Delhi including type of crimes and conviction rates.",
+    "image_url": "https://example.com/crime-stats.png",
+    "tags": [
+      "Crime",
+      "Safety",
+      "Statistics",
+      "Delhi"
+    ],
+    "likes_count": 13,
+    "downloads_count": 71,
+    "source_org": "National Crime Records Bureau",
+    "updated_at": "2025-07-14",
+    "sector": "Home Affairs",
+    "license": "Open Government License, India",
+    "size": "823 MB"
+  },
+  {
+    "id": 21,
+    "title": "Employment Data - NSSO Survey 2022-23",
+    "description": "Employment and unemployment statistics from NSSO periodic labour force survey.",
+    "image_url": "https://example.com/employment.png",
+    "tags": [
+      "Employment",
+      "Labour",
+      "Survey",
+      "NSSO"
+    ],
+    "likes_count": 16,
+    "downloads_count": 85,
+    "source_org": "Ministry of Statistics and Programme Implementation",
+    "updated_at": "2025-09-08",
+    "sector": "Social Welfare",
+    "license": "Open Government License, India",
+    "size": "2.1 GB"
+  },
+  {
+    "id": 22,
+    "title": "Kisan Call Centre Data - 2023",
+    "description": "Agricultural queries and advisories provided through Kisan Call Centres across India.",
+    "image_url": "https://example.com/kisan-call.png",
+    "tags": [
+      "Agriculture",
+      "Farmers",
+      "Advisory",
+      "Digital India"
+    ],
+    "likes_count": 8,
+    "downloads_count": 39,
+    "source_org": "Ministry of Agriculture",
+    "updated_at": "2025-11-05",
+    "sector": "Agriculture, Forestry and Rural Development",
+    "license": "Open Government License, India",
+    "size": "1.3 GB"
+  },
+  {
+    "id": 23,
+    "title": "Smart City Projects Database - India 2023",
+    "description": "Database of smart city projects including project status, budget, and implementation details.",
+    "image_url": "https://example.com/smart-city.png",
+    "tags": [
+      "Smart City",
+      "Urban Development",
+      "Infrastructure"
+    ],
+    "likes_count": 12,
+    "downloads_count": 64,
+    "source_org": "Ministry of Housing and Urban Affairs",
+    "updated_at": "2025-12-01",
+    "sector": "Urban Development",
+    "license": "Open Government License, India",
+    "size": "956 MB"
+  },
+  {
+    "id": 24,
+    "title": "Ayushman Bharat Beneficiary Data - Odisha",
+    "description": "Beneficiary enrollment and treatment data under Ayushman Bharat scheme for Odisha.",
+    "image_url": "https://example.com/ayushman-bharat.png",
+    "tags": [
+      "Healthcare",
+      "Insurance",
+      "Social Welfare",
+      "Odisha"
+    ],
+    "likes_count": 9,
+    "downloads_count": 47,
+    "source_org": "National Health Authority",
+    "updated_at": "2025-10-18",
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "license": "Open Government License, India",
+    "size": "1.7 GB"
+  },
+  {
+    "id": 25,
+    "title": "Startup India Registration Data 2023",
+    "description": "Database of startups registered under Startup India initiative including sector and funding details.",
+    "image_url": "https://example.com/startup-india.png",
+    "tags": [
+      "Startups",
+      "Entrepreneurship",
+      "Innovation",
+      "Business"
+    ],
+    "likes_count": 17,
+    "downloads_count": 94,
+    "source_org": "Department for Promotion of Industry and Internal Trade",
+    "updated_at": "2025-12-15",
+    "sector": "Commerce, Finance, Banking and Insurance",
+    "license": "Open Government License, India",
+    "size": "734 MB"
+  }
+]

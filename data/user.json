@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "full_name": "Gaurav Sharma",
+  "username": "Gaurav_Sharma",
+  "bio": "Backend Developer",
+  "employee_id": "EMP12345",
+  "profile_picture_url": "https://example.com/profile.jpg",
+  "role": "Explorer"
+}
