@@ -11,19 +11,19 @@ fn read_json_file<T: serde::de::DeserializeOwned>(path: &str) -> Result<T, AppEr
     Ok(data)
 }
 
-// Dashboard handler
+// Dashboard
 pub async fn get_dashboard() -> Result<Json<Dashboard>, AppError> {
     let dashboard = read_json_file::<Dashboard>("data/dashboard.json")?;
     Ok(Json(dashboard))
 }
 
-// Dataset handlers
+// Dataset
 pub async fn get_datasets() -> Result<Json<Vec<Dataset>>, AppError> {
     let datasets = read_json_file::<Vec<Dataset>>("data/datasets.json")?;
     Ok(Json(datasets))
 }
 
-pub async fn get_dataset_by_id(Path(id): Path<u64>) -> Result<Json<Dataset>, AppError> {
+pub async fn get_dataset_by_id(Path(id): Path<u8>) -> Result<Json<Dataset>, AppError> {
     let datasets = read_json_file::<Vec<Dataset>>("data/datasets.json")?;
 
     datasets
@@ -33,13 +33,13 @@ pub async fn get_dataset_by_id(Path(id): Path<u64>) -> Result<Json<Dataset>, App
         .ok_or(AppError::NotFound)
 }
 
-// Model handlers
+// Model
 pub async fn get_models() -> Result<Json<Vec<Model>>, AppError> {
     let models = read_json_file::<Vec<Model>>("data/models.json")?;
     Ok(Json(models))
 }
 
-pub async fn get_model_by_id(Path(id): Path<u64>) -> Result<Json<Model>, AppError> {
+pub async fn get_model_by_id(Path(id): Path<u8>) -> Result<Json<Model>, AppError> {
     let models = read_json_file::<Vec<Model>>("data/models.json")?;
 
     models
@@ -49,13 +49,13 @@ pub async fn get_model_by_id(Path(id): Path<u64>) -> Result<Json<Model>, AppErro
         .ok_or(AppError::NotFound)
 }
 
-// UseCase handlers
+// UseCase
 pub async fn get_usecases() -> Result<Json<Vec<UseCase>>, AppError> {
     let usecases = read_json_file::<Vec<UseCase>>("data/usecases.json")?;
     Ok(Json(usecases))
 }
 
-pub async fn get_usecase_by_id(Path(id): Path<u64>) -> Result<Json<UseCase>, AppError> {
+pub async fn get_usecase_by_id(Path(id): Path<u8>) -> Result<Json<UseCase>, AppError> {
     let usecases = read_json_file::<Vec<UseCase>>("data/usecases.json")?;
 
     usecases
@@ -65,19 +65,45 @@ pub async fn get_usecase_by_id(Path(id): Path<u64>) -> Result<Json<UseCase>, App
         .ok_or(AppError::NotFound)
 }
 
-// Tutorial handlers
+//Tooklit
+pub async fn get_toolkit() -> Result<Json<Vec<Toolkit>>, AppError> {
+    let toolkit = read_json_file::<Vec<Toolkit>>("data/toolkit.json")?;
+    Ok(Json(toolkit))
+}
+
+pub async fn get_toolkit_by_id(Path(id): Path<u8>) -> Result<Json<Toolkit>, AppError> {
+    let toolktit = read_json_file::<Vec<Toolkit>>("data/toolkit.json")?;
+
+    toolktit
+        .into_iter()
+        .find(|t| t.id == id)
+        .map(Json)
+        .ok_or(AppError::NotFound)
+}
+
+// Tutorial
 pub async fn get_tutorials() -> Result<Json<Vec<Tutorial>>, AppError> {
     let tutorials = read_json_file::<Vec<Tutorial>>("data/tutorials.json")?;
     Ok(Json(tutorials))
 }
 
-// Article handlers
+// Article
 pub async fn get_articles() -> Result<Json<Vec<Article>>, AppError> {
     let articles = read_json_file::<Vec<Article>>("data/articles.json")?;
     Ok(Json(articles))
 }
 
-// User profile handlers
+pub async fn get_article_by_id(Path(id): Path<u8>) -> Result<Json<Article>, AppError> {
+    let articles = read_json_file::<Vec<Article>>("data/articles.json")?;
+
+    articles
+        .into_iter()
+        .find(|a| a.id == id)
+        .map(Json)
+        .ok_or(AppError::NotFound)
+}
+
+// User profile
 pub async fn get_user_profile() -> Result<Json<User>, AppError> {
     let user = read_json_file::<User>("data/user.json")?;
     Ok(Json(user))
