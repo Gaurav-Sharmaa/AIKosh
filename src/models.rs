@@ -1,17 +1,6 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct User {
-    pub id: u8,
-    pub full_name: String,
-    pub username: String,
-    pub bio: String,
-    pub employee_id: Option<String>,
-    pub profile_picture_url: Option<String>,
-    pub role: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Dashboard {
     pub greeting: String,
     pub role: String,
@@ -19,6 +8,12 @@ pub struct Dashboard {
     pub artifacts_viewed: ArtifactsViewed,
     pub artifacts_downloaded: ArtifactsDownloaded,
     pub last_login: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct SharedArtifact {
+    pub id: u32,
+    pub days_remaining: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -115,6 +110,27 @@ pub struct UseCase {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Leaderboard {
+    pub id: u32,
+    pub rank: u32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Bookmark {
+    pub id: u32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct MyNotebook {
+    pub id: u32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct RecentActivities {
+    pub id: u32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Tutorial {
     pub id: u8,
     pub title: String,
@@ -134,6 +150,17 @@ pub struct Article {
     pub author: String,
     pub read_time: String,
     pub published_date: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct User {
+    pub id: u8,
+    pub full_name: String,
+    pub username: String,
+    pub bio: String,
+    pub employee_id: Option<String>,
+    pub profile_picture_url: Option<String>,
+    pub role: String,
 }
 
 #[derive(Debug, Deserialize)]

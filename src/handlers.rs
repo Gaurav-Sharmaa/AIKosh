@@ -17,6 +17,11 @@ pub async fn get_dashboard() -> Result<Json<Dashboard>, AppError> {
     Ok(Json(dashboard))
 }
 
+pub async fn get_shared_artifacts() -> Json<Vec<SharedArtifact>> {
+    // Empty list → UI shows "No Record(s) Found!"
+    Json(vec![])
+}
+
 // Dataset
 pub async fn get_datasets() -> Result<Json<Vec<Dataset>>, AppError> {
     let datasets = read_json_file::<Vec<Dataset>>("data/datasets.json")?;
@@ -49,6 +54,22 @@ pub async fn get_model_by_id(Path(id): Path<u8>) -> Result<Json<Model>, AppError
         .ok_or(AppError::NotFound)
 }
 
+//Tooklit
+pub async fn get_toolkit() -> Result<Json<Vec<Toolkit>>, AppError> {
+    let toolkit = read_json_file::<Vec<Toolkit>>("data/toolkit.json")?;
+    Ok(Json(toolkit))
+}
+
+pub async fn get_toolkit_by_id(Path(id): Path<u8>) -> Result<Json<Toolkit>, AppError> {
+    let toolktit = read_json_file::<Vec<Toolkit>>("data/toolkit.json")?;
+
+    toolktit
+        .into_iter()
+        .find(|t| t.id == id)
+        .map(Json)
+        .ok_or(AppError::NotFound)
+}
+
 // UseCase
 pub async fn get_usecases() -> Result<Json<Vec<UseCase>>, AppError> {
     let usecases = read_json_file::<Vec<UseCase>>("data/usecases.json")?;
@@ -65,20 +86,20 @@ pub async fn get_usecase_by_id(Path(id): Path<u8>) -> Result<Json<UseCase>, AppE
         .ok_or(AppError::NotFound)
 }
 
-//Tooklit
-pub async fn get_toolkit() -> Result<Json<Vec<Toolkit>>, AppError> {
-    let toolkit = read_json_file::<Vec<Toolkit>>("data/toolkit.json")?;
-    Ok(Json(toolkit))
+pub async fn get_leaderboard() -> Json<Vec<Leaderboard>> {
+    Json(vec![])
 }
 
-pub async fn get_toolkit_by_id(Path(id): Path<u8>) -> Result<Json<Toolkit>, AppError> {
-    let toolktit = read_json_file::<Vec<Toolkit>>("data/toolkit.json")?;
+pub async fn get_bookmarked() -> Json<Vec<Bookmark>> {
+    Json(vec![])
+}
 
-    toolktit
-        .into_iter()
-        .find(|t| t.id == id)
-        .map(Json)
-        .ok_or(AppError::NotFound)
+pub async fn get_my_notebook() -> Json<Vec<MyNotebook>> {
+    Json(vec![])
+}
+
+pub async fn get_recent_activities() -> Json<Vec<RecentActivities>> {
+    Json(vec![])
 }
 
 // Tutorial
@@ -139,7 +160,7 @@ pub async fn update_user_profile(
     Ok(Json(user))
 }
 
-// Health check endpoint
+// Health Check
 pub async fn health_check() -> (StatusCode, &'static str) {
     (StatusCode::OK, "OK")
 }
