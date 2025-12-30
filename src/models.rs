@@ -147,7 +147,7 @@ pub struct Article {
     pub title: String,
     pub description: String,
     pub content: Option<String>,
-    pub image_url: String,
+    pub image_url: Option<String>,
     pub author: String,
     pub read_time: String,
     pub published_date: String,
@@ -155,7 +155,6 @@ pub struct Article {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct User {
-    // DONE
     pub id: u8,
     pub full_name: String,
     pub username: String,
