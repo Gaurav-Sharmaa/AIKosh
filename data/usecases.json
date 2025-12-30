@@ -21,5 +21,573 @@
     ],
     "sector": "Healthcare, Wellness and Family Welfare",
     "about_use_case": "The musculoskeletal and neuro-rehabilitation sectors face major challenges such as inconsistent assessment methods, subjective clinical judgments, lack of measurable recovery tracking methods, delayed diagnosis of underlying dysfunctions, and absence of standardized reporting.\n\nPheezee—an AI-powered, USFDA-listed, ISO 13485-certified medical device—addresses these challenges by enabling objective, data-driven diagnostics and personalized rehabilitation pathways. It bridges the gap between traditional clinical expertise and advanced technology by identifying joint and muscle dysfunction early, even before symptoms appear, objectively tracking muscle performance and joint mobility, supporting orthopedic and neurological condition management, enhancing post-operative recovery, and reducing long-term complications.\n\nA smart AI-based screening process ensures that only patients requiring further analysis are guided to the Pheezee Assessment—an in-depth evaluation combining EMG (Electromyography) and ROM (Range of Motion) metrics to uncover the root cause of functional limitations.\n\nBegin Screening Link: https://forms.fillout.com/t/uGsJXdbummus\n\nPotential Use Cases:\n1. Early Detection of Musculoskeletal Issues: Identify subtle signs of muscle weakness or joint restriction before pain or injury manifests. Ideal for general health checkups, wellness camps, and preventive health initiatives.\n2. Objective Physiotherapy Assessments: Empower physiotherapists with quantifiable EMG and ROM data to replace subjective assessments and ensure consistent diagnosis across professionals and locations.\n3. Progress Tracking and Report Automation: Visualize patient progress over time through automated tracking tools and instantly generate standardized AI-based reports that aid communication and documentation.\n4. Post-Surgery Recovery Monitoring: Continuously monitor recovery after orthopedic or neurological surgeries using objective data to detect deviations early and avoid complications.\n5. Personalized Rehab and Exercise Plans: Use patient-specific data to generate customized rehabilitation protocols that evolve dynamically as the patient improves, ensuring optimal care.\n6. Elderly Mobility and Fall Risk Evaluation: Evaluate coordination, joint function, and mobility in older adults to detect fall risks early and implement mobility improvement strategies in elderly care programs.\n\nData Artifacts and Potential AI Solutions:\nInput Data includes patient demography such as age, gender, height, weight, activity level, medical and surgical history, symptoms, and relevant investigations like MRI. Joint and muscle health data is collected using wearable sensors capturing EMG (muscle activity) and ROM (joint movement).\n\nPotential Outputs include screening test results that flag individuals with potential issues and recommend full Pheezee assessments, along with downloadable reports containing AI-based risk classification, functional insights derived from EMG and ROM analysis, personalized rehabilitation recommendations, progress tracking across sessions, and clear communication of muscle strength, balance, and mobility.\n\nPotential AI Solutions:\n1. Precision in Decision-Making: Analyze real-time EMG and ROM data to eliminate subjectivity and support evidence-based treatment decisions.\n2. Recovery Prediction: Use historical data and AI models to forecast patient recovery timelines, enabling better planning and resource allocation.\n3. Enhanced Clinical Decision Support: Generate actionable insights from complex datasets and support clinicians with AI-recommended diagnostics, follow-up protocols, and treatment strategies.\n4. Repetitive Stress and Occupational Health: Assess workers in physically demanding roles to prevent repetitive strain injuries and improve workplace health outcomes.\n5. Population-Level Pattern Recognition: Aggregate anonymized data to identify public health trends across age groups, regions, or occupations for healthcare planning and policy formulation.\n\nPotential Benefits:\n- Enables better clinical decision-making through objective diagnostics.\n- Improves patient trust and satisfaction via clear, visual progress reports.\n- Supports return-to-work and fit-for-sport certifications by validating recovery readiness.\n- Facilitates integration into preventive healthcare, wellness initiatives, and government-led public health programs.\n\nKey Differentiators:\nThe Pheezee test is a non-invasive diagnostic tool for joint and muscle pain that captures critical physiological information not available through conventional imaging tools such as X-Ray, MRI, or CT scans. It helps patients understand the severity and root cause of joint pain, pinpoints affected muscles, and supports preventive healthcare by monitoring muscle and joint mobility over time to detect degradation early and enable timely corrective interventions."
+  },
+  {
+    "id": 2,
+    "title": "AI-Driven Smart Energy Management",
+    "description": "The use case leverages AI to optimize energy distribution, improve grid efficiency, detect fraud, and integrate renewables for a smarter power ecosystem.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "Energy Forecasting",
+      "AI for Smart Grid",
+      "Renewable Energy Optimization",
+      "AI for Power Distribution",
+      "Smart Energy Consumption",
+      "Machine Learning for Energy Management"
+    ],
+    "sector": "Energy, Power and Renewable Resources",
+    "about_use_case": "The energy sector faces challenges such as inefficient energy distribution, energy theft, unpredictable demand surges, and difficulty integrating renewable energy sources into the existing power grid. Traditional energy management approaches lack a strong data-driven foundation, leaving significant optimization potential untapped. AI-driven solutions leverage machine learning techniques and predictive modeling to enhance energy forecasting accuracy, optimize grid management, prevent fraud, and accelerate the adoption of renewable energy.\n\nPotential Use Cases:\n1. Sector-Wise Demand Forecasting: Predicts energy consumption trends across agriculture, industry, electric vehicle charging infrastructure, and residential usage to enable improved energy planning and policy formulation.\n2. Renewable Energy Optimization: Enhances the integration of solar and other renewable energy sources by simulating power and energy distribution across the grid.\n3. Anomaly Detection and Fraud Prevention: Identifies irregular and abnormal energy consumption patterns to detect potential energy theft and reduce losses.\n\nData Artifacts and Potential AI Solutions:\n\nInput Data:\n- Energy consumption data sourced from Northern Power Distribution Company of Telangana Limited (NPDCL) and Southern Power Distribution Company of Telangana Limited (SPDCL) covering the period from 2019 to 2024.\n- Sector-wise energy usage data including agriculture, domestic, commercial, electric vehicle charging stations, industrial usage, and solar net meters.\n- 30 kilometer geospatial grid load data along with renewable energy contribution metrics.\n- Weather and temperature data influencing energy demand and load patterns.\n\nPotential Outputs:\n- Sector-wise energy demand forecasts intended for utility providers and policymakers.\n- Real-time load balancing recommendations to support efficient grid management.\n- Anomaly detection reports highlighting fraud, irregular energy consumption, and inefficiencies.\n- Actionable renewable energy insights to optimize energy distribution networks.\n\nPotential Solutions:\n- Time-Series Forecasting Models such as Long Short-Term Memory (LSTM) networks, Prophet, and related approaches for accurate energy demand prediction.\n- Machine Learning-based anomaly detection techniques to identify energy theft, abnormal consumption behavior, and operational inefficiencies.\n\nPotential Benefits:\n- Optimized Energy Distribution: Reduces power outages and ensures a stable and reliable electricity supply.\n- Cost Efficiency for Utilities: Minimizes energy wastage, improves operational efficiency, and enhances overall grid performance.\n- Fraud Prevention: Detects unauthorized energy consumption patterns and mitigates electricity theft.\n\nResources and External Integrations:\n- OpenWeatherMap API for integrating weather patterns into energy demand forecasting models.\n- Google Cloud Energy API for real-time grid analytics and advanced energy management.\n\nRelated Datasets:\n- Daily Sub-basin-wise February 2022 Rainfall data from India Meteorological Department (IMD GRID MODEL) Agency. The dataset provides daily rainfall measurements from the National Remote Sensing Centre (NRSC) VIC Model, covering sub-basin and overall rainfall.\n- Daily Sub-basin-wise April 2022 Rainfall data from India Meteorological Department (IMD GRID MODEL) Agency. Provides detailed rainfall measurements supporting climate and energy correlation analysis.\n- Daily Rainfall data of September 2022 from India Meteorological Department (NRSC VIC MODEL) Agency covering overall rainfall patterns.\n- Daily Sub-basin-wise January 2022 Rainfall data from India Meteorological Department (IMD GRID MODEL) Agency.\n- Daily Sub-basin-wise July 2022 Rainfall data from India Meteorological Department (IMD GRID MODEL) Agency.\n- Daily Sub-basin-wise June 2022 Rainfall data from India Meteorological Department (IMD GRID MODEL) Agency.\n- Daily Sub-basin-wise March 2022 Rainfall data from India Meteorological Department (IMD GRID MODEL) Agency.\n- Daily Rainfall data of May 2022 from India Meteorological Department (NRSC VIC MODEL) Agency.\n- Daily Sub-basin-wise May 2022 Rainfall data from India Meteorological Department (IMD GRID MODEL) Agency.\n- Daily Sub-basin-wise September 2022 Rainfall data from India Meteorological Department (NRSC VIC MODEL) Agency.\n\nThese datasets collectively provide climate, rainfall, and environmental context that can be correlated with energy demand, grid stress, and renewable energy generation patterns to improve forecasting accuracy and decision-making."
+  },
+  {
+    "id": 3,
+    "title": "AI Enabled Power Sector Regulatory Assistant",
+    "description": "To develop an AI-powered Regulatory Assistant that helps Discoms and Regulators prepare, analyse, and interpret tariff petitions and regulatory orders efficiently using an open-source, jointly owned pre-trained model built on Indian electricity sector regulations and judicial decisions.",
+    "image_url": null,
+    "source_org": "MINISTRY OF POWER",
+    "tags": [
+      "Power Supply",
+      "electricity",
+      "power distribution",
+      "power consumption",
+      "industrial power",
+      "power",
+      "AI for Power Distribution",
+      "Power and Energy"
+    ],
+    "sector": "Energy, Power and Renewable Resources",
+    "about_use_case": "Electricity regulatory filings and orders often run into thousands of pages and contain extensive financial data, legal references, and performance parameters. Distribution Companies (Discoms) spend months preparing ARR (Annual Revenue Requirement) and True-Up petitions, often involving repetitive manual work. Regulators such as SERCs and CERC must review multiple years of petitions, past orders, and policy directives to draft new tariff orders, making the overall process complex, time-consuming, and resource-intensive.\n\nValuable insights are frequently buried within unstructured text and tabular data scattered across hundreds of regulatory documents. This leads to inefficiencies, inconsistencies, and delays in regulatory decision-making. The proposed use case aims to build an Open-Source Large Language Model (LLM)-based Regulatory Assistant that functions as a virtual co-pilot for both Discoms and Regulators.\n\nThe AI-enabled Regulatory Assistant will help users navigate the complex regulatory and financial landscape of the Indian electricity sector by enabling faster preparation, analysis, and interpretation of tariff petitions and regulatory orders. It will support better understanding of historical filings, regulatory precedents, and judicial decisions, thereby improving accuracy, consistency, and efficiency in regulatory processes.\n\nThis assistant is designed to be jointly owned and open-source, ensuring transparency, trust, and long-term sustainability. It leverages Indian electricity sector regulations and judicial decisions as its foundational knowledge base. For additional technical and functional details, users are encouraged to refer to the attached external resource titled \"Detailed Use Case for Power Sector Regulatory Assistant\"."
+  },
+  {
+    "id": 4,
+    "title": "AI-Powered Conversational Agents for Rural E-Governance",
+    "description": "This use case enables rural citizens to access government services via AI voice assistants that understand dialects, resolve queries, and assist with schemes.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "E-Governance AI",
+      "Multilingual Conversational AI",
+      "Speech Recognition for Governance",
+      "Rural Digital Inclusion",
+      "AI for Public Services",
+      "Low-Resource NLP"
+    ],
+    "sector": "Governance and Administration",
+    "about_use_case": "Rural citizens face significant challenges in accessing government services due to language barriers, varying literacy levels, and digital unfamiliarity. These challenges often prevent effective utilization of welfare schemes and public services. AI-powered voice assistants address these issues by enabling seamless, multilingual access to e-governance platforms, thereby making government services more inclusive, accessible, and efficient.\n\nPotential Use Cases:\n1. Dialect-Sensitive Speech Recognition: Accurately understands regional dialects, mixed-language speech, and informal rural phrases to improve accessibility and usability for rural populations.\n2. Multilingual AI for Government Services: Assists citizens in applying for welfare schemes such as ration cards, pensions, and the Mahatma Gandhi National Rural Employment Guarantee Act (MNREGA), while also providing real-time query resolution related to government services.\n3. Fraud and Identity Verification: Utilizes voice biometrics to prevent duplicate applications and detect fraudulent subsidy claims, enhancing trust and security in public service delivery.\n\nData Artifacts and Potential AI Solutions:\n\nInput Data:\n- Multilingual Speech Dataset: Project Vaani and Bhashini’s Automatic Speech Recognition datasets covering 54 Indian languages and dialects.\n- Government Schemes and Policies: Data related to E-Shram, Pradhan Mantri Kisan Samman Nidhi, Ration Card services, MNREGA, and various pension schemes.\n- Regional Speech Patterns: District-wise pronunciation variations and mixed-language speech patterns such as Hindi-Marathi and Telugu-Urdu.\n\nPotential Outputs:\n- Voice-based assistance for scheme applications and citizen inquiries.\n- Real-time SMS and WhatsApp notifications for tracking application status.\n- Personalized, district-specific responses aligned with state-level policies and regulations.\n\nPotential Solutions:\n- Automatic Speech Recognition (ASR): Converts dialect-rich and multilingual speech into text while preserving linguistic nuances.\n- Natural Language Understanding (NLU): Interprets mixed-language queries, extracts intent, and maps requests to relevant government services.\n- Text-to-Speech (TTS): Delivers responses in the user’s local dialect, enabling accessibility for illiterate and semi-literate users.\n- Voice Biometrics: Verifies speaker identity against historical government interaction records to detect fraud and prevent misuse.\n\nPotential Benefits:\n- Improved Accessibility: Eliminates language barriers and allows rural citizens to easily access e-governance services.\n- Faster Service Delivery: Automates query resolution and scheme application processes, reducing bureaucratic delays.\n- Fraud Prevention: Detects duplicate and fraudulent subsidy claims through secure voice-based identity verification.\n\nResources and External References:\n- National Digital India Mission.\n- E-Shram and PM Kisan Portals.\n\nRelated Datasets:\nThis use case is supported by multiple speech and language datasets from the Digital India Bhashini Division, including ASR benchmark datasets for Odia, Hindi, Tamil, Marathi, Telugu, Bengali, and Punjabi languages. These datasets span news, general, noisy speech, and low-resource language domains and are designed to strengthen regional language speech recognition, multilingual NLP, and inclusive AI systems for governance applications."
+  },
+  {
+    "id": 5,
+    "title": "AI-Powered Fair Price Shop Optimization and Fraud Detection",
+    "description": "This use case leverages AI to optimize ration distribution, detect fraudulent transactions, and enhance Fair Price Shop efficiency.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "AI for Supply Chain Optimization",
+      "Fair Price Shop Analytics",
+      "AI for Public Distribution System",
+      "Smart Rationing",
+      "Fraud Detection in Food Security",
+      "AI for Social Welfare"
+    ],
+    "sector": "Commerce, Finance, Banking and Insurance",
+    "about_use_case": "The Public Distribution System (PDS) plays a critical role in ensuring national food security by providing subsidized essential commodities to eligible beneficiaries. Despite its importance, the system continues to face persistent challenges such as fraud, supply chain inefficiencies, leakages, and misallocation of resources. These issues reduce operational efficiency and limit accessibility for intended beneficiaries. AI-powered solutions can significantly enhance Fair Price Shop (FPS) operations by optimizing ration distribution, detecting anomalies and fraud, and improving accessibility and service delivery.\n\nPotential Use Cases:\n1. Supply Chain Optimization: Predicts monthly demand for essential commodities by analyzing Fair Price Shop (FPS) transaction data and population density, enabling accurate stock planning and allocation.\n2. Fraudulent Transaction Detection: Identifies anomalies such as duplicate transactions, unauthorized usage, and ghost beneficiaries to prevent ration fraud and reduce leakages.\n3. Geospatial Analysis for Accessibility: Ensures optimal placement and coverage of FPS outlets by analyzing distribution gaps, village-level accessibility, and beneficiary travel distances.\n\nData Artifacts and Potential AI Solutions:\n\nInput Data:\n- Fair Price Shop (FPS) Transactions Data: Monthly ration distribution details, ration card usage trends, and associated financial transactions.\n- Fair Price Shop (FPS) Allocation Data: Stock allocation records and demand patterns for individual shops.\n- Geospatial Data: FPS locations, village-level accessibility metrics, and beneficiary travel distance information.\n\nPotential Outputs:\n- Real-time FPS performance dashboards displaying operational metrics and efficiency scores.\n- Fraud detection alerts highlighting duplicate, suspicious, or unauthorized transactions.\n- Geo-mapping and visualization of underserved regions to support optimized FPS placement and coverage.\n\nPotential Solutions:\n- Time-Series Forecasting using models such as Long Short-Term Memory (LSTM) networks and Prophet to predict demand fluctuations and support better stock allocation decisions.\n- Anomaly Detection using Density-Based Spatial Clustering of Applications with Noise (DBSCAN) to flag fraudulent or irregular ration distribution patterns.\n- Geospatial AI and Spatial Clustering techniques to identify underserved areas and improve accessibility to Fair Price Shops.\n\nPotential Benefits:\n- Fair and Efficient Distribution: Ensures timely, accurate, and need-based allocation of food grains and essential commodities.\n- Fraud Prevention: Detects and reduces leakages, duplicate entries, and unauthorized transactions within the PDS ecosystem.\n- Optimized Resource Planning: Enhances supply chain efficiency and FPS accessibility through data-driven decision-making.\n\nResources and External References:\n- Food Security Act – Government of India.\n- Telangana Civil Supplies Portal.\n- Open Government Data (OGD) India – Ration Distribution Statistics.\n\nRelated Datasets:\n- Fair Price Shop Status with Latitude and Longitude – Telangana State Civil Supplies: Provides geospatial details and operational status of FPS outlets, including latitude, longitude, and activation status.\n- Fair Price Shop Card Status – Telangana State Civil Supplies: Contains monthly ration card status, commodity allocations, and FPS-level distribution information.\n- Fair Price Shop Transactions – Telangana State Civil Supplies: Includes detailed monthly transaction data such as ration card usage, commodity allocations, transaction volumes, and values. These datasets collectively support geospatial analysis, fraud detection, and optimization of ration distribution under the Public Distribution System."
+  },
+  {
+    "id": 6,
+    "title": "AI-Powered Smart Rural Development Planning",
+    "description": "This use case leverages AI to identify rural infrastructure gaps, optimize resource allocation for sustainable development.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "Rural Development",
+      "Digital India",
+      "Smart Villages",
+      "AI for Infrastructure",
+      "Public Policy",
+      "Geospatial AI",
+      "AI for Governance",
+      "Road Connectivity",
+      "Sustainable Development Goals",
+      "Rural Economy",
+      "GIS Mapping"
+    ],
+    "sector": "Housing, Urban Planning and Infrastructure",
+    "about_use_case": "Rural areas often face persistent challenges in infrastructure development, including inadequate road connectivity, limited access to healthcare services, and gaps in education facilities. These deficiencies hinder socio-economic growth and reduce quality of life in remote and underserved villages. AI-powered analytics can play a critical role in identifying infrastructure gaps, predicting future development requirements, and optimizing the allocation of public resources for targeted and sustainable rural development.\n\nPotential Use Cases:\n1. Underserved Village Detection: Analyzes deficits in healthcare, education, and sanitation infrastructure using Mission Antyodaya village-level data to identify villages requiring urgent intervention.\n2. Predictive Infrastructure Planning: Forecasts future infrastructure and development needs by analyzing population growth trends, migration patterns, and local economic activity.\n3. Road Connectivity Analysis: Identifies villages lacking proper road infrastructure using data from the Pradhan Mantri Gram Sadak Yojana (PMGSY) combined with satellite-based road mapping and remote sensing techniques.\n\nData Artifacts and Potential AI Solutions:\n\nInput Data:\n- PMGSY and Satellite Road Data: Used to assess rural road connectivity gaps and transportation accessibility.\n- Mission Antyodaya Village Facilities Data: Maps deficiencies across healthcare, education, sanitation, and basic infrastructure indicators.\n- Census Data: Correlates socio-economic and demographic conditions with infrastructure requirements.\n- Population Growth and Migration Trends: Helps predict future demand for infrastructure and public services.\n\nPotential Outputs:\n- Geospatial insights highlighting gaps in rural connectivity, healthcare access, and education infrastructure.\n- AI-driven recommendations to support targeted and evidence-based infrastructure investments.\n- Prioritization maps identifying high-impact areas for rural development initiatives.\n\nPotential Solutions:\n- Geospatial and Remote Sensing Techniques: Detect infrastructure gaps and development disparities using satellite imagery and spatial analytics.\n- Predictive Modeling using Time-Series and Regression Methods: Forecasts future development and infrastructure needs.\n- Machine Learning-Based Prioritization: Optimizes public investment decisions across road development, digital inclusion, rural electrification, and essential services.\n\nPotential Benefits:\n- Targeted Rural Development: Enables data-driven infrastructure planning to maximize developmental impact.\n- Improved Accessibility: Enhances access to roads, healthcare, and education facilities for remote and underserved villages.\n- Optimized Resource Allocation: Assists policymakers in prioritizing investments for long-term, sustainable rural growth.\n\nResources and External References:\n- Google Earth Engine for satellite-based infrastructure mapping.\n- PMGSY Rural Roads Data Portal.\n- Mission Antyodaya Village Facilities Data.\n- World Bank Rural Development Insights.\n- AI for Smart Infrastructure Planning initiatives.\n- Google Maps API for road and connectivity analysis.\n- OpenStreetMap for village-level mapping.\n- Esri ArcGIS for rural development planning and spatial analytics.\n\nRelated Datasets:\n- 2011 Population Census State Polygon Geometries: A geospatial dataset containing polygon geometries for Indian state boundaries based on the 2011 Census.\n- 2011 Population Census District Polygon Geometries: A geospatial dataset providing district-level boundary geometries for spatial analysis and policy planning. These datasets support GIS-based analysis for infrastructure planning, population assessment, and rural development decision-making."
+  },
+  {
+    "id": 7,
+    "title": "AI-Powered Urban Growth Planning",
+    "description": "This use case is about leveraging AI to track urban expansion, detect slums, and support data-driven smart city planning for sustainable development.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "Public Policy",
+      "Geospatial AI",
+      "Urban Planning",
+      "Smart Cities",
+      "AI for Good",
+      "Slum Detection",
+      "Sustainable Development",
+      "AI for Housing",
+      "Infrastructure Planning",
+      "GIS for Smart Cities"
+    ],
+    "sector": "Housing, Urban Planning and Infrastructure",
+    "about_use_case": "Rapid urbanization is placing significant strain on infrastructure, housing, and public services, often resulting in the emergence of unplanned and informal settlements. Managing this growth effectively is a major challenge for city planners and policymakers. AI-driven geospatial analysis offers powerful capabilities to monitor urban expansion, detect slum formation, and support data-driven planning for sustainable, inclusive, and resilient city development.\n\nPotential Use Cases:\n1. Predictive Urban Growth Modeling: Forecasts trends in slum expansion and urban sprawl by analyzing migration patterns, population growth, and economic activity.\n2. Slum and Informal Settlement Detection: Identifies high-density, underdeveloped, and informal settlement areas using spatial patterns and satellite data to enable timely government intervention.\n\nData Artifacts and Potential AI Solutions:\n\nInput Data:\n- Satellite Imagery and Night-Time Lights Data: Used to track urban sprawl, settlement density, electrification levels, and infrastructure concentration over time.\n- Migration and Population Growth Trends: Helps predict future urban expansion, housing demand, and infrastructure requirements.\n\nPotential Outputs:\n- High-resolution geospatial maps highlighting slum-prone regions, informal settlements, and critical infrastructure gaps.\n- Predictive insights supporting future urban expansion planning and optimized resource allocation.\n- Smart city recommendations for housing development, sanitation services, and essential urban infrastructure.\n\nPotential Solutions:\n- Geospatial and Remote Sensing Techniques: Analyze land use patterns, settlement density, and urban sprawl using satellite imagery and spatial analytics.\n- Deep Learning-Based Informal Settlement Detection: Identifies slums and informal settlements automatically from high-resolution satellite imagery.\n- Predictive Modeling using Time-Series and Regression Methods: Forecasts future urban growth trajectories and infrastructure needs.\n\nPotential Benefits:\n- Proactive Urban Planning: Enables smart city initiatives through real-time monitoring and predictive insights into urban expansion.\n- Targeted Infrastructure Development: Optimizes investment in housing, sanitation, and public services for underserved and high-risk areas.\n- Slum Prevention and Policy Support: Assists policymakers in early intervention to prevent the formation of unplanned settlements and support inclusive urban development.\n\nResources and External References:\n- Urban Expansion Data from the World Bank.\n- Facebook Data for Good initiatives.\n- Google Earth Engine for urban growth and satellite-based analysis.\n- Google AI tools for smart city planning.\n- OpenStreetMap for detailed city and infrastructure mapping.\n\nRelated Datasets:\n- Population Census to SHRUG Identifier Keys: Provides geographic linkages between Population Census identifiers and SHRUG spatial units for census years 1991, 2001, and 2011.\n- 2011 Population Census District Polygon Geometries: District-level boundary geometries for spatial analysis and administrative planning.\n- 2011 Population Census State Polygon Geometries: State-level boundary datasets supporting policy planning and geospatial analysis.\n- Defense Meteorological Satellite Program (DMSP) Night Lights Data (1992–2013): Satellite-derived night light intensity data used to analyze electrification, economic activity, and urbanization trends.\n- 2011 Population Census Village-Level Geometries: Village and town boundary polygons for rural–urban spatial analysis.\n- 2011 Population Census Subdistrict Polygon Geometries: Subdistrict (Tehsil/Taluka) boundary geometries supporting local governance and spatial statistics."
+  },
+  {
+    "id": 8,
+    "title": "AI-Powered Voice Assistant for Farmers",
+    "description": "This use case focuses on using a voice assistant powered by Automatic Speech Recognition (ASR) to help farmers access agricultural insights in regional Indian languages.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "Agriculture",
+      "ASR",
+      "NLP",
+      "Computational Linguistics",
+      "Machine Learning",
+      "Indic Languages",
+      "Open Source",
+      "Deep Learning",
+      "AI",
+      "Automatic Speech Recognition",
+      "Speech-to-Text",
+      "Voice Assistant",
+      "Farmers",
+      "Rural Development",
+      "Digital India",
+      "Smart Farming",
+      "Government Schemes",
+      "Market Prices",
+      "IVR"
+    ],
+    "sector": "Agriculture, Forestry and Rural Development",
+    "about_use_case": "This use case focuses on developing a multilingual AI-powered voice assistant using Automatic Speech Recognition (ASR) to support farmers by providing easy access to weather updates, market prices, and government schemes in regional Indian languages. Many farmers face barriers due to literacy levels, language diversity, and limited digital access. A voice-based interface improves accessibility and enables informed decision-making for agricultural activities.\n\nPotential Use Cases:\n1. Voice-Based Agricultural Advisory: Enables farmers to ask questions and receive AI-driven advisory responses related to crops, farming practices, and inputs in their native language.\n2. Real-Time Weather and Market Price Updates: Provides timely alerts on weather conditions and daily mandi (market) prices to assist farmers in planning sowing, harvesting, and selling decisions.\n3. Government Scheme Assistance: Helps farmers discover and access subsidy programs, loan facilities, insurance schemes, and other agricultural support initiatives.\n\nData Artifacts and Potential AI Solutions:\n\nInput Data:\n- Regional Language Voice Data: Speech datasets covering Hindi, Marathi, Tamil, Telugu, Punjabi, and other Indian languages.\n- Agricultural Knowledge Base: Structured and unstructured data on crop advisory, government schemes, market prices, pest management, and disease control.\n- Weather and Market Price Feeds: Live data streams providing weather forecasts and mandi price updates.\n\nPotential Outputs:\n- AI-powered voice responses delivering relevant agricultural insights and recommendations.\n- Real-time text and audio notifications related to weather conditions, market prices, and government scheme updates.\n- Automated pest and disease identification support through voice-based farmer reports.\n\nPotential Solutions:\n- Automatic Speech Recognition (ASR) using platforms such as Bhashini to convert farmer voice queries into text.\n- Natural Language Understanding (NLU) to extract intent and retrieve relevant agricultural information.\n- Text-to-Speech (TTS) systems to deliver responses in the farmer’s preferred regional language.\n\nPotential Benefits:\n- Increased Accessibility: Enables non-literate and semi-literate farmers to access critical agricultural information through voice interaction.\n- Improved Decision-Making: Supports better planning and risk mitigation through real-time weather and market intelligence.\n- Enhanced Farmer Support: Simplifies access to government schemes, subsidies, and expert agricultural advice.\n\nResources and External References:\n- Mozilla Common Voice multilingual ASR dataset.\n- OpenSLR speech datasets for low-resource languages.\n- FARMER Speech Corpus for agriculture-focused speech applications.\n- Speech-to-Text using OpenAI Whisper.\n- Google Cloud Speech-to-Text API documentation.\n- AI4Bharat Indic ASR speech datasets.\n- Deepgram ASR API for speech processing.\n- Google Dialogflow for AI-powered conversational agents.\n- Hugging Face ASR model training guides.\n- Kaldi open-source speech recognition toolkit.\n- Rasa voice assistant and chatbot frameworks.\n- Coqui AI for text-to-speech and ASR in low-resource languages.\n\nRelated Datasets:\nThis use case is supported by multiple Automatic Speech Recognition benchmark datasets from the Digital India Bhashini Division, including Odia, Hindi, Tamil, Marathi, Telugu, Bengali, and Punjabi ASR datasets. These datasets cover news, general, noisy speech, and low-resource language domains and are essential for building robust, multilingual speech-to-text systems tailored for Indian agricultural use cases."
+  },
+  {
+    "id": 9,
+    "title": "A Multilingual Gateway to India’s Parliamentary Discourse",
+    "description": "A comprehensive AI-driven platform envisioned to democratize access to the legislative history of the Indian Parliament by making Lok Sabha and Rajya Sabha debates accessible in multiple Indian languages.",
+    "image_url": null,
+    "source_org": "Thore Network PVT LTD",
+    "tags": [
+      "AI-assistant",
+      "language_creators:machine-generated",
+      "language:tel",
+      "language:ori",
+      "language:urd"
+    ],
+    "sector": "Governance and Administration",
+    "about_use_case": "This report presents a comprehensive project solution for Thore Network PVT LTD to develop \"AI Kosh\", a platform envisioned to democratize access to the legislative history of the Indian Parliament. The vision for AI Kosh is to establish a premier, non-partisan digital resource that makes the entirety of Lok Sabha and Rajya Sabha debates accessible in multiple Indian languages. This initiative aims to foster unprecedented levels of academic research, journalistic inquiry, policy analysis, and civic engagement by breaking down linguistic barriers to one of the world’s most extensive archives of democratic discourse.\n\nAt the core of the proposed solution is a robust and scalable platform designed to ingest, process, and present parliamentary debates from a wide range of sources. These sources include official text records, digitized PDF archives, and live video proceedings. The platform’s central language processing capabilities will be powered by the Government of India’s Bhashini AI Mission, a state-of-the-art national language technology platform. This integration ensures access to an advanced suite of AI services such as transcription, translation, and optical character recognition (OCR), while aligning the project with national digital infrastructure initiatives.\n\nA critical strategic consideration highlighted in the report is the existence of an official government initiative known as \"Sansad Bhashini\", a collaboration between the Lok Sabha Secretariat and the Ministry of Electronics and Information Technology (MeitY). This initiative not only shares an identical mandate with the proposed AI Kosh platform but has also announced the creation of a dataset explicitly named \"AI Kosh\". This direct overlap significantly shapes the strategic landscape for Thore Network.\n\nThe report analyzes this situation not as an insurmountable obstacle, but as a defining factor that necessitates a nuanced and well-considered strategic approach. Three potential pathways are evaluated in detail: entering into direct competition with the government initiative, pursuing a strategic partnership model, or developing a differentiated, value-added niche that complements existing government efforts. These strategic options aim to ensure sustainability, relevance, and impact of the proposed platform while contributing meaningfully to multilingual access to India’s parliamentary discourse.\n\nResources and Tools:\n- APIs and Tools: Shoonya, Chitralekha."
+  },
+  {
+    "id": 10,
+    "title": "BrainSightAI",
+    "description": "BrainSightAI is the Google Map of the brain which allows users to map brain functions using advanced AI, ML, and 3D visualization technologies.",
+    "image_url": null,
+    "source_org": "BrainSightAI",
+    "tags": [
+      "radiology",
+      "Functional MRI (fMRI)",
+      "Brain Connectivity",
+      "Connectomics",
+      "Neuroimaging AI",
+      "AI-based Diagnosis",
+      "Brain Phenotyping",
+      "Digital Phenotyping",
+      "3D Brain Visualization",
+      "Dementia",
+      "Schizophrenia",
+      "Brain Tumor",
+      "Stroke",
+      "Epilepsy",
+      "Neuropathy",
+      "Health Equity AI",
+      "Neurodiagnostics",
+      "Scalable Healthcare",
+      "Brain Analytics",
+      "Rural Health Tech",
+      "Neuro AI Platform",
+      "Affordable AI Tools",
+      "AI-driven Imaging",
+      "Digital Health Platform",
+      "MRI Interpretation",
+      "Accessible Healthcare",
+      "Multimodal MRI",
+      "Early Diagnosis",
+      "Brain Mapping",
+      "Resting-State fMRI (rs-fMRI)",
+      "AI for Healthcare",
+      "Deep Learning Neuroimaging",
+      "Neurosurgery",
+      "Plan of Care",
+      "Multiple Sclerosis"
+    ],
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "about_use_case": "BrainSightAI is an advanced neurotechnology platform that leverages Artificial Intelligence, Machine Learning, and 3D visualization to generate detailed connectomic profiles of the human brain, capturing both structural and functional patterns. The platform addresses a critical gap in neuropsychiatric diagnostics and neurosurgical planning by moving beyond traditional reliance on self-reported symptoms and basic structural imaging. Instead, it provides non-invasive, high-resolution insights into brain connectivity.\n\nBy analyzing multimodal MRI data, including functional MRI (fMRI), structural MRI, and resting-state fMRI (rs-fMRI), BrainSightAI enables early detection of neurological and psychiatric disorders such as dementia and schizophrenia, and supports more accurate pre-surgical assessments for conditions including brain tumors, stroke, epilepsy, neuropathy, and multiple sclerosis.\n\nIntegrated as a user-friendly, cloud-based SaaS platform, BrainSightAI delivers objective and personalized reports that support evidence-based clinical decision-making. The workflow includes seamless ingestion and processing of MRI data, transformation into interactive 3D brain maps enriched with clinically relevant biomarkers, and rapid report generation—often within 24 hours. This significantly reduces time burdens on clinicians while improving diagnostic accuracy and planning precision.\n\nKey Differentiators:\n- Only solution in mental health that combines AI across functional MRI, structural MRI, and digital phenotypes.\n- Among the very few platforms globally leveraging rs-fMRI to deliver individual-level brain insights instead of group-level averages.\n- Explainable and traceable AI that allows clinicians to question, interpret, and trust the outputs, increasing clinical adoption.\n- Patented data-processing pipeline with rapid report turnaround times within 24 hours.\n- Advanced 3D visualization engine that enhances clinical interpretability and diagnostic confidence.\n- Cloud-based SaaS architecture enabling simple, scalable, and cost-effective deployment.\n- Alignment with the World Psychiatry Association’s framework for future psychiatry.\n- Coverage across the full care continuum, from early triaging to diagnosis and treatment planning.\n- Designed to support all stakeholders including patients, caregivers, clinicians, hospitals, pharmaceutical companies, and insurers.\n\nMeasurable Impact and Improved Outcomes:\n- Enables up to 90× earlier screening and 10× earlier confirmation of neurological and psychiatric conditions.\n- Demonstrates substantial improvements in sensitivity and clinical-grade accuracy compared to existing solutions.\n- Improves treatment personalization, leading to better patient outcomes.\n- Accelerates pre-surgical planning and recovery forecasting.\n- Facilitates faster and more efficient patient recruitment for clinical trials.\n\nBy reducing the global burden of central nervous system (CNS) disorders and improving accessibility to advanced neurodiagnostics, BrainSightAI aims to deliver scalable, equitable, and impactful healthcare outcomes worldwide."
+  },
+  {
+    "id": 11,
+    "title": "ConvoZen.AI",
+    "description": "Conversational AI platform enabling businesses and governments to deploy multilingual AI agents across phone, chat, WhatsApp chat, voice notes, and more, while extracting valuable insights from agent–customer interactions.",
+    "image_url": null,
+    "source_org": "NoBroker Technologies Solutions Private Limited",
+    "tags": [
+      "Indic Languages",
+      "Conversational AI",
+      "Multilingual LLM",
+      "Customer Support Automation",
+      "Generative AI"
+    ],
+    "sector": "Sector Agnostic",
+    "about_use_case": "ConvoZen.AI is a software-as-a-service (SaaS) conversational AI platform that enables organizations to automate customer-facing and citizen-facing workflows using end-to-end AI agents. Built on a proprietary family of low-latency, cost-efficient language models covering nine major Indian languages and dozens of dialects, ConvoZen delivers natural, context-aware conversations across voice calls, WhatsApp, web chat, email, and other digital channels.\n\nThe platform provides a visual studio that allows teams with zero coding experience to design, test, and deploy conversational agents within minutes. These agents can be seamlessly integrated across omnichannel touchpoints including click-to-call telephony systems and WhatsApp Business APIs. Beyond automation, ConvoZen closes the feedback loop through built-in analytics that surface actionable insights from every interaction, enabling continuous improvement and operational intelligence.\n\nKey Differentiators:\n- Best-in-class regional language coverage with out-of-the-box support for nine Indian languages and adaptive handling of dialectal variations.\n- Ultra-low latency performance with P95 response times under 900 milliseconds and up to 40 percent cheaper inference compared to comparable models.\n- Omnichannel plug-and-play deployment across voice, WhatsApp, web chat, and email using telecom and WhatsApp Business API integrations.\n- Industry-agnostic agent templates supporting use cases across BFSI, retail, healthcare, logistics, and public-sector grievance redressal.\n- Built-in AI analytics providing sentiment analysis, intent trend detection, escalation hotspot identification, and agent benchmarking.\n\nBy combining multilingual conversational intelligence with rapid deployment and deep analytics, ConvoZen.AI enables enterprises and government organizations to scale customer engagement, improve service efficiency, and extract meaningful insights from high-volume interactions without heavy engineering investment."
+  },
+  {
+    "id": 12,
+    "title": "e-marketing of SHG Products",
+    "description": "Improve the reachability of Self-Help Group (SHG) products on e-commerce platforms through AI-driven market linkage, demand analysis, and visibility enhancement.",
+    "image_url": null,
+    "source_org": "Mission for Elimination of Poverty in Municipal Areas",
+    "tags": [
+      "Self Help Group"
+    ],
+    "sector": "Other",
+    "about_use_case": "Title of the Problem Statement:\nAbsence of Smart Market Linkage System for SHG Products Leading to Limited Visibility and Buyer Connections.\n\nBackground and Context:\nSelf-Help Groups (SHGs) in Andhra Pradesh produce a wide range of goods and services, but their products face limited visibility in competitive markets. An AI-enabled system is required to dynamically analyze product categories, buyer demand, and geographical location in order to recommend tailored market linkages, improve branding, and strengthen demand generation for SHG products.\n\nCurrently, SHG goods are sold through 26 seller points. SHGs produce and onboard products and services through multiple seller platforms such as ONDC, Amazon, and Flipkart for products, and the HomeTriangle application (private app) for services such as carpentry. For each seller point, logins are shared with SHGs, who log in individually and upload product or service data.\n\nProblem Description / Use Case Requirements:\n\n1. AI-powered Market Linkage Recommendations:\n- Use data sources from the public domain to identify market trends across different product categories.\n- Apply AI techniques to match market trends with transaction data available from seller platforms where SHG products and services are sold.\n- Example platforms include ONDC, Amazon, and Flipkart for products, and HomeTriangle for services.\n- Illustrative examples include lace products from West Godavari and Kondapalli wooden toys, where market transaction data (e.g., INR 2 lakhs through ONDC) is available. Information on product-wise and market-wise sales is available with the department.\n\n2. AI-enabled Dashboards and Alerts:\n- Provide SHG federations and government officials with dashboards showing product visibility, market trends, and market linkage opportunities.\n- Send automated alerts to SHGs on new buyer inquiries, emerging demand hotspots, and high-performing product categories.\n\nDesired Outcomes:\n- Establish an AI-enabled platform that strengthens SHG product visibility and improves smart market linkages across digital commerce platforms.\n\nExpected Impact:\n\n1. SHG Members:\n- Increased sales and income through improved market access.\n- Reduced dependency on intermediaries for buyer discovery and market access.\n\n2. Buyers and Markets:\n- Reliable sourcing of quality SHG products.\n- Access to localized and niche products through transparent supply channels.\n\n3. Government / MEPMA:\n- Stronger economic empowerment of women-led SHGs.\n- Data-driven monitoring and evaluation of SHG product–market linkages at the state level."
+  },
+  {
+    "id": 13,
+    "title": "FarmVibes.AI",
+    "description": "Develop rich geospatial insights for agriculture and sustainability by fusing satellite, drone, weather, and spatiotemporal data using AI-driven analysis.",
+    "image_url": null,
+    "source_org": "Microsoft Corporation (India) Pvt. Ltd.",
+    "tags": [
+      "Agriculture",
+      "Geospatial Data",
+      "Agri",
+      "Precision farming",
+      "Weather forecast"
+    ],
+    "sector": "Agriculture, Forestry and Rural Development",
+    "about_use_case": "FarmVibes.AI focuses on building models that fuse multiple geospatial and spatiotemporal datasets to generate insights that would be difficult to obtain when these datasets are used in isolation. The platform integrates diverse data sources such as satellite imagery (including RGB, SAR, and multispectral imagery), drone imagery, weather data, and other environmental datasets.\n\nThe FarmVibes.AI workflow streamlines data ingestion, processing, and AI-driven analysis, enabling precise monitoring of soil health, crop performance, and environmental changes. Its modular architecture and customizable parameters allow researchers and practitioners to tailor solutions for specific agricultural challenges, improving both decision-making and operational efficiency in agricultural systems.\n\nKey Differentiator:\nThe solution enables fusion of multiple geospatial and spatiotemporal data sources using AI-driven analysis and insights. Some workflows are based on Microsoft Research work, such as cloud removal techniques, further enhancing the quality and usability of satellite-derived data for agricultural analytics.\n\nBy combining advanced geospatial intelligence with scalable AI workflows, FarmVibes.AI supports sustainable agriculture practices, precision farming, and data-driven planning across the agriculture and rural development ecosystem."
+  },
+  {
+    "id": 14,
+    "title": "Fish Degradation Early Alert System",
+    "description": "AI-based time-series analytics platform to monitor fish storage conditions and generate real-time spoilage alerts.",
+    "image_url": null,
+    "source_org": "Qzense Labs Private Limited",
+    "tags": [
+      "seafood",
+      "time-series",
+      "freshness detection",
+      "fish freshness",
+      "food quality",
+      "fish spoilage",
+      "food safety",
+      "sensor analytics",
+      "real-time alerts",
+      "aquaculture",
+      "degradation detection",
+      "AI monitoring"
+    ],
+    "sector": "Aquaculture, Livestock and Fisheries",
+    "about_use_case": "This application is designed to address the critical challenge of early fish spoilage detection in cold storage environments. Using sensor data collected at regular intervals, the system applies advanced time-series analytics techniques including rolling statistics and change point detection to identify early signs of degradation.\n\nThe platform enables users to monitor multiple sensors, such as ammonia and hydrogen sulfide sensors, across different devices in real time. A smart fusion algorithm combines signals from multiple methods and sensors to generate probabilistic alerts. An intuitive dashboard visualizes trend deviations and detected change points, enabling timely intervention.\n\nKey Differentiators:\n- Real-time multi-sensor analysis that continuously monitors gas emissions every few minutes.\n- Intelligent probability fusion engine combining outputs from multiple anomaly detection techniques.\n- Early warning system that detects gradual degradation patterns rather than only sudden outliers.\n- Dynamic visualization dashboards for real-time diagnostics and decision-making.\n- Configurable and extensible system allowing customization of thresholds, detection logic, and visualizations.\n- Optimized for cold-chain logistics, handling missing data, irregular sensor behavior, and non-stationary trends.\n- No additional hardware requirement, leveraging existing sensor infrastructure for cost-effective scalability.\n\nThe solution improves food safety, reduces economic losses, and is especially valuable for aquaculture supply chains, fish markets, and cold logistics environments."
+  },
+  {
+    "id": 15,
+    "title": "GPUaaS for Healthcare",
+    "description": "GPU as a Service platform enabling AI-driven diagnostics, medical imaging analysis, and scalable high-performance computing for healthcare.",
+    "image_url": null,
+    "source_org": "Cyfuture India Pvt Ltd",
+    "tags": [
+      "gpu",
+      "AI for Healthcare"
+    ],
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "about_use_case": "GPU as a Service (GPUaaS) for healthcare empowers India’s medical ecosystem with affordable, on-demand access to high-performance computing infrastructure. By enabling AI-driven diagnostics, large-scale medical imaging analysis, and precision healthcare applications, the solution accelerates clinical research, improves patient outcomes, and reduces the cost burden of on-premise infrastructure.\n\nThis use case aligns with India’s vision of democratizing AI by fostering innovation across public and private healthcare institutions. It ensures equitable access to advanced computational capabilities while adhering to data security and regulatory compliance frameworks. GPUaaS supports scalable deployment of AI models for diagnostics, imaging workflows, and healthcare analytics, helping healthcare providers modernize operations and deliver better care at scale."
+  },
+  {
+    "id": 16,
+    "title": "Image & Video Analytics Assistance by NIC (IVAANI)",
+    "description": "A suite of AI-based computer vision services for face verification, document image analysis, geospatial insights, and crowd analytics for public sector use cases.",
+    "image_url": null,
+    "source_org": "National Informatics Centre",
+    "tags": [
+      "computer vision",
+      "Face Verification",
+      "Public Sector AI",
+      "Scanned Image Analytics",
+      "Identity Management",
+      "Geospatial Analytics"
+    ],
+    "sector": "Governance and Administration",
+    "about_use_case": "IVAANI is a comprehensive collection of AI-powered computer vision services developed by the National Informatics Centre (NIC), recording over 33.97 crore usage hits in FY 2024–25. The platform supports multiple large-scale public sector use cases through secure, scalable, and API-driven AI services.\n\nIncluded Services:\n1. AI Satyapikaan – Face verification and person identification services used across ministries and state governments for license renewals, examination authentication, pensioner life certificates, attendance tracking, and suspect identification. Features include face detection, anti-spoofing, gesture recognition, and re-identification. Copyrighted by NIC.\n2. AI Parkhi – Document image analytics for assessing legibility and extracting insights from scanned drawings and documents.\n3. AI Vihangam Drishti – Geospatial image analysis for categorization and area estimation using satellite and aerial imagery.\n4. AI Shishank – Headcount estimation and crowd analytics for hybrid physical-digital environments.\n\nKey Differentiators:\n- Proven high scalability with nationwide adoption.\n- Core Digital Public Infrastructure for identity and analytics.\n- Aadhaar-independent face verification capabilities.\n- Real-time API access via NAPIX (National API Exchange).\n- Broad adoption across examinations, driving licenses, policing, and welfare schemes.\n\nIVAANI strengthens governance delivery by enabling secure, AI-powered identity verification, analytics, and decision support across government systems."
+  },
+  {
+    "id": 17,
+    "title": "Jiveesha",
+    "description": "AI-powered screening platform for early identification of Specific Learning Disabilities (SLDs) in children using stress, emotion analytics, and psycholinguistic mapping.",
+    "image_url": null,
+    "source_org": "Daira Edtech Pvt Ltd",
+    "tags": [
+      "Accessibility",
+      "IndiaAI",
+      "AI in Education",
+      "SLD",
+      "Inclusive Learning",
+      "Emotion AI",
+      "Cognitive Screening",
+      "Psycholinguistics",
+      "Neurodiversity"
+    ],
+    "sector": "Education and Skill Development",
+    "about_use_case": "Jiveesha is a cloud-hosted, AI-powered diagnostic solution developed to identify Specific Learning Disabilities (SLDs) in children aged 6–14. The platform uses a combination of real-time emotion and stress analysis via webcam and microphone input, adaptive cognitive assessments, and localized multilingual content in Indian languages. It integrates multilingual speech-to-text, semantic remediation engines, and psycholinguistic dashboards designed for educators and parents. Jiveesha requires no physical hardware, ensuring accessibility across rural and urban settings. Pilot programs have been conducted across more than 3000+ scenarios involving 250+ children in Tamil Nadu, Karnataka, and Odisha, with support from Rotary Clubs and open schools."
+  },
+  {
+    "id": 18,
+    "title": "Multilingual Indic Language Translation",
+    "description": "AI-driven translation across Indian languages enabling seamless multilingual communication in governance, education, business, and public services.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "Indian Languages",
+      "NLP",
+      "Computational Linguistics",
+      "Bhashini",
+      "Neural Machine Translation",
+      "IndicTrans2",
+      "Multilingual AI",
+      "Text Processing",
+      "Machine Translation",
+      "AI-powered Translation"
+    ],
+    "sector": "Sector Agnostic",
+    "about_use_case": "India’s linguistic diversity creates barriers in governance, education, and business, particularly for low-resource languages. AI-driven translation solutions bridge these gaps by enabling seamless multilingual communication, improving accessibility, and supporting regional content localization. This use case focuses on translating text across Indian languages while preserving context, syntax, and script compatibility. It supports multilingual content localization for websites, government portals, documents, and real-time chatbots. Input data includes Indian language text from legal, educational, and business documents along with parallel translation datasets to improve accuracy. Outputs include high-quality translations between major and low-resource Indian languages, localized digital content, and AI-powered multilingual chatbots for customer and citizen services."
+  },
+  {
+    "id": 19,
+    "title": "Multilingual Understanding for Northeast India",
+    "description": "NE-BERT is a multilingual language understanding model designed for Northeast Indian languages supporting classification, NER, retrieval, and code-mixed text understanding.",
+    "image_url": null,
+    "source_org": "MWire Labs",
+    "tags": [
+      "Northeast India",
+      "Northeast India Languages",
+      "NE-BERT",
+      "Language Modelling",
+      "Multilingual NLP",
+      "Low-Resource Languages",
+      "Text Classification"
+    ],
+    "sector": "Social",
+    "about_use_case": "NE-BERT is a foundational language understanding model created to support the rich linguistic diversity of Northeast India. Built on the ModernBERT architecture, it is trained on curated regional corpora spanning Khasi, Garo, Pnar, Assamese, Manipuri (Meitei), Mizo, Nyishi, Kokborok, and Nagamese, along with English. The model addresses challenges such as orthographic variation, dialect shifts, spelling inconsistencies, and highly code-mixed text. NE-BERT delivers strong performance across classification, named entity recognition, retrieval, embeddings, and contextual sentence understanding. It is designed for real-world applications including local governance, citizen services, education platforms, and community-driven digital services. Its robustness to irregular text makes it suitable for social media analysis, field reports, and unstructured regional datasets. NE-BERT is openly released for public use via AIKosh and Hugging Face."
+  },
+  {
+    "id": 20,
+    "title": "Mvaak",
+    "description": "AI-powered, audio-first learning platform for early-stage rehabilitation of children with dyslexia through personalized, gamified, mother-tongue-based activities.",
+    "image_url": null,
+    "source_org": "Narottam Innovations Pvt Ltd",
+    "tags": [
+      "Inclusive Learning",
+      "AI in Education",
+      "Assistive Technology",
+      "Dyslexia Rehabilitation",
+      "Speech Recognition",
+      "Regional Language Learning",
+      "Voice-First Learning",
+      "Multisensory Education",
+      "Adaptive Learning"
+    ],
+    "sector": "Education and Skill Development",
+    "about_use_case": "Mvaak is an AI-powered learning and rehabilitation platform designed to support early-stage intervention for children with dyslexia and related learning difficulties. The platform adopts a voice-first approach, allowing children to interact using their mother tongue, currently supporting English and Kannada. It integrates speech recognition and audio event detection to provide real-time corrective feedback for phonemic awareness activities such as word recognition, syllable segmentation, and pronunciation practice. The learning journey is enhanced through gamified activities, personalized learning paths, and multisensory interactions. Dashboards for parents and teachers enable progress tracking, identification of strengths, and targeted support planning. Mvaak is designed specifically for the Indian education context with a focus on accessibility, engagement, and long-term learning retention."
+  },
+  {
+    "id": 21,
+    "title": "Named Entity Recognition (NER) for Indian Languages",
+    "description": "AI-powered Named Entity Recognition system to automatically detect and classify entities in Indian language text.",
+    "image_url": null,
+    "source_org": "IndiaAI",
+    "tags": [
+      "Indian Languages",
+      "NLP",
+      "Computational Linguistics",
+      "Machine Learning",
+      "Multilingual AI",
+      "Named Entity Recognition",
+      "Text Processing",
+      "Data Extraction",
+      "Information Retrieval",
+      "Government AI"
+    ],
+    "sector": "Sector Agnostic",
+    "about_use_case": "This use case focuses on leveraging Named Entity Recognition (NER) to detect and classify key entities such as names, locations, organizations, dates, and numerical values in Indian languages. It enables automated processing of unstructured multilingual text for applications in media monitoring, legal analysis, healthcare documentation, and government workflows. Input data includes unstructured multilingual text such as legal documents, news articles, and customer interactions, along with labeled NER datasets for training and evaluation. Outputs include structured and annotated text, automated extraction of entities for analytics, and enhanced multilingual search capabilities. The solution uses IndicNER and transformer-based models to deliver scalable, accurate entity recognition across Indian languages."
+  },
+  {
+    "id": 22,
+    "title": "Ocellux – Early Diabetic Retinopathy Flagging",
+    "description": "AI-powered diagnostic tool for early detection and flagging of diabetic retinopathy using retinal fundus images.",
+    "image_url": null,
+    "source_org": "Anself Dynamics",
+    "tags": [
+      "Diabetic Retinopathy",
+      "Medical Imaging",
+      "Healthcare AI",
+      "Fundus Imaging",
+      "Early Diagnosis",
+      "Screening Programs"
+    ],
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "about_use_case": "Ocellux is an AI-driven diagnostic solution designed to detect and flag diabetic retinopathy from retinal fundus images at an early stage. The system uses deep learning models trained on publicly available datasets to analyze retinal scans and identify signs of diabetic retinopathy with high accuracy. It integrates seamlessly with Ecarebetics, a diabetic screening software, to support image capture, automated analysis, and report generation. Ocellux provides on-the-spot AI reports in under 30 seconds, highlights disease severity, and suggests probable next steps for referral. The lightweight and cost-effective architecture supports deployment across diverse healthcare settings, including screening camps and remote or underserved regions, enabling early intervention and prevention of vision loss."
+  },
+  {
+    "id": 23,
+    "title": "Project MAARG: AI-Powered Road Safety for India",
+    "description": "AI-driven road safety platform that uses predictive analytics, computer vision, and geospatial intelligence to proactively reduce road accidents and fatalities across India.",
+    "image_url": null,
+    "source_org": "Thore Network PVT LTD",
+    "tags": [
+      "Responsible AI",
+      "Smart Mobility",
+      "Predictive Analytics for Vehicles",
+      "Road Users",
+      "Traffic Safety"
+    ],
+    "sector": "Transportation, Logistics and Mobility",
+    "about_use_case": "Project MAARG (My Action on Road Guide) is a pioneering AI-powered road safety platform developed by Thore Network PVT LTD to address India’s critical road safety challenges. India has one of the highest road accident fatality rates globally, many of which are preventable through timely interventions and better data-driven decision-making. Project MAARG aims to shift the approach from reactive emergency response to proactive accident prevention.\n\nThe platform integrates and analyzes data from multiple sources including live traffic camera feeds, real-time weather data, historical accident records, and road infrastructure data. Using advanced predictive modeling techniques such as LSTMs and Gradient Boosting, MAARG forecasts accident probabilities and identifies high-risk zones. Computer vision models analyze live camera feeds to detect congestion, traffic violations, and hazardous conditions, while natural language processing (NLP) processes text-based accident reports and public feedback.\n\nMAARG generates dynamic risk heatmaps that visually represent accident-prone areas and evolving road conditions. Real-time alerts are sent to drivers, traffic authorities, and emergency responders regarding hazardous conditions and high-risk zones. The platform also provides actionable insights to municipal authorities and traffic police for optimized resource allocation, including efficient deployment of patrol vehicles, ambulances, and infrastructure improvements.\n\nFor emergency responders, MAARG enables faster response times and informed routing decisions by providing real-time traffic and weather context. For the general public, it enhances safety through early warnings and contributes to reduced congestion and fewer accidents. The system is built on Microsoft Azure cloud infrastructure, supported by a $150,000 Founders Grant, and uses technologies such as Apache Spark, Kafka, and PostGIS for scalable real-time data processing and geospatial analytics.\n\nProject MAARG incorporates strong AI safety and ethical principles, including explainable AI (XAI) for transparent risk predictions, fairness and bias mitigation across locations and demographics, robust data anonymization in compliance with Indian data protection regulations, and resilient system design for high availability. The initiative aligns closely with national programs such as the AI India Mission, Digital India, and the Smart Cities Mission, contributing to safer, smarter, and more technologically advanced transportation systems across India."
+  },
+  {
+    "id": 24,
+    "title": "Readable",
+    "description": "AI-powered multilingual reading support platform designed to help dyslexic learners improve reading accuracy, pronunciation, and confidence.",
+    "image_url": null,
+    "source_org": "Hermit Labs Private Limited",
+    "tags": [
+      "SLD",
+      "Speech Practice",
+      "Dyslexia",
+      "AI Avatar",
+      "Language Learning",
+      "Reading Practice"
+    ],
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "about_use_case": "Readable is an AI-powered online platform created to support children and adults facing reading difficulties, including dyslexia. The platform provides structured phonetic learning exercises focused on phoneme recognition and syllable breakdown, enabling learners to practice reading in a guided and systematic manner while receiving instant feedback on pronunciation accuracy.\n\nA key strength of Readable is its multilingual capability. It supports English as well as multiple Indian regional languages, ensuring accessibility for learners from diverse linguistic backgrounds. The platform includes a personalized learning path that adapts to each learner’s progress and needs, helping users build confidence and consistency in reading skills over time.\n\nReadable also offers a document analyzer feature that allows users to upload documents or images and break down text into readable components. In addition, a Google Chrome extension enables real-time reading assistance on any web content, allowing users to practice reading directly from websites, articles, and online learning materials.\n\nThe platform is built on an evidence-based approach to reading intervention and is designed with inclusivity at its core. By combining structured practice, real-time pronunciation assessment, and support for Indian languages, Readable bridges critical gaps in reading intervention and empowers learners, educators, and families across India."
+  },
+  {
+    "id": 25,
+    "title": "Readabled",
+    "description": "AI-powered multilingual reading support platform for dyslexic learners.",
+    "image_url": null,
+    "source_org": "Hermit Labs Private Limited",
+    "tags": [
+      "SLD",
+      "Speech Practice",
+      "Dyslexia",
+      "AI Avatar",
+      "Language Learning",
+      "Reading Practice"
+    ],
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "about_use_case": "Readabled is an AI-powered online platform designed to support children and adults with reading difficulties, including dyslexia. The platform provides structured phonetic learning exercises focused on phoneme and syllable breakdown, enabling users to practice reading and receive instant feedback on accuracy. It supports both English and multiple Indian regional languages to ensure accessibility. Key features include personalized learning paths, a document analyzer for breaking down uploaded texts, and a Google Chrome extension for real-time reading assistance on web content. With its evidence-based approach and inclusive design, Readabled bridges gaps in reading intervention and empowers learners, educators, and families across India."
+  },
+  {
+    "id": 26,
+    "title": "ScreenPlay",
+    "description": "Game-based digital screening tool for identifying autism risk in young children.",
+    "image_url": null,
+    "source_org": "Kidaura Innovations Pvt. Ltd.",
+    "tags": [
+      "Games",
+      "Screening",
+      "Autism"
+    ],
+    "sector": "Healthcare, Wellness and Family Welfare",
+    "about_use_case": "ScreenPlay is a digital game-based screening tool that identifies children who may be at potential risk of autism or related conditions in the age group of 3–6 years. By using engaging games, the tool captures the child’s natural behavior without explicit testing pressure. AI algorithms analyze gameplay patterns to predict autism risk in a fun, language-independent, and scalable manner. The solution has screened over 1300 children, identified autism-related risks in multiple cases, and has understanding.",
+    "image_url": null,
+    "source_org": "Jarbits Pvt Ltd",
+    "tags": [
+      "landslide",
+      "disaster monitoring",
+      "AI for disasters",
+      "geospatial AI",
+      "Sentinel-2",
+      "DEM",
+      "remote sensing",
+      "terrain modeling",
+      "risk prediction"
+    ],
+    "sector": "Other",
+    "about_use_case": "Terralux is a geospatial AI platform designed for scalable and precise landslide susceptibility assessment. It integrates Sentinel-2 satellite imagery, digital elevation models (DEMs), and landslide inventory datasets to train explainable AI models for terrain segmentation, feature extraction, and risk prediction. The platform supports end-to-end automation—from data acquisition to model training and inference—using a cloud-based pipeline hosted on AWS. Outputs include risk maps, feature tables, and downloadable layers that can be integrated into national disaster monitoring systems. Terralux has been developed under the IndiaAI initiative by MeitY."
+  },
+  {
+    "id": 28,
+    "title": "Text Analytics Assistance by NIC (TAANI)",
+    "description": "AI-based multilingual text analytics platform offering translation, summarization, transcription, and PII masking.",
+    "image_url": null,
+    "source_org": "National Informatics Centre",
+    "tags": [
+      "Translation",
+      "Legal Tech",
+      "Language AI",
+      "Text Analytics",
+      "PII Masking"
+    ],
+    "sector": "Governance and Administration",
+    "about_use_case": "TAANI is a comprehensive AI-based text analytics platform developed by NIC, offering modular language solutions across 22 Indian languages. The platform includes AI Matra for transliteration, AI Panini for translation, AI Saransh for summarization, AI Shruti for real-time transcription, and AI Nibhrut for PII redaction. These services are widely used in governance, legal, and administrative workflows, including Supreme Court deployments and state-level implementations. TAANI supports real-time streaming transcription, advanced PDF redaction, and multilingual summarization, making it a critical digital public infrastructure for governance."
+  },
+  {
+    "id": 29,
+    "title": "Thore Bhasha-Setu 1B",
+    "description": "Multilingual multimodal large language model optimized for Indian languages and dialects.",
+    "image_url": null,
+    "source_org": "Thore Network PVT LTD",
+    "tags": [
+      "Bhashini"
+    ],
+    "sector": "Education and Skill Development",
+    "about_use_case": "Thore Bhasha-Setu 1B is a 1-billion parameter multilingual, multimodal large language model designed to understand, process, and generate text across a wide range of Indian languages and dialects. Built on a decoder-only Transformer architecture optimized for efficiency, the model supports code-mixed inputs, Romanized scripts, and culturally contextual responses. It is trained on diverse Indian language datasets and is fine-tuned for translation, summarization, sentiment analysis, and conversational AI. The model is aligned with Digital India and Bhashini initiatives, enabling scalable language access across government, education, and social media platforms."
+  },
+  {
+    "id": 30,
+    "title": "Virtual Assistance by NIC (VANI)",
+    "description": "Multilingual conversational AI framework for citizen-facing chatbot services.",
+    "image_url": null,
+    "source_org": "National Informatics Centre",
+    "tags": [
+      "Conversational AI",
+      "Multilingual Chatbot",
+      "Public Service Automation",
+      "Voice AI",
+      "Citizen Engagement"
+    ],
+    "sector": "Sector Agnostic",
+    "about_use_case": "VANI is a multilingual conversational AI framework developed by NIC to enable intelligent chatbot services across government platforms. It supports layered architecture with communication, business logic, and orchestration layers. VANI integrates with AI Panini for translation and AI Shruti for voice-based interaction across multiple Indian languages. The platform powers chatbots for transport, legal awareness, and public service delivery and supports seamless handoff to human agents. It is deployed in high-volume citizen-facing services and offered as a paid service under NICSI."
+  },
+  {
+    "id": 31,
+    "title": "Voice Fusion Learn for SLDs",
+    "description": "AI-powered diagnostic and learning platform for children with Specific Learning Disabilities.",
+    "image_url": null,
+    "source_org": "Perpetual Block Technologies Private Limited",
+    "tags": [
+      "Speech-to-Text",
+      "Neurodiversity",
+      "Assistive Technology",
+      "AI in Healthcare",
+      "Dyslexia Screening",
+      "Learning Disabilities",
+      "Voice Cloning",
+      "Multilingual AI",
+      "Inclusive Education",
+      "Adaptive Learning",
+      "Cognitive AI",
+      "Accessibility Tools",
+      "Generative EdTech",
+      "Cross-Language Understanding",
+      "Text-to-Speech"
+    ],
+    "sector": "Education and Skill Development",
+    "about_use_case": "Voice Fusion Learn is an inclusive AI platform that supports early diagnosis and personalized learning for children with Specific Learning Disabilities such as Dyslexia, Dysgraphia, and Dyscalculia. The system integrates TTS, STT, handwriting recognition, and voice analytics to provide multimodal assessments and adaptive learning interventions. It translates learning materials into vernacular languages, offers real-time dashboards for progress tracking, and supports risk profiling using voice and writing signals. The platform demonstrates over 90% validated accuracy in pilot studies and aligns with India’s RPWD Act 2016, enabling deployment across national education initiatives."
   }
 ]
