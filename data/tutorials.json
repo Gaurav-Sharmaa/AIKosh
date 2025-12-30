@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Dataset Upload on AIKosh",
+    "description": "Step-by-step video tutorial explaining how to upload datasets on the AIKosh platform, including required metadata and submission workflow.",
+    "duration": "2 Min 35 Sec",
+    "video_url": "https://aikosh.indiaai.gov.in/web/resources",
+    "uploaded_date": "5 March 2025"
+  },
+  {
+    "id": 2,
+    "title": "Use-cases Upload on AIKosh",
+    "description": "Tutorial demonstrating the process of uploading AI use-cases on AIKosh, covering form details, best practices, and submission steps.",
+    "duration": "1 Min 45 Sec",
+    "video_url": "https://aikosh.indiaai.gov.in/web/resources",
+    "uploaded_date": "5 March 2025"
+  },
+  {
+    "id": 3,
+    "title": "Model Upload on AIKosh",
+    "description": "Short guide on how to upload AI/ML models to the AIKosh platform, including model information, files, and publishing workflow.",
+    "duration": "1 Min 33 Sec",
+    "video_url": "https://aikosh.indiaai.gov.in/web/resources",
+    "uploaded_date": "5 March 2025"
+  }
+]
