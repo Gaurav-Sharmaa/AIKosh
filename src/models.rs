@@ -11,12 +11,6 @@ pub struct Dashboard {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct SharedArtifact {
-    pub id: u32,
-    pub days_remaining: i32,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ArtifactsViewed {
     pub datasets: u32,
     pub models: u32,
@@ -27,6 +21,12 @@ pub struct ArtifactsViewed {
 pub struct ArtifactsDownloaded {
     pub datasets: u32,
     pub models: u32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct SharedArtifact {
+    pub id: u32,
+    pub days_remaining: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -69,6 +69,7 @@ pub struct Model {
     pub tags: Vec<String>,
     pub likes_count: u32,
     pub downloads_count: u32,
+    pub views_count: u32,
     pub source_org: String,
     pub license: String,
     pub hosted_by: String,
@@ -102,7 +103,7 @@ pub struct UseCase {
     pub id: u8,
     pub title: String,
     pub description: String,
-    pub image_url: String,
+    pub image_url: Option<String>,
     pub source_org: String,
     pub tags: Vec<String>,
     pub sector: String,
@@ -154,6 +155,7 @@ pub struct Article {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct User {
+    // DONE
     pub id: u8,
     pub full_name: String,
     pub username: String,

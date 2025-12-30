@@ -2,7 +2,7 @@
   "id": 1,
   "full_name": "Gaurav Sharma",
   "username": "Gaurav_Sharma",
-  "bio": "Backend Developer",
+  "bio": "Backend developer learning Rust + Axum",
   "employee_id": "EMP12345",
   "profile_picture_url": "https://example.com/profile.jpg",
   "role": "Explorer"
