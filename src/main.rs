@@ -3,7 +3,7 @@ mod handlers;
 mod models;
 
 use axum::{
-    routing::{get, patch},
+    routing::{get, patch, post},
     Router,
 };
 use tower_http::cors::{Any, CorsLayer};
@@ -20,7 +20,6 @@ async fn main() {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    // Configure CORS
     let cors = CorsLayer::new()
         .allow_origin(Any)
         .allow_methods(Any)
@@ -50,6 +49,7 @@ async fn main() {
         .route("/api/toolkit/:id", get(handlers::get_toolkit_by_id))
         .route("/api/users/profile", get(handlers::get_user_profile))
         .route("/api/users/profile", patch(handlers::update_user_profile))
+        .route("/api/chat/stream", post(handlers::chat_stream))
         .layer(cors);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
