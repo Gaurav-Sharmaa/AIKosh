@@ -1,5 +1,10 @@
+use axum::response::sse::{Event, Sse};
 use axum::{extract::Path, http::StatusCode, Json};
+use futures::stream::Stream;
+use std::convert::Infallible;
 use std::fs;
+use std::time::Duration;
+use tokio::time::sleep;
 
 use crate::errors::AppError;
 use crate::models::*;
@@ -9,6 +14,97 @@ fn read_json_file<T: serde::de::DeserializeOwned>(path: &str) -> Result<T, AppEr
     let content = fs::read_to_string(path)?;
     let data: T = serde_json::from_str(&content)?;
     Ok(data)
+}
+
+const PYTHON_CHATBOT_URL: &str = "http://localhost:8000/ask";
+
+// Chat endpoint that proxies to Python FastAPI chatbot
+pub async fn chat_stream(
+    Json(payload): Json<ChatMessage>,
+) -> Sse<impl Stream<Item = Result<Event, Infallible>>> {
+    let question = payload.message;
+
+    let client = reqwest::Client::new();
+
+    let python_request = PythonChatRequest {
+        question: question.clone(),
+    };
+
+    // Create stream that will forward responses from Python
+    let stream = async_stream::stream! {
+        // 1. Call Python chatbot
+        match client
+            .post(PYTHON_CHATBOT_URL)
+            .json(&python_request)
+            .timeout(Duration::from_secs(120)) // 2 minute timeout
+            .send()
+            .await
+        {
+            Ok(response) => {
+                // 2. Check if response is successful
+                if response.status().is_success() {
+                    // 3. Parse JSON response
+                    match response.json::<PythonChatResponse>().await {
+                        Ok(chat_response) => {
+                            // 4. Stream the answer word by word
+                            let words: Vec<&str> = chat_response.answer.split_whitespace().collect();
+
+                            for (index, word) in words.iter().enumerate() {
+                                // Add space before word (except first word)
+                                let text = if index == 0 {
+                                    word.to_string()
+                                } else {
+                                    format!(" {}", word)
+                                };
+
+                                // Yield the word as SSE event
+                                yield Ok(Event::default().data(text));
+
+                                // Small delay between words for streaming effect
+                                sleep(Duration::from_millis(50)).await;
+                            }
+
+                            // Step 5: Optionally send metadata (sources, confidence)
+                            // Uncomment if you want to send metadata at the end
+                            /*
+                            let metadata = serde_json::json!({
+                                "sources": chat_response.sources,
+                                "confidence": chat_response.confidence
+                            });
+                            yield Ok(Event::default()
+                                .event("metadata")
+                                .data(metadata.to_string()));
+                            */
+                        }
+                        Err(e) => {
+                            // Failed to parse response
+                            tracing::error!("Failed to parse Python response: {}", e);
+                            let error_msg = "Sorry, I encountered an error processing the response.";
+                            yield Ok(Event::default().data(error_msg));
+                        }
+                    }
+                } else {
+                    // Python returned error status
+                    tracing::error!("Python chatbot returned error: {}", response.status());
+                    let error_msg = "Sorry, the chatbot service is currently unavailable.";
+                    yield Ok(Event::default().data(error_msg));
+                }
+            }
+            Err(e) => {
+                // Failed to connect to Python chatbot
+                tracing::error!("Failed to connect to Python chatbot: {}", e);
+                let error_msg = "Sorry, I couldn't connect to the chatbot service. Please make sure it's running.";
+                yield Ok(Event::default().data(error_msg));
+            }
+        }
+    };
+
+    // Return SSE stream with keep-alive
+    Sse::new(stream).keep_alive(
+        axum::response::sse::KeepAlive::new()
+            .interval(Duration::from_secs(1))
+            .text("keep-alive"),
+    )
 }
 
 // Dashboard
@@ -160,7 +256,6 @@ pub async fn update_user_profile(
     Ok(Json(user))
 }
 
-// Health Check
 pub async fn health_check() -> (StatusCode, &'static str) {
     (StatusCode::OK, "OK")
 }

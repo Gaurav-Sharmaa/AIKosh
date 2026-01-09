@@ -210,3 +210,15 @@ pub struct UpdateUserProfile {
 pub struct ChatMessage {
     pub message: String,
 }
+
+#[derive(Debug, Serialize)]
+pub struct PythonChatRequest {
+    pub question: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct PythonChatResponse {
+    pub answer: String,
+    pub sources: Vec<serde_json::Value>,
+    pub confidence: f32,
+}
