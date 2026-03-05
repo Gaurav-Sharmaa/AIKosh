@@ -47,7 +47,6 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Hero Stats Section */}
       <div className="mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-2">
           Welcome to AIKosh
@@ -76,7 +75,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Dashboard Greeting Card */}
       {dashboard && (
         <div className="bg-white rounded-xl shadow-lg p-6 mb-12 border border-gray-200">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">{dashboard.greeting}</h2>
@@ -104,7 +102,6 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* Datasets Section */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold text-gray-900">Datasets</h2>
@@ -125,7 +122,6 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Models Section */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold text-gray-900">Models</h2>
@@ -146,7 +142,6 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Use Cases Section */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold text-gray-900">Use Cases</h2>

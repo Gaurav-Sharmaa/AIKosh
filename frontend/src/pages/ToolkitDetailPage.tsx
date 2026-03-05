@@ -71,38 +71,32 @@ export default function ToolkitDetailPage() {
           
           <p className="text-lg text-gray-700 mb-8">{toolkit.description}</p>
 
-          {/* Overview Section */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
             <p className="text-gray-700 whitespace-pre-line">{toolkit.overview}</p>
           </div>
 
-          {/* Key Capabilities */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Capabilities</h2>
             <p className="text-gray-700 whitespace-pre-line">{toolkit.key_capabilities}</p>
           </div>
 
-          {/* Why It's Included */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Why It's Included</h2>
             <p className="text-gray-700 whitespace-pre-line">{toolkit.why_it_is_included}</p>
           </div>
 
-          {/* Getting Started */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Getting Started</h2>
             <p className="text-gray-700 whitespace-pre-line">{toolkit.resources_on_getting_started}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {/* License & Compliance */}
             <div className="bg-gray-50 rounded-lg p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-3">License & Compliance</h3>
               <p className="text-gray-700 whitespace-pre-line">{toolkit.license_and_compliance}</p>
             </div>
 
-            {/* Version Info */}
             {toolkit.versioning_and_community_info && (
               <div className="bg-gray-50 rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Version & Community</h3>
@@ -111,7 +105,6 @@ export default function ToolkitDetailPage() {
             )}
           </div>
 
-          {/* Action Buttons */}
           <div className="flex gap-4">
             <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
               Get Started

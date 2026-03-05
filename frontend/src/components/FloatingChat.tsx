@@ -15,7 +15,9 @@ export default function FloatingChat() {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -25,14 +27,36 @@ export default function FloatingChat() {
     scrollToBottom();
   }, [messages]);
 
+  const handleStop = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsStreaming(false);
+    setIsLoading(false);
+    
+    setMessages(prev => {
+      const newMessages = [...prev];
+      const lastIndex = newMessages.length - 1;
+      if (lastIndex >= 0 && newMessages[lastIndex].isStreaming) {
+        newMessages[lastIndex] = {
+          ...newMessages[lastIndex],
+          isStreaming: false,
+        };
+      }
+      return newMessages;
+    });
+  };
+
   const handleSend = async () => {
     if (inputValue.trim() && !isLoading) {
       const userMessage = inputValue;
       setMessages(prev => [...prev, { text: userMessage, isUser: true }]);
       setInputValue('');
       setIsLoading(true);
+      setIsStreaming(true);
 
-      // Add placeholder for AI response
+      abortControllerRef.current = new AbortController();
       setMessages(prev => [...prev, { text: '', isUser: false, isStreaming: true }]);
 
       try {
@@ -42,6 +66,7 @@ export default function FloatingChat() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ message: userMessage }),
+          signal: abortControllerRef.current.signal,
         });
 
         if (!response.body) {
@@ -67,7 +92,6 @@ export default function FloatingChat() {
               
               accumulatedText += data;
               
-              // Update the last message with accumulated text
               setMessages(prev => {
                 const newMessages = [...prev];
                 const lastIndex = newMessages.length - 1;
@@ -83,7 +107,6 @@ export default function FloatingChat() {
           }
         }
 
-        // Mark streaming as complete
         setMessages(prev => {
           const newMessages = [...prev];
           const lastIndex = newMessages.length - 1;
@@ -96,19 +119,23 @@ export default function FloatingChat() {
           return newMessages;
         });
 
-      } catch (error) {
-        console.error('Error streaming chat:', error);
-        setMessages(prev => {
-          const newMessages = [...prev];
-          newMessages[newMessages.length - 1] = {
-            text: "Sorry, I encountered an error. Please try again.",
-            isUser: false,
-            isStreaming: false,
-          };
-          return newMessages;
-        });
+      } catch (error: any) {
+        if (error.name !== 'AbortError') {
+          console.error('Error streaming chat:', error);
+          setMessages(prev => {
+            const newMessages = [...prev];
+            newMessages[newMessages.length - 1] = {
+              text: "Sorry, I encountered an error. Please try again.",
+              isUser: false,
+              isStreaming: false,
+            };
+            return newMessages;
+          });
+        }
       } finally {
         setIsLoading(false);
+        setIsStreaming(false);
+        abortControllerRef.current = null;
       }
     }
   };
@@ -122,7 +149,6 @@ export default function FloatingChat() {
 
   return (
     <>
-      {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-50 hover:scale-110 group"
@@ -138,16 +164,13 @@ export default function FloatingChat() {
           </svg>
         )}
         
-        {/* Tooltip */}
         <span className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
           AI Assistant
         </span>
       </button>
 
-      {/* Chat Window */}
       {isOpen && (
         <div className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col border border-gray-200 animate-slideUp">
-          {/* Header */}
           <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-4 rounded-t-2xl flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -171,7 +194,6 @@ export default function FloatingChat() {
             </button>
           </div>
 
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
             {messages.map((message, index) => (
               <div
@@ -209,7 +231,6 @@ export default function FloatingChat() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
           <div className="p-4 bg-white rounded-b-2xl border-t border-gray-200">
             <div className="flex items-end space-x-2">
               <div className="flex-1 relative">
@@ -224,11 +245,19 @@ export default function FloatingChat() {
                 />
               </div>
               <button
-                onClick={handleSend}
-                disabled={!inputValue.trim() || isLoading}
-                className="bg-orange-500 hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-xl px-4 py-2 transition-colors flex items-center justify-center"
+                onClick={isStreaming ? handleStop : handleSend}
+                disabled={!isStreaming && (!inputValue.trim() || isLoading)}
+                className={`${
+                  isStreaming 
+                    ? 'bg-red-500 hover:bg-red-600' 
+                    : 'bg-orange-500 hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed'
+                } text-white rounded-xl px-4 py-2 transition-colors flex items-center justify-center`}
               >
-                {isLoading ? (
+                {isStreaming ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : isLoading ? (
                   <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>

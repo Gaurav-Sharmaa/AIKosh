@@ -65,8 +65,7 @@ pub async fn chat_stream(
                                 sleep(Duration::from_millis(50)).await;
                             }
 
-                            // Step 5: Optionally send metadata (sources, confidence)
-                            // Uncomment if you want to send metadata at the end
+                            //metadata at the end
                             /*
                             let metadata = serde_json::json!({
                                 "sources": chat_response.sources,
@@ -228,7 +227,6 @@ pub async fn update_user_profile(
 ) -> Result<Json<User>, AppError> {
     let mut user = read_json_file::<User>("data/user.json")?;
 
-    // Update fields if provided
     if let Some(full_name) = payload.full_name {
         if full_name.trim().is_empty() {
             return Err(AppError::ValidationError(
@@ -246,7 +244,6 @@ pub async fn update_user_profile(
         user.employee_id = Some(employee_id);
     }
 
-    // Write back to file
     let json_string = serde_json::to_string_pretty(&user)?;
     fs::write("data/user.json", json_string)?;
 
