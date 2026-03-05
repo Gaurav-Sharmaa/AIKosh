@@ -22,6 +22,7 @@ const PYTHON_CHATBOT_URL: &str = "http://localhost:8000/ask";
 pub async fn chat_stream(
     Json(payload): Json<ChatMessage>,
 ) -> Sse<impl Stream<Item = Result<Event, Infallible>>> {
+    //Server-Sent Events (SSE) stream
     let question = payload.message;
 
     let client = reqwest::Client::new();
@@ -36,7 +37,7 @@ pub async fn chat_stream(
         match client
             .post(PYTHON_CHATBOT_URL)
             .json(&python_request)
-            .timeout(Duration::from_secs(120)) // 2 minute timeout
+            .timeout(Duration::from_secs(120))
             .send()
             .await
         {
@@ -77,21 +78,20 @@ pub async fn chat_stream(
                             */
                         }
                         Err(e) => {
-                            // Failed to parse response
                             tracing::error!("Failed to parse Python response: {}", e);
                             let error_msg = "Sorry, I encountered an error processing the response.";
                             yield Ok(Event::default().data(error_msg));
                         }
                     }
                 } else {
-                    // Python returned error status
+
                     tracing::error!("Python chatbot returned error: {}", response.status());
                     let error_msg = "Sorry, the chatbot service is currently unavailable.";
                     yield Ok(Event::default().data(error_msg));
                 }
             }
             Err(e) => {
-                // Failed to connect to Python chatbot
+
                 tracing::error!("Failed to connect to Python chatbot: {}", e);
                 let error_msg = "Sorry, I couldn't connect to the chatbot service. Please make sure it's running.";
                 yield Ok(Event::default().data(error_msg));
@@ -99,7 +99,6 @@ pub async fn chat_stream(
         }
     };
 
-    // Return SSE stream with keep-alive
     Sse::new(stream).keep_alive(
         axum::response::sse::KeepAlive::new()
             .interval(Duration::from_secs(1))
@@ -114,11 +113,9 @@ pub async fn get_dashboard() -> Result<Json<Dashboard>, AppError> {
 }
 
 pub async fn get_shared_artifacts() -> Json<Vec<SharedArtifact>> {
-    // Empty list → UI shows "No Record(s) Found!"
     Json(vec![])
 }
 
-// Dataset
 pub async fn get_datasets() -> Result<Json<Vec<Dataset>>, AppError> {
     let datasets = read_json_file::<Vec<Dataset>>("data/datasets.json")?;
     Ok(Json(datasets))
