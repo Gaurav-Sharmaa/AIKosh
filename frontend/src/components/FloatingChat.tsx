@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
   text: string;
@@ -183,57 +185,28 @@ export default function FloatingChat() {
                       : 'bg-white text-gray-800 rounded-bl-sm shadow-sm border border-gray-200'
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap">
-                    {message.text}
-                    {message.isStreaming && !message.text && (
-                      <span className="inline-flex items-center">
-                        <span className="animate-pulse">●</span>
-                        <span className="animate-pulse delay-75">●</span>
-                        <span className="animate-pulse delay-150">●</span>
-                      </span>
-                    )}
-                    {message.isStreaming && message.text && (
-                      <span className="inline-block w-1 h-4 bg-gray-800 animate-pulse ml-1">|</span>
-                    )}
-                  </p>
+                  {message.isUser ? (
+                    <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                  ) : (
+                    <div className="text-sm prose prose-sm max-w-none prose-headings:mt-3 prose-headings:mb-2 prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0">
+                      {message.text ? (
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.text}</ReactMarkdown>
+                      ) : (
+                        <span className="inline-flex items-center">
+                          <span className="animate-pulse">●</span>
+                          <span className="animate-pulse delay-75">●</span>
+                          <span className="animate-pulse delay-150">●</span>
+                        </span>
+                      )}
+                      {message.isStreaming && message.text && (
+                        <span className="inline-block w-1 h-4 bg-gray-800 animate-pulse ml-1">|</span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
             <div ref={messagesEndRef} />
-          </div>
-
-          {/* Quick Actions */}
-          <div className="px-4 py-2 bg-white border-t border-gray-100">
-            <div className="flex gap-2 overflow-x-auto pb-2">
-              <button
-                onClick={() => {
-                  setMessages([...messages, { text: "Show me trending datasets", isUser: true }]);
-                  setTimeout(() => {
-                    setMessages(prev => [...prev, { 
-                      text: "Check out the Datasets page for trending datasets!", 
-                      isUser: false 
-                    }]);
-                  }, 500);
-                }}
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs text-gray-700 whitespace-nowrap transition-colors"
-              >
-                📊 Trending Datasets
-              </button>
-              <button
-                onClick={() => {
-                  setMessages([...messages, { text: "What models are available?", isUser: true }]);
-                  setTimeout(() => {
-                    setMessages(prev => [...prev, { 
-                      text: "We have various AI models available. Visit the Models page to explore!", 
-                      isUser: false 
-                    }]);
-                  }, 500);
-                }}
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs text-gray-700 whitespace-nowrap transition-colors"
-              >
-                🤖 Available Models
-              </button>
-            </div>
           </div>
 
           {/* Input */}
