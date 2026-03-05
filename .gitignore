@@ -1,1 +1,19 @@
+# Existing entries
 /target
+**/*.rs.bk
+*.pdb
+
+# Python
+chatbot/.venv/
+chatbot/__pycache__/
+chatbot/*.pyc
+chatbot/.env
+chatbot/.pytest_cache/
+
+# Environment files
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/

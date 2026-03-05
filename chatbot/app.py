@@ -33,8 +33,6 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 EMBEDDING_DIM = 384
 TOP_K = 4
 MAX_CHARS = 1200
-
-# CHANGE: Update data directory path to point to parent directory
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 LLM_PARAMS = {

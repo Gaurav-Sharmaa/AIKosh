@@ -8,7 +8,9 @@ Python FastAPI backend for the AIKosh intelligent chatbot.
 
 ```bash
 python -m venv .venv
-.venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+.venv/Scripts/activate.ps1
+# On Windows: .venv\Scripts\activate
 ```
 
 2. Install dependencies:
