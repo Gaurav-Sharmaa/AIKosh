@@ -1,7 +1,7 @@
 <h1 align="center">AIKosh</h1>
 
 <p align="center">
-  <img src="https://private-user-images.githubusercontent.com/167352089/559033951-4d21efed-77df-4257-ba52-1b1b91177b86.png" alt="AIKosh Dashboard" width="100%">
+  <img src="https://github.com/Gaurav-Sharmaa/AIKosh/issues/1#issue-4031491444" alt="AIKosh Dashboard" width="100%">
 </p>
 
 <p align="center">
