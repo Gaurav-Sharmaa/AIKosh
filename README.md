@@ -1,11 +1,11 @@
 <h1 align="center">AIKosh</h1>
 
 <p align="center">
-  <img src="https://github.com/Gaurav-Sharmaa/AIKosh/issues/1#issue-4031491444" alt="AIKosh Dashboard" width="100%">
+  <img src="screenshots/dashboard.png" alt="AIKosh Dashboard" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://private-user-images.githubusercontent.com/167352089/559033950-6c8e0108-94f9-405e-a8d7-f5f0281d68db.png" alt="AIKosh AI Chatbot" width="100%">
+  <img src="screenshots/chatbot.png" alt="AIKosh AI Chatbot" width="100%">
 </p>
 
 ## Overview
