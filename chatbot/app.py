@@ -1,7 +1,3 @@
-"""
-AI-Powered RAG Chatbot with Sarvam API
-"""
-
 import os
 import json
 import logging
@@ -17,10 +13,7 @@ import requests
 import uvicorn
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
-
-# Setup basic logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -364,9 +357,7 @@ async def root():
 
 if __name__ == "__main__":
     print("""
-    ╔═══════════════════════════════════════════════════════════╗
-    ║           AIKosh RAG Chatbot - Sarvam AI                  ║
-    ╚═══════════════════════════════════════════════════════════╝
+               AIKosh RAG Chatbot - Sarvam AI                  
     """)
 
     uvicorn.run(

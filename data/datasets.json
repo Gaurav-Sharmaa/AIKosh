@@ -118,10 +118,7 @@
     "downloads_count": 1,
     "views_count": 6,
     "source_org": "IndiaAI",
-    "tags": [
-      "IIP",
-      "Industrial Production"
-    ],
+    "tags": ["IIP", "Industrial Production"],
     "license": "Open Government License, India",
     "geographical_coverage": "India",
     "sector": "Commerce, Finance, Banking and Insurance",
@@ -182,10 +179,7 @@
     "downloads_count": 0,
     "views_count": 0,
     "source_org": "Ministry of Statistics and Programme Implementation",
-    "tags": [
-      "IIP",
-      "Industrial Production"
-    ],
+    "tags": ["IIP", "Industrial Production"],
     "license": "Open Government License, India",
     "geographical_coverage": "India",
     "sector": "Commerce, Finance, Banking and Insurance",
@@ -213,9 +207,7 @@
     "downloads_count": 1,
     "views_count": 69,
     "source_org": "Lok Sabha Secretariat",
-    "tags": [
-      "newtag"
-    ],
+    "tags": ["newtag"],
     "license": "Other",
     "geographical_coverage": "India",
     "sector": "Other",
@@ -243,9 +235,7 @@
     "downloads_count": 7,
     "views_count": 53,
     "source_org": "Lok Sabha Secretariat",
-    "tags": [
-      "newtag"
-    ],
+    "tags": ["newtag"],
     "license": "NA",
     "geographical_coverage": "India",
     "sector": "Other",
@@ -273,9 +263,7 @@
     "downloads_count": 0,
     "views_count": 174,
     "source_org": "Lok Sabha Secretariat",
-    "tags": [
-      "newtag"
-    ],
+    "tags": ["newtag"],
     "license": "NA",
     "geographical_coverage": "India",
     "sector": "Other",
@@ -1307,10 +1295,7 @@
     "downloads_count": 49,
     "views_count": 182,
     "source_org": "IndiaAI",
-    "tags": [
-      "health",
-      "Health and Family welfare"
-    ],
+    "tags": ["health", "Health and Family welfare"],
     "license": "Open Government License, India",
     "geographical_coverage": "All India",
     "sector": "Healthcare, Wellness and Family Welfare",
@@ -1338,13 +1323,7 @@
     "downloads_count": 8,
     "views_count": 74,
     "source_org": "STARTOON LABS PRIVATE LIMITED",
-    "tags": [
-      "AI in healthcare",
-      "ROM",
-      "Physiotherapy",
-      "Neuro",
-      "sEMG"
-    ],
+    "tags": ["AI in healthcare", "ROM", "Physiotherapy", "Neuro", "sEMG"],
     "license": "NA",
     "geographical_coverage": "India",
     "sector": "Healthcare, Wellness and Family Welfare",
@@ -1372,9 +1351,7 @@
     "downloads_count": 56,
     "views_count": 464,
     "source_org": "Sarvam AI",
-    "tags": [
-      "indic-eval"
-    ],
+    "tags": ["indic-eval"],
     "license": "Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
     "geographical_coverage": "India",
     "sector": "Science, Technology and Research",

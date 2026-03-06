@@ -9,7 +9,6 @@ use tokio::time::sleep;
 use crate::errors::AppError;
 use crate::models::*;
 
-// Helper function to read JSON files
 fn read_json_file<T: serde::de::DeserializeOwned>(path: &str) -> Result<T, AppError> {
     let content = fs::read_to_string(path)?;
     let data: T = serde_json::from_str(&content)?;
@@ -18,11 +17,9 @@ fn read_json_file<T: serde::de::DeserializeOwned>(path: &str) -> Result<T, AppEr
 
 const PYTHON_CHATBOT_URL: &str = "http://localhost:8000/ask";
 
-// Chat endpoint that proxies to Python FastAPI chatbot
 pub async fn chat_stream(
     Json(payload): Json<ChatMessage>,
 ) -> Sse<impl Stream<Item = Result<Event, Infallible>>> {
-    //Server-Sent Events (SSE) stream
     let question = payload.message;
 
     let client = reqwest::Client::new();
@@ -31,9 +28,7 @@ pub async fn chat_stream(
         question: question.clone(),
     };
 
-    // Create stream that will forward responses from Python
     let stream = async_stream::stream! {
-        // 1. Call Python chatbot
         match client
             .post(PYTHON_CHATBOT_URL)
             .json(&python_request)
@@ -42,39 +37,22 @@ pub async fn chat_stream(
             .await
         {
             Ok(response) => {
-                // 2. Check if response is successful
                 if response.status().is_success() {
-                    // 3. Parse JSON response
                     match response.json::<PythonChatResponse>().await {
                         Ok(chat_response) => {
-                            // 4. Stream the answer word by word
                             let words: Vec<&str> = chat_response.answer.split_whitespace().collect();
 
                             for (index, word) in words.iter().enumerate() {
-                                // Add space before word (except first word)
                                 let text = if index == 0 {
                                     word.to_string()
                                 } else {
                                     format!(" {}", word)
                                 };
 
-                                // Yield the word as SSE event
                                 yield Ok(Event::default().data(text));
 
-                                // Small delay between words for streaming effect
                                 sleep(Duration::from_millis(50)).await;
                             }
-
-                            //metadata at the end
-                            /*
-                            let metadata = serde_json::json!({
-                                "sources": chat_response.sources,
-                                "confidence": chat_response.confidence
-                            });
-                            yield Ok(Event::default()
-                                .event("metadata")
-                                .data(metadata.to_string()));
-                            */
                         }
                         Err(e) => {
                             tracing::error!("Failed to parse Python response: {}", e);

@@ -1,6 +1,6 @@
 # AIKosh RAG Chatbot
 
-Python FastAPI backend for the AIKosh intelligent chatbot.
+Python FastAPI backend for the AIKosh chatbot.
 
 ## Setup
 
@@ -8,9 +8,7 @@ Python FastAPI backend for the AIKosh intelligent chatbot.
 
 ```bash
 python -m venv .venv
-
-.venv/Scripts/activate.ps1
-# On Windows: .venv\Scripts\activate
+#Windows: .venv\Scripts\activate
 ```
 
 2. Install dependencies:
@@ -19,8 +17,9 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-3. Configure environment:
+3. Configure environment: 
 
+(Get your free Sarvam API key from https://www.sarvam.ai)
 ```bash
 # Create .env file and add your Sarvam API key
 echo "SARVAM_API_KEY=your_key_here" > .env
