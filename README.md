@@ -49,6 +49,20 @@ AIKosh/
 └── Chatbot (Python + FastAPI)  → RAG-powered AI assistant
 ```
 
+The three services communicate as follows:
+
+```
+Browser
+  └── React Frontend (Port 5173)
+        ├── Rust Backend (Port 3000)  →  Reads JSON data files
+        └── Python Chatbot (Port 8000) →  RAG search via Sarvam AI API
+```
+
+- The **React frontend** is what the user sees and interacts with in the browser.
+- It talks to the **Rust backend** for fetching datasets, models, use cases, articles, and other data.
+- It talks to the **Python chatbot** when the user asks a question, which performs RAG search and returns an AI-generated answer.
+- All three services must be running at the same time for the platform to work fully.
+
 ### Tech Stack
 - **Backend**: Rust, Axum, Tokio, Tower, Serde
 - **Frontend**: React, TypeScript, Vite, TailwindCSS, React Router, React Markdown
@@ -60,9 +74,9 @@ AIKosh/
 Before running this project, ensure you have the following installed:
 
 ### 1. Rust
-```bash
-# Install Rust (if not already installed)
+Visit [https://rustup.rs](https://rustup.rs) in your browser and follow the instructions for your operating system to download and install Rust.
 
+```bash
 # Verify installation
 cargo --version
 ```
@@ -93,36 +107,55 @@ Get your free API key from [Sarvam AI](https://www.sarvam.ai/) and configure it 
 
 ### Step 1: Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Gaurav-Sharmaa/AIKosh.git
 cd AIKosh
 ```
 
-### Step 2: Setup Chatbot
+### Step 2: Setup Chatbot (Terminal 1)
 Follow the detailed instructions in the [`chatbot/README.md`](chatbot/README.md) file:
 ```bash
 cd chatbot
 python -m venv .venv
-# Windows: .venv\Scripts\activate
-# Linux/Mac: source .venv/bin/activate
+```
+
+Activate the virtual environment:
+```bash
+# Windows
+.venv\Scripts\activate
+
+# Linux/Mac
+source .venv/bin/activate
+```
+
+> **Why a virtual environment?** It keeps the chatbot's Python dependencies isolated from the rest of your system. This means installing packages here won't affect other Python projects on your machine, and you can always delete the `.venv` folder to start fresh without any side effects.
+
+```bash
 pip install -r requirements.txt
+```
 
-# Create .env file and add your Sarvam API key
-echo "SARVAM_API_KEY=your_key_here" > .env
+Create a `.env` file inside the `chatbot/` folder and add your Sarvam API key:
+```bash
+# chatbot/.env
+SARVAM_API_KEY=your_actual_api_key_here
+```
 
+> **Important:** Without this `.env` file in the `chatbot/` directory, the chatbot will fail to start. Replace `your_actual_api_key_here` with the key you got from [Sarvam AI](https://www.sarvam.ai/).
+
+```bash
 python app.py
 ```
 
 The chatbot API will run on `http://localhost:8000`
 
-### Step 3: Run Backend (Terminal 1)
+### Step 3: Run Backend (Terminal 2)
 ```bash
 # From project root
-cargo run -r
+cargo run --release
 ```
 
 The Rust backend will run on `http://localhost:3000/api`
 
-### Step 4: Run Frontend (Terminal 2)
+### Step 4: Run Frontend (Terminal 3)
 ```bash
 cd frontend
 pnpm install
@@ -133,7 +166,7 @@ The React app will run on `http://localhost:5173`
 
 ### Running All Services
 You need **3 terminals** running simultaneously:
-1. **Terminal 1**: `cargo run -r` (Rust backend - Port 3000)
+1. **Terminal 1**: `cargo run --release` (Rust backend - Port 3000)
 2. **Terminal 2**: `cd frontend && pnpm run dev` (React frontend - Port 5173)
 3. **Terminal 3**: `cd chatbot && python app.py` (Python chatbot - Port 8000)
 
@@ -183,12 +216,6 @@ AIKosh/
 - Streaming responses with stop functionality
 - Context-aware recommendations from all resources
 
-### Coming Soon
-- Multilingual chatbot support (Hindi, Bengali, Tamil)
-- User authentication and personalized recommendations
-- Resource bookmarking and favorites
-- Advanced filtering and search
-
 ## API Documentation
 
 ### Service Ports & Architecture
@@ -206,54 +233,43 @@ This project runs on **3 separate services** on different ports:
 - **Chatbot (Python)**: RAG requires Python libraries (FAISS, Sentence Transformers) which aren't available in Rust
 - **Frontend (React)**: Communicates with both Backend and Chatbot APIs
 
-### Backend API Endpoints (Port 3000)
 
-#### General
-```bash
-GET /health
-# Health check endpoint
-# Response: { "status": "ok" }
+
+## CORS Configuration
+
+The Rust backend (`src/main.rs`) includes a CORS layer that allows requests from the React frontend running on `http://localhost:5173`. If you change any service's port or deploy to a server, you will need to update the allowed origins in `main.rs` to match the new frontend URL — otherwise the browser will block API requests with a CORS error.
+
+## Common Issues
+
+**Port already in use**
+If you see an error like `Address already in use`, another process is occupying that port. Find and stop it.
+
+**Chatbot fails to start / API key error**
+Make sure you have created the `.env` file inside the `chatbot/` directory (not the project root) and that it contains your valid Sarvam API key:
+```
+SARVAM_API_KEY=your_actual_api_key_here
 ```
 
-
-#### Datasets
+**Python version mismatch**
+This project requires Python 3.10 or higher. Check your version with `python --version`. If you have multiple Python versions installed, make sure you are creating the virtual environment with the correct one:
 ```bash
-GET /api/datasets
-# Get all datasets
-# Response: [{ "id": 1, "title": "...", "description": "..." }, ...]
-
-GET /api/datasets/:id
-# Get specific dataset by ID
-# Example: GET /api/datasets/1
-# Response: { "id": 1, "title": "...", "about_dataset": "..." }
+python3.10 -m venv .venv
 ```
 
-#### Models
+**`pnpm` command not found**
+You need Node.js installed first, then install pnpm globally:
 ```bash
-GET /api/models
-# Get all AI models
-# Response: [{ "id": 1, "title": "...", "description": "..." }, ...]
-
-GET /api/models/:id
-# Get specific model by ID
-# Example: GET /api/models/1
-# Response: { "id": 1, "title": "...", "about_model": "..." }
+npm install -g pnpm
 ```
 
-
-### Chatbot API Endpoints (Port 8000)
-
-#### Health Check
+**Rust build errors**
+Make sure your Rust toolchain is up to date:
 ```bash
-GET /health
-# Check if chatbot service is running
-# Response: { "status": "healthy", "model": "sarvam-m" }
+rustup update
 ```
 
-
-
-
-
+**Chatbot returns no results / poor answers**
+The chatbot builds its index from the JSON files in the `data/` directory. Make sure those files are present and not empty. If you modified any data files, restart the chatbot service so it re-indexes.
 
 ## Contributing
 
@@ -272,4 +288,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <p align="center">Made with love for India's AI ecosystem</p>
-
