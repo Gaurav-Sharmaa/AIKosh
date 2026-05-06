@@ -1,376 +1,518 @@
-import { useState, useRef, useEffect } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-// Matches the backend Answer model — confidence removed
+// ── Types — unchanged from original; match backend Question/Answer models exactly ──
 interface Message {
-  text: string;
-  isUser: boolean;
-  isStreaming?: boolean;
+    text: string;
+    isUser: boolean;
+    isStreaming?: boolean;
 }
 
-// Matches the backend Question model
 interface HistoryEntry {
-  role: 'user' | 'assistant';
-  content: string;
+    role: 'user' | 'assistant';
+    content: string;
 }
 
-// Dynamic loading messages — randomly picked so it never feels hardcoded
-// Grouped by category so it feels contextual
+// ── Loading messages — same list as original ──
 const LOADING_MESSAGES = [
-  "Searching AIKosh database...",
-  "Looking through datasets and models...",
-  "Finding the best matches for you...",
-  "Scanning use cases and toolkits...",
-  "Checking articles and tutorials...",
-  "Pulling relevant resources...",
-  "Almost there, retrieving results...",
-  "Cross-referencing AIKosh data...",
+    "Searching AIKosh database...",
+    "Looking through datasets and models...",
+    "Finding the best matches for you...",
+    "Scanning use cases and toolkits...",
+    "Checking articles and tutorials...",
+    "Pulling relevant resources...",
+    "Almost there, retrieving results...",
+    "Cross-referencing AIKosh data...",
 ];
 
 function getRandomLoadingMessage(): string {
-  return LOADING_MESSAGES[Math.floor(Math.random() * LOADING_MESSAGES.length)];
+    return LOADING_MESSAGES[Math.floor(Math.random() * LOADING_MESSAGES.length)];
 }
 
 const MAX_INPUT_LENGTH = 500;
 
 export default function FloatingChat() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { text: "Hey! I'm your AIKosh assistant. Ask me about datasets, models, use cases, or anything on the platform.", isUser: false }
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isStreaming, setIsStreaming] = useState(false);
-  const [loadingMessage, setLoadingMessage] = useState('');
-
-  // Conversation history sent to backend so the model has memory
-  const conversationHistory = useRef<HistoryEntry[]>([]);
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const abortControllerRef = useRef<AbortController | null>(null);
-  const loadingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  // Rotate loading messages every 3 seconds so it feels alive
-  const startLoadingMessages = () => {
-    setLoadingMessage(getRandomLoadingMessage());
-    loadingIntervalRef.current = setInterval(() => {
-      setLoadingMessage(getRandomLoadingMessage());
-    }, 3000);
-  };
-
-  const stopLoadingMessages = () => {
-    if (loadingIntervalRef.current) {
-      clearInterval(loadingIntervalRef.current);
-      loadingIntervalRef.current = null;
-    }
-    setLoadingMessage('');
-  };
-
-  const handleStop = () => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-      abortControllerRef.current = null;
-    }
-    stopLoadingMessages();
-    setIsStreaming(false);
-    setIsLoading(false);
-
-    setMessages(prev => {
-      const newMessages = [...prev];
-      const lastIndex = newMessages.length - 1;
-      if (lastIndex >= 0 && newMessages[lastIndex].isStreaming) {
-        newMessages[lastIndex] = {
-          ...newMessages[lastIndex],
-          isStreaming: false,
-        };
-      }
-      return newMessages;
-    });
-  };
-
-  const handleSend = async () => {
-    if (!inputValue.trim() || isLoading) return;
-
-    const userMessage = inputValue.trim();
-    setInputValue('');
-    setIsLoading(true);
-    setIsStreaming(true);
-
-    // Add user message to UI
-    setMessages(prev => [...prev, { text: userMessage, isUser: true }]);
-
-    // Add placeholder for the assistant response
-    setMessages(prev => [...prev, { text: '', isUser: false, isStreaming: true }]);
-
-    // Start rotating loading messages
-    startLoadingMessages();
-
-    abortControllerRef.current = new AbortController();
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          question: userMessage,
-          history: conversationHistory.current,  // send full history for memory
-        }),
-        signal: abortControllerRef.current.signal,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || `Server error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const answer: string = data.answer || "Sorry, I couldn't generate a response.";
-
-      // Stop the rotating loading messages now that we have the answer
-      stopLoadingMessages();
-
-      // Update the assistant message with the actual answer
-      setMessages(prev => {
-        const newMessages = [...prev];
-        const lastIndex = newMessages.length - 1;
-        if (lastIndex >= 0 && newMessages[lastIndex].isStreaming) {
-          newMessages[lastIndex] = {
-            text: answer,
-            isUser: false,
-            isStreaming: false,
-          };
+    const [isOpen, setIsOpen] = useState(false);
+    const [messages, setMessages] = useState<Message[]>([
+        {
+            text: "Namaste! I'm your AIKosh assistant. Ask me about datasets, models, use cases, or anything on the platform.",
+            isUser: false
         }
-        return newMessages;
-      });
+    ]);
+    const [inputValue, setInputValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [isStreaming, setIsStreaming] = useState(false);
+    const [loadingMessage, setLoadingMessage] = useState('');
 
-      // Save this turn to conversation history so the next request has memory
-      conversationHistory.current = [
-        ...conversationHistory.current,
-        { role: 'user', content: userMessage },
-        { role: 'assistant', content: answer },
-      ];
+    const conversationHistory = useRef<HistoryEntry[]>([]);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+    const abortControllerRef = useRef<AbortController | null>(null);
+    const loadingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-      // Keep history to last 10 turns (20 entries) to avoid hitting token limits
-      if (conversationHistory.current.length > 20) {
-        conversationHistory.current = conversationHistory.current.slice(-20);
-      }
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
+    }, [messages]);
 
-    } catch (error: any) {
-      stopLoadingMessages();
+    const startLoadingMessages = () => {
+        setLoadingMessage(getRandomLoadingMessage());
+        loadingIntervalRef.current = setInterval(() => {
+            setLoadingMessage(getRandomLoadingMessage());
+        }, 3000);
+    };
 
-      if (error.name !== 'AbortError') {
-        console.error('Error fetching chat response:', error);
+    const stopLoadingMessages = () => {
+        if (loadingIntervalRef.current) {
+            clearInterval(loadingIntervalRef.current);
+            loadingIntervalRef.current = null;
+        }
+        setLoadingMessage('');
+    };
+
+    const handleStop = () => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+            abortControllerRef.current = null;
+        }
+        stopLoadingMessages();
+        setIsStreaming(false);
+        setIsLoading(false);
         setMessages(prev => {
-          const newMessages = [...prev];
-          const lastIndex = newMessages.length - 1;
-          if (lastIndex >= 0 && newMessages[lastIndex].isStreaming) {
-            newMessages[lastIndex] = {
-              text: "Something went wrong. Please check that all three services are running and try again.",
-              isUser: false,
-              isStreaming: false,
-            };
-          }
-          return newMessages;
+            const updated = [...prev];
+            const last = updated.length - 1;
+            if (last >= 0 && updated[last].isStreaming) {
+                updated[last] = {...updated[last], isStreaming: false};
+            }
+            return updated;
         });
-      }
-    } finally {
-      setIsLoading(false);
-      setIsStreaming(false);
-      abortControllerRef.current = null;
-    }
-  };
+    };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
+    const handleSend = async () => {
+        if (!inputValue.trim() || isLoading) return;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    if (value.length <= MAX_INPUT_LENGTH) {
-      setInputValue(value);
-    }
-  };
+        const userMessage = inputValue.trim();
+        setInputValue('');
+        setIsLoading(true);
+        setIsStreaming(true);
 
-  // Clear history when the chat is closed and reopened (optional — remove if you want history to persist)
-  const handleToggle = () => {
-    setIsOpen(prev => !prev);
-  };
+        setMessages(prev => [...prev, {text: userMessage, isUser: true}]);
+        setMessages(prev => [...prev, {text: '', isUser: false, isStreaming: true}]);
 
-  const charsLeft = MAX_INPUT_LENGTH - inputValue.length;
-  const showCharWarning = charsLeft < 100;
+        startLoadingMessages();
+        abortControllerRef.current = new AbortController();
 
-  return (
-    <>
-      {/* Floating button */}
-      <button
-        onClick={handleToggle}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-50 hover:scale-110 group"
-        aria-label="Open AI Chat"
-      >
-        {isOpen ? (
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-          </svg>
-        )}
+        try {
+            const response = await fetch('http://127.0.0.1:8000/ask', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    question: userMessage,
+                    history: conversationHistory.current,
+                }),
+                signal: abortControllerRef.current.signal,
+            });
 
-        <span className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-          AI Assistant
-        </span>
-      </button>
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error((errorData as { detail?: string }).detail || `Server error: ${response.status}`);
+            }
 
-      {/* Chat window */}
-      {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col border border-gray-200 animate-slideUp">
+            const data = await response.json() as { answer?: string };
+            const answer: string = data.answer ?? "Sorry, I couldn't generate a response.";
 
-          {/* Header */}
-          <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-4 rounded-t-2xl flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                  <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-semibold">AIKosh Assistant</h3>
-                <p className="text-xs text-orange-100">
-                  {isLoading ? loadingMessage || 'Thinking...' : 'Always here to help'}
-                </p>
-              </div>
-            </div>
+            stopLoadingMessages();
+
+            setMessages(prev => {
+                const updated = [...prev];
+                const last = updated.length - 1;
+                if (last >= 0 && updated[last].isStreaming) {
+                    updated[last] = {text: answer, isUser: false, isStreaming: false};
+                }
+                return updated;
+            });
+
+            conversationHistory.current = [
+                ...conversationHistory.current,
+                {role: 'user', content: userMessage},
+                {role: 'assistant', content: answer},
+            ];
+
+            if (conversationHistory.current.length > 20) {
+                conversationHistory.current = conversationHistory.current.slice(-20);
+            }
+
+        } catch (error: unknown) {
+            stopLoadingMessages();
+            if (error instanceof Error && error.name !== 'AbortError') {
+                console.error('Error fetching chat response:', error);
+                setMessages(prev => {
+                    const updated = [...prev];
+                    const last = updated.length - 1;
+                    if (last >= 0 && updated[last].isStreaming) {
+                        updated[last] = {
+                            text: "Something went wrong. Please check that all three services are running and try again.",
+                            isUser: false,
+                            isStreaming: false,
+                        };
+                    }
+                    return updated;
+                });
+            }
+        } finally {
+            setIsLoading(false);
+            setIsStreaming(false);
+            abortControllerRef.current = null;
+        }
+    };
+
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSend();
+        }
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        if (e.target.value.length <= MAX_INPUT_LENGTH) {
+            setInputValue(e.target.value);
+        }
+    };
+
+    const handleToggle = () => setIsOpen(prev => !prev);
+
+    const charsLeft = MAX_INPUT_LENGTH - inputValue.length;
+    const showCharWarning = charsLeft < 100;
+
+    return (
+        <>
+            {/* ── Floating trigger button ── */}
             <button
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-full p-1 transition-colors"
+                onClick={handleToggle}
+                title="AIKosh AI Sahayak"
+                style={{
+                    position: 'fixed', bottom: '24px', right: '24px',
+                    width: '56px', height: '56px',
+                    background: '#003366',
+                    border: '2px solid rgba(255,153,51,0.6)',
+                    borderRadius: '50%',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+                    cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    zIndex: 1000,
+                    transition: 'transform 0.15s, box-shadow 0.15s',
+                }}
+                onMouseEnter={e => {
+                    (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.08)';
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
+                }}
+                onMouseLeave={e => {
+                    (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 16px rgba(0,0,0,0.25)';
+                }}
+                aria-label={isOpen ? 'Close AI Assistant' : 'Open AI Assistant'}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+                {isOpen ? (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"
+                         strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                ) : (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"
+                         strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
+                )}
+
+                {/* Saffron indicator dot */}
+                {!isOpen && (
+                    <span style={{
+                        position: 'absolute', top: '-2px', right: '-2px',
+                        width: '12px', height: '12px',
+                        background: '#FF9933',
+                        borderRadius: '50%',
+                        border: '2px solid #fff',
+                    }}/>
+                )}
             </button>
-          </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
-                    message.isUser
-                      ? 'bg-orange-500 text-white rounded-br-sm'
-                      : 'bg-white text-gray-800 rounded-bl-sm shadow-sm border border-gray-200'
-                  }`}
-                >
-                  {message.isUser ? (
-                    <p className="text-sm whitespace-pre-wrap">{message.text}</p>
-                  ) : (
-                    <div className="text-sm prose prose-sm max-w-none prose-headings:mt-3 prose-headings:mb-2 prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0">
-                      {message.text ? (
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.text}</ReactMarkdown>
-                      ) : (
-                        // Loading dots while waiting for response
-                        <div className="flex flex-col space-y-1">
-                          <span className="inline-flex items-center space-x-1">
-                            <span className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                            <span className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                            <span className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                          </span>
-                          {loadingMessage && (
-                            <span className="text-xs text-gray-400 italic">{loadingMessage}</span>
-                          )}
+            {/* ── Chat panel ── */}
+            {isOpen && (
+                <div style={{
+                    position: 'fixed', bottom: '92px', right: '24px',
+                    width: '380px', height: '520px',
+                    background: '#fff',
+                    border: '1px solid #dde1e7',
+                    borderRadius: '4px',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+                    display: 'flex', flexDirection: 'column',
+                    zIndex: 1000,
+                    animation: 'chatSlideUp 0.2s ease-out',
+                    overflow: 'hidden',
+                    fontFamily: "'Noto Sans', 'Segoe UI', sans-serif",
+                }}>
+
+                    {/* Tricolour top accent */}
+                    <div style={{
+                        height: '4px',
+                        background: 'linear-gradient(90deg, #FF9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%)',
+                        flexShrink: 0
+                    }}/>
+
+                    {/* Header */}
+                    <div style={{
+                        background: '#003366',
+                        color: '#fff',
+                        padding: '12px 16px',
+                        display: 'flex', alignItems: 'center', gap: '12px',
+                        flexShrink: 0,
+                    }}>
+                        {/* Chakra icon */}
+                        <div style={{
+                            width: '36px', height: '36px',
+                            background: 'rgba(255,255,255,0.12)',
+                            border: '1px solid rgba(255,255,255,0.25)',
+                            borderRadius: '50%',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            flexShrink: 0,
+                        }}>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)"
+                                 strokeWidth="1.5">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                                <circle cx="12" cy="12" r="3" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5"
+                                        fill="none"/>
+                                {Array.from({length: 8}).map((_, i) => {
+                                    const a = (i * 45 * Math.PI) / 180;
+                                    return <line key={i} x1={12 + 4 * Math.cos(a)} y1={12 + 4 * Math.sin(a)}
+                                                 x2={12 + 8 * Math.cos(a)} y2={12 + 8 * Math.sin(a)}
+                                                 stroke="rgba(255,255,255,0.7)" strokeWidth="1"/>;
+                                })}
+                            </svg>
                         </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
 
-          {/* Input area */}
-          <div className="p-4 bg-white rounded-b-2xl border-t border-gray-200">
-            <div className="flex items-end space-x-2">
-              <div className="flex-1 relative">
+                        <div style={{flex: 1, minWidth: 0}}>
+                            <div style={{fontSize: '14px', fontWeight: 700, color: '#fff'}}>AIKosh Sahayak</div>
+                            <div style={{fontSize: '11px', color: 'rgba(255,255,255,0.65)', marginTop: '1px'}}>
+                                {isLoading ? (loadingMessage || 'Thinking...') : 'AI सहायक — National AI Assistant'}
+                            </div>
+                        </div>
+
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                cursor: 'pointer',
+                                padding: '4px',
+                                color: 'rgba(255,255,255,0.7)',
+                                flexShrink: 0
+                            }}
+                        >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 strokeWidth="2.5" strokeLinecap="round">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    {/* Messages area */}
+                    <div style={{
+                        flex: 1,
+                        overflowY: 'auto',
+                        padding: '16px',
+                        background: '#f8f9fa',
+                        display: 'flex', flexDirection: 'column', gap: '12px',
+                    }}>
+                        {messages.map((message, index) => (
+                            <div key={index}
+                                 style={{display: 'flex', justifyContent: message.isUser ? 'flex-end' : 'flex-start'}}>
+                                {/* Avatar for assistant */}
+                                {!message.isUser && (
+                                    <div style={{
+                                        width: '28px', height: '28px', borderRadius: '50%',
+                                        background: '#003366',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        flexShrink: 0, marginRight: '8px', marginTop: '2px',
+                                        fontSize: '10px', color: '#FF9933', fontWeight: 700,
+                                    }}>
+                                        AI
+                                    </div>
+                                )}
+
+                                <div style={{
+                                    maxWidth: '78%',
+                                    padding: '10px 14px',
+                                    borderRadius: message.isUser ? '12px 12px 4px 12px' : '12px 12px 12px 4px',
+                                    background: message.isUser ? '#003366' : '#fff',
+                                    color: message.isUser ? '#fff' : '#1a2e4a',
+                                    border: message.isUser ? 'none' : '1px solid #dde1e7',
+                                    fontSize: '13px',
+                                    lineHeight: '1.6',
+                                    boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+                                }}>
+                                    {message.isUser ? (
+                                        <p style={{margin: 0, whiteSpace: 'pre-wrap'}}>{message.text}</p>
+                                    ) : (
+                                        <div style={{margin: 0}}>
+                                            {message.text ? (
+                                                <div className="chat-markdown">
+                                                    <ReactMarkdown
+                                                        remarkPlugins={[remarkGfm]}>{message.text}</ReactMarkdown>
+                                                </div>
+                                            ) : (
+                                                <div style={{display: 'flex', flexDirection: 'column', gap: '6px'}}>
+                                                    <div style={{display: 'flex', gap: '4px', alignItems: 'center'}}>
+                                                        {[0, 150, 300].map(delay => (
+                                                            <span key={delay} style={{
+                                                                width: '7px', height: '7px', borderRadius: '50%',
+                                                                background: '#FF9933',
+                                                                animation: `chatBounce 1.2s ease-in-out ${delay}ms infinite`,
+                                                                display: 'inline-block',
+                                                            }}/>
+                                                        ))}
+                                                    </div>
+                                                    {loadingMessage && (
+                                                        <span style={{
+                                                            fontSize: '11px',
+                                                            color: '#9ca3af',
+                                                            fontStyle: 'italic'
+                                                        }}>
+                              {loadingMessage}
+                            </span>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                        <div ref={messagesEndRef}/>
+                    </div>
+
+                    {/* Input area */}
+                    <div style={{
+                        padding: '12px 14px',
+                        background: '#fff',
+                        borderTop: '1px solid #e9ecef',
+                        flexShrink: 0,
+                    }}>
+                        <div style={{display: 'flex', gap: '8px', alignItems: 'flex-end'}}>
+                            <div style={{flex: 1, position: 'relative'}}>
                 <textarea
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Ask me anything about AIKosh..."
-                  rows={1}
-                  className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none text-sm"
-                  style={{ maxHeight: '100px' }}
-                  disabled={isLoading}
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Ask about datasets, models, use cases..."
+                    rows={1}
+                    disabled={isLoading}
+                    style={{
+                        width: '100%',
+                        padding: '9px 12px',
+                        border: '1px solid #ced4da',
+                        borderRadius: '4px',
+                        fontSize: '13px',
+                        fontFamily: 'inherit',
+                        resize: 'none',
+                        outline: 'none',
+                        maxHeight: '100px',
+                        overflowY: 'auto',
+                        boxSizing: 'border-box',
+                        color: '#1a2e4a',
+                        background: isLoading ? '#f8f9fa' : '#fff',
+                        transition: 'border-color 0.15s',
+                    }}
+                    onFocus={e => {
+                        (e.target as HTMLTextAreaElement).style.borderColor = '#003366';
+                    }}
+                    onBlur={e => {
+                        (e.target as HTMLTextAreaElement).style.borderColor = '#ced4da';
+                    }}
                 />
-                {/* Character counter — only shows when approaching limit */}
-                {showCharWarning && (
-                  <span className={`absolute bottom-2 right-3 text-xs ${charsLeft < 20 ? 'text-red-400' : 'text-gray-400'}`}>
+                                {showCharWarning && (
+                                    <span style={{
+                                        position: 'absolute', bottom: '8px', right: '8px',
+                                        fontSize: '11px',
+                                        color: charsLeft < 20 ? '#dc2626' : '#9ca3af',
+                                    }}>
                     {charsLeft}
                   </span>
-                )}
-              </div>
+                                )}
+                            </div>
 
-              <button
-                onClick={isStreaming ? handleStop : handleSend}
-                disabled={!isStreaming && (!inputValue.trim() || isLoading)}
-                className={`${
-                  isStreaming
-                    ? 'bg-red-500 hover:bg-red-600'
-                    : 'bg-orange-500 hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed'
-                } text-white rounded-xl px-4 py-2 transition-colors flex items-center justify-center`}
-              >
-                {isStreaming ? (
-                  // Stop icon
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : isLoading ? (
-                  // Spinner while waiting
-                  <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                ) : (
-                  // Send icon
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                )}
-              </button>
-            </div>
-            <p className="text-xs text-gray-400 mt-2">Press Enter to send · Shift+Enter for new line</p>
-          </div>
-        </div>
-      )}
+                            <button
+                                onClick={isStreaming ? handleStop : handleSend}
+                                disabled={!isStreaming && (!inputValue.trim() || isLoading)}
+                                style={{
+                                    width: '38px', height: '38px',
+                                    background: isStreaming ? '#dc2626' : '#003366',
+                                    border: 'none', borderRadius: '4px',
+                                    cursor: (!isStreaming && (!inputValue.trim() || isLoading)) ? 'not-allowed' : 'pointer',
+                                    opacity: (!isStreaming && (!inputValue.trim() || isLoading)) ? 0.5 : 1,
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    flexShrink: 0,
+                                    transition: 'background 0.15s, opacity 0.15s',
+                                }}
+                            >
+                                {isStreaming ? (
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff">
+                                        <rect x="6" y="6" width="12" height="12" rx="1"/>
+                                    </svg>
+                                ) : isLoading ? (
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                         strokeWidth="2.5" style={{animation: 'spin 0.8s linear infinite'}}>
+                                        <circle cx="12" cy="12" r="10" strokeOpacity="0.3"/>
+                                        <path d="M12 2a10 10 0 0 1 10 10" strokeLinecap="round"/>
+                                    </svg>
+                                ) : (
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                         strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="22" y1="2" x2="11" y2="13"/>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                    </svg>
+                                )}
+                            </button>
+                        </div>
 
-      <style>{`
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px); }
+                        <div style={{
+                            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                            marginTop: '6px',
+                        }}>
+                            <p style={{margin: 0, fontSize: '10px', color: '#9ca3af'}}>
+                                Enter to send &middot; Shift+Enter for new line
+                            </p>
+                            <p style={{margin: 0, fontSize: '10px', color: '#9ca3af'}}>
+                                Powered by Sarvam AI
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <style>{`
+        @keyframes chatSlideUp {
+          from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .animate-slideUp {
-          animation: slideUp 0.3s ease-out;
+        @keyframes chatBounce {
+          0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
+          40% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        .chat-markdown p { margin: 0 0 6px; }
+        .chat-markdown p:last-child { margin-bottom: 0; }
+        .chat-markdown ul, .chat-markdown ol { margin: 4px 0 6px; padding-left: 18px; }
+        .chat-markdown li { margin-bottom: 3px; }
+        .chat-markdown strong { font-weight: 600; color: #003366; }
+        .chat-markdown h1, .chat-markdown h2, .chat-markdown h3 {
+          font-size: 14px; font-weight: 600; color: #003366; margin: 8px 0 4px;
+        }
+        .chat-markdown code {
+          font-size: 12px; background: #f1f5f9; padding: 1px 5px;
+          border-radius: 3px; font-family: monospace;
         }
       `}</style>
-    </>
-  );
+        </>
+    );
 }
