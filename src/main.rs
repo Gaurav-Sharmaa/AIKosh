@@ -53,12 +53,16 @@ async fn main() {
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
         .await
-        .unwrap();
+        .expect("TcpListener Failed to bind to port 3000.");
 
     tracing::info!(
         "Server listening on http://{}",
-        listener.local_addr().unwrap()
+        listener
+            .local_addr()
+            .expect("Failed to get local address from listener.")
     );
 
-    axum::serve(listener, app).await.unwrap();
+    axum::serve(listener, app)
+        .await
+        .expect("Failed to start the server.");
 }
