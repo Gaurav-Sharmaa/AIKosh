@@ -1,53 +1,105 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default function Header() {
-  return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-8">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AI</span>
-              </div>
-              <span className="text-xl font-bold text-gray-900">AIKosh</span>
-            </Link>
-            
-            <nav className="hidden md:flex space-x-6">
-              <Link to="/" className="text-gray-700 hover:text-orange-600 font-medium">
-                Dashboard
-              </Link>
-              <Link to="/datasets" className="text-gray-700 hover:text-orange-600 font-medium">
-                Datasets
-              </Link>
-              <Link to="/models" className="text-gray-700 hover:text-orange-600 font-medium">
-                Models
-              </Link>
-              <Link to="/usecases" className="text-gray-700 hover:text-orange-600 font-medium">
-                Use Cases
-              </Link>
-              <Link to="/toolkit" className="text-gray-700 hover:text-orange-600 font-medium">
-                Toolkit
-              </Link>
-              <Link to="/tutorials" className="text-gray-700 hover:text-orange-600 font-medium">
-                Tutorials
-              </Link>
-              <Link to="/articles" className="text-gray-700 hover:text-orange-600 font-medium">
-                Articles
-              </Link>
-            </nav>
-          </div>
+    return (
+        <header style={{
+            background: '#fff',
+            borderBottom: '1px solid #dde1e7',
+            position: 'sticky',
+            top: 0,
+            zIndex: 50,
+            boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+        }}>
+            {/* Top government strip */}
+            <div style={{
+                background: '#003366',
+                color: 'rgba(255,255,255,0.85)',
+                fontSize: '11px',
+                textAlign: 'center',
+                padding: '4px 16px',
+                letterSpacing: '0.04em',
+            }}>
+                India AI &nbsp;|&nbsp; Government of India
+            </div>
 
-          <div className="flex items-center space-x-4">
-            <Link
-              to="/profile"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              Profile
-            </Link>
-          </div>
-        </div>
-      </div>
-    </header>
-  );
+            <div style={{maxWidth: '1280px', margin: '0 auto', padding: '0 24px'}}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    height: '64px',
+                }}>
+                    {/* Logo + Nav */}
+                    <div style={{display: 'flex', alignItems: 'center', gap: '40px'}}>
+                        <Link to="/"
+                              style={{display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0}}>
+                            <img
+                                src="/ai-kosh-header-logo.svg"
+                                alt="AIKosh — India AI"
+                                style={{height: '40px', width: 'auto', display: 'block'}}
+                            />
+                        </Link>
+
+                        <nav style={{display: 'flex', gap: '28px', alignItems: 'center'}}>
+                            {[
+                                {to: '/', label: 'Dashboard'},
+                                {to: '/datasets', label: 'Datasets'},
+                                {to: '/models', label: 'Models'},
+                                {to: '/usecases', label: 'Use Cases'},
+                                {to: '/toolkit', label: 'Toolkit'},
+                                {to: '/tutorials', label: 'Tutorials'},
+                                {to: '/articles', label: 'Articles'},
+                            ].map((item) => (
+                                <Link
+                                    key={item.to}
+                                    to={item.to}
+                                    style={{
+                                        color: '#374151',
+                                        textDecoration: 'none',
+                                        fontSize: '14px',
+                                        fontWeight: 500,
+                                        fontFamily: "'Noto Sans', 'Segoe UI', sans-serif",
+                                        transition: 'color 0.15s',
+                                    }}
+                                    onMouseEnter={e => {
+                                        (e.currentTarget as HTMLAnchorElement).style.color = '#FF9933';
+                                    }}
+                                    onMouseLeave={e => {
+                                        (e.currentTarget as HTMLAnchorElement).style.color = '#374151';
+                                    }}
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </nav>
+                    </div>
+
+                    {/* Profile button */}
+                    <Link
+                        to="/profile"
+                        style={{
+                            background: '#003366',
+                            color: '#fff',
+                            padding: '8px 18px',
+                            borderRadius: '4px',
+                            fontSize: '14px',
+                            fontWeight: 500,
+                            textDecoration: 'none',
+                            fontFamily: "'Noto Sans', 'Segoe UI', sans-serif",
+                            transition: 'background 0.15s',
+                            flexShrink: 0,
+                        }}
+                        onMouseEnter={e => {
+                            (e.currentTarget as HTMLAnchorElement).style.background = '#FF9933';
+                        }}
+                        onMouseLeave={e => {
+                            (e.currentTarget as HTMLAnchorElement).style.background = '#003366';
+                        }}
+                    >
+                        Profile
+                    </Link>
+                </div>
+            </div>
+        </header>
+    );
 }
