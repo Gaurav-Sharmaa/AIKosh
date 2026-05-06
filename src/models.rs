@@ -11,12 +11,6 @@ pub struct Dashboard {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct SharedArtifact {
-    pub id: u32,
-    pub days_remaining: i32,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ArtifactsViewed {
     pub datasets: u32,
     pub models: u32,
@@ -31,7 +25,7 @@ pub struct ArtifactsDownloaded {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Dataset {
-    pub id: u8,
+    pub id: u32,
     pub title: String,
     pub description: String,
     #[serde(default)]
@@ -80,7 +74,7 @@ pub struct Dataset {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Model {
-    pub id: u8,
+    pub id: u32,
     pub title: String,
     pub description: String,
     #[serde(default)]
@@ -114,7 +108,7 @@ pub struct Model {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Toolkit {
-    pub id: u8,
+    pub id: u32,
     pub title: String,
     pub description: String,
     pub image_url: Option<String>,
@@ -129,7 +123,7 @@ pub struct Toolkit {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct UseCase {
-    pub id: u8,
+    pub id: u32,
     pub title: String,
     pub description: String,
     pub image_url: Option<String>,
@@ -141,30 +135,10 @@ pub struct UseCase {
     pub about_use_case: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct Leaderboard {
-    pub id: u32,
-    pub rank: u32,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct Bookmark {
-    pub id: u32,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct MyNotebook {
-    pub id: u32,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct RecentActivities {
-    pub id: u32,
-}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Tutorial {
-    pub id: u8,
+    pub id: u32,
     pub title: String,
     pub description: String,
     pub duration: String,
@@ -176,7 +150,7 @@ pub struct Tutorial {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Article {
-    pub id: u8,
+    pub id: u32,
     pub title: String,
     pub description: String,
     pub content: Option<String>,
@@ -190,7 +164,7 @@ pub struct Article {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct User {
-    pub id: u8,
+    pub id: u32,
     pub full_name: String,
     pub username: String,
     pub bio: String,
@@ -219,6 +193,4 @@ pub struct PythonChatRequest {
 #[derive(Debug, Deserialize)]
 pub struct PythonChatResponse {
     pub answer: String,
-    pub sources: Vec<serde_json::Value>,
-    pub confidence: f32,
 }
