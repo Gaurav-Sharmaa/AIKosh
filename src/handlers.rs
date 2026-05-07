@@ -13,6 +13,37 @@ use crate::models::*;
 use crate::state::AppState;
 
 const PYTHON_CHATBOT_URL: &str = "http://localhost:8000/ask";
+const DEFAULT_PER_PAGE: usize = 20;
+const MAX_PER_PAGE: usize = 100;
+
+fn paginate<T: Clone>(items: Vec<T>, page: Option<usize>, per_page: Option<usize>) -> Paginated<T> {
+    let per_page = per_page.unwrap_or(DEFAULT_PER_PAGE).clamp(1, MAX_PER_PAGE);
+    let page = page.unwrap_or(1).max(1);
+    let total = items.len();
+    let total_pages = if total == 0 {
+        0
+    } else {
+        total.div_ceil(per_page)
+    };
+
+    let start = (page - 1) * per_page;
+    let page_items = if start >= total {
+        Vec::new()
+    } else {
+        let end = (start + per_page).min(total);
+        items[start..end].to_vec()
+    };
+
+    Paginated {
+        items: page_items,
+        meta: PageMeta {
+            page,
+            per_page,
+            total,
+            total_pages,
+        },
+    }
+}
 
 pub async fn chat_stream(
     Json(payload): Json<ChatMessage>,
@@ -87,8 +118,8 @@ pub async fn get_dashboard(State(state): State<Arc<AppState>>) -> Json<Dashboard
 pub async fn get_datasets(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Vec<Dataset>> {
-    let results = state
+) -> Json<Paginated<Dataset>> {
+    let filtered = state
         .datasets
         .iter()
         .filter(|datasets| {
@@ -116,7 +147,8 @@ pub async fn get_datasets(
         })
         .cloned()
         .collect();
-    Json(results)
+
+    Json(paginate(filtered, params.page, params.per_page))
 }
 
 pub async fn get_dataset_by_id(
@@ -135,8 +167,8 @@ pub async fn get_dataset_by_id(
 pub async fn get_models(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Vec<Model>> {
-    let results = state
+) -> Json<Paginated<Model>> {
+    let filtered = state
         .models
         .iter()
         .filter(|models| {
@@ -164,7 +196,8 @@ pub async fn get_models(
         })
         .cloned()
         .collect();
-    Json(results)
+
+    Json(paginate(filtered, params.page, params.per_page))
 }
 
 pub async fn get_model_by_id(
@@ -183,8 +216,8 @@ pub async fn get_model_by_id(
 pub async fn get_toolkit(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Vec<Toolkit>> {
-    let results = state
+) -> Json<Paginated<Toolkit>> {
+    let filtered = state
         .toolkit
         .iter()
         .filter(|toolkit| {
@@ -201,7 +234,7 @@ pub async fn get_toolkit(
         })
         .cloned()
         .collect();
-    Json(results)
+    Json(paginate(filtered, params.page, params.per_page))
 }
 
 pub async fn get_toolkit_by_id(
@@ -220,8 +253,8 @@ pub async fn get_toolkit_by_id(
 pub async fn get_usecases(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Vec<UseCase>> {
-    let results = state
+) -> Json<Paginated<UseCase>> {
+    let filtered = state
         .usecases
         .iter()
         .filter(|usecases| {
@@ -249,7 +282,7 @@ pub async fn get_usecases(
         })
         .cloned()
         .collect();
-    Json(results)
+    Json(paginate(filtered, params.page, params.per_page))
 }
 
 pub async fn get_usecase_by_id(

@@ -200,4 +200,20 @@ pub struct ListQuery {
     pub search: Option<String>,
     pub tag: Option<String>,
     pub sector: Option<String>,
+    pub page: Option<usize>,
+    pub per_page: Option<usize>
+}
+
+#[derive(Debug, Serialize)]
+pub struct Paginated<T> {
+    pub items: Vec<T>,
+    pub meta: PageMeta,
+}
+
+#[derive(Debug, Serialize)]
+pub struct PageMeta {
+    pub page: usize,
+    pub per_page: usize,
+    pub total: usize,
+    pub total_pages: usize,
 }
