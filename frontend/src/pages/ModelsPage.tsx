@@ -9,33 +9,20 @@ export default function ModelsPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    const fetchModels = async () => {
+    setLoading(true);
+    const timer = setTimeout(async () => {
       try {
-        const response = await getModels();
+        const response = await getModels(searchTerm || undefined);
         setModels(response.data);
       } catch (error) {
         console.error('Error fetching models:', error);
       } finally {
         setLoading(false);
       }
-    };
+    }, 300);
 
-    fetchModels();
-  }, []);
-
-  const filteredModels = models.filter((model) =>
-    model.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    model.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    model.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
-      </div>
-    );
-  }
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -44,7 +31,6 @@ export default function ModelsPage() {
         <p className="text-lg text-gray-600 mb-6">
           Discover models to support your AI solutions
         </p>
-
         <div className="max-w-2xl">
           <input
             type="text"
@@ -56,19 +42,23 @@ export default function ModelsPage() {
         </div>
       </div>
 
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6">
         <p className="text-gray-600">
-          Showing <span className="font-semibold">{filteredModels.length}</span> models
+          Showing <span className="font-semibold">{models.length}</span> models
         </p>
       </div>
 
-      {filteredModels.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500" />
+        </div>
+      ) : models.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-500 text-lg">No models found matching your search.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredModels.map((model) => (
+          {models.map((model) => (
             <ModelCard key={model.id} model={model} />
           ))}
         </div>

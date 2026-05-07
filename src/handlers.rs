@@ -1,4 +1,4 @@
-use axum::extract::State;
+use axum::extract::{Query, State};
 use axum::response::sse::{Event, Sse};
 use axum::{extract::Path, Json};
 use futures::stream::Stream;
@@ -84,8 +84,39 @@ pub async fn get_dashboard(State(state): State<Arc<AppState>>) -> Json<Dashboard
     Json(state.dashboard.clone())
 }
 
-pub async fn get_datasets(State(state): State<Arc<AppState>>) -> Json<Vec<Dataset>> {
-    Json(state.datasets.clone())
+pub async fn get_datasets(
+    State(state): State<Arc<AppState>>,
+    Query(params): Query<ListQuery>,
+) -> Json<Vec<Dataset>> {
+    let results = state
+        .datasets
+        .iter()
+        .filter(|datasets| {
+            if let Some(search) = &params.search {
+                let search = search.to_lowercase();
+                if !datasets.title.to_lowercase().contains(&search)
+                    && !datasets.description.to_lowercase().contains(&search)
+                {
+                    return false;
+                }
+            }
+            if let Some(tag) = &params.tag {
+                let tag = tag.to_lowercase();
+                if !datasets.tags.iter().any(|t| t.to_lowercase() == tag) {
+                    return false;
+                }
+            }
+            if let Some(sector) = &params.sector {
+                let sector = sector.to_lowercase();
+                if !datasets.sector.contains(&sector) {
+                    return false;
+                }
+            }
+            true
+        })
+        .cloned()
+        .collect();
+    Json(results)
 }
 
 pub async fn get_dataset_by_id(
@@ -101,8 +132,39 @@ pub async fn get_dataset_by_id(
         .ok_or(AppError::NotFound)
 }
 
-pub async fn get_models(State(state): State<Arc<AppState>>) -> Json<Vec<Model>> {
-    Json(state.models.clone())
+pub async fn get_models(
+    State(state): State<Arc<AppState>>,
+    Query(params): Query<ListQuery>,
+) -> Json<Vec<Model>> {
+    let results = state
+        .models
+        .iter()
+        .filter(|models| {
+            if let Some(search) = &params.search {
+                let search = search.to_lowercase();
+                if !models.title.to_lowercase().contains(&search)
+                    && !models.description.to_lowercase().contains(&search)
+                {
+                    return false;
+                }
+            }
+            if let Some(tag) = &params.tag {
+                let tag = tag.to_lowercase();
+                if !models.tags.iter().any(|t| t.to_lowercase() == tag) {
+                    return false;
+                }
+            }
+            if let Some(sector) = &params.sector {
+                let sector = sector.to_lowercase();
+                if !models.sector.contains(&sector) {
+                    return false;
+                }
+            }
+            true
+        })
+        .cloned()
+        .collect();
+    Json(results)
 }
 
 pub async fn get_model_by_id(
@@ -118,8 +180,28 @@ pub async fn get_model_by_id(
         .ok_or(AppError::NotFound)
 }
 
-pub async fn get_toolkit(State(state): State<Arc<AppState>>) -> Json<Vec<Toolkit>> {
-    Json(state.toolkit.clone())
+pub async fn get_toolkit(
+    State(state): State<Arc<AppState>>,
+    Query(params): Query<ListQuery>,
+) -> Json<Vec<Toolkit>> {
+    let results = state
+        .toolkit
+        .iter()
+        .filter(|toolkit| {
+            if let Some(search) = &params.search {
+                let search = search.to_lowercase();
+                if !toolkit.title.to_lowercase().contains(&search)
+                    && !toolkit.description.to_lowercase().contains(&search)
+                    && !toolkit.overview.to_lowercase().contains(&search)
+                {
+                    return false;
+                }
+            }
+            true
+        })
+        .cloned()
+        .collect();
+    Json(results)
 }
 
 pub async fn get_toolkit_by_id(
@@ -135,8 +217,39 @@ pub async fn get_toolkit_by_id(
         .ok_or(AppError::NotFound)
 }
 
-pub async fn get_usecases(State(state): State<Arc<AppState>>) -> Json<Vec<UseCase>> {
-    Json(state.usecases.clone())
+pub async fn get_usecases(
+    State(state): State<Arc<AppState>>,
+    Query(params): Query<ListQuery>,
+) -> Json<Vec<UseCase>> {
+    let results = state
+        .usecases
+        .iter()
+        .filter(|usecases| {
+            if let Some(search) = &params.search {
+                let search = search.to_lowercase();
+                if !usecases.title.to_lowercase().contains(&search)
+                    && !usecases.description.to_lowercase().contains(&search)
+                {
+                    return false;
+                }
+            }
+            if let Some(tag) = &params.tag {
+                let tag = tag.to_lowercase();
+                if !usecases.tags.iter().any(|t| t.to_lowercase() == tag) {
+                    return false;
+                }
+            }
+            if let Some(sector) = &params.sector {
+                let sector = sector.to_lowercase();
+                if !usecases.sector.contains(&sector) {
+                    return false;
+                }
+            }
+            true
+        })
+        .cloned()
+        .collect();
+    Json(results)
 }
 
 pub async fn get_usecase_by_id(

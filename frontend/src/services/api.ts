@@ -21,26 +21,30 @@ const api = axios.create({
 
 export const getDashboard = () => api.get<Dashboard>("/dashboard");
 
-export const getDatasets = () => api.get<Dataset[]>("/datasets");
+export const getDatasets = (search?: string) =>
+  api.get<Dataset[]>("/datasets", { params: search ? { search } : {} });
 export const getDatasetById = (id: number) =>
   api.get<Dataset>(`/datasets/${id}`);
 
-export const getModels = () => api.get<Model[]>("/models");
+export const getModels = (search?: string) =>
+  api.get<Model[]>("/models", { params: search ? { search } : {} });
 export const getModelById = (id: number) => api.get<Model>(`/models/${id}`);
 
-export const getUseCases = () => api.get<UseCase[]>("/usecases");
+export const getUseCases = (search?: string) =>
+  api.get<UseCase[]>("/usecases", { params: search ? { search } : {} });
 export const getUseCaseById = (id: number) =>
   api.get<UseCase>(`/usecases/${id}`);
+
+export const getToolkit = (search?: string) =>
+  api.get<Toolkit[]>("/toolkit", { params: search ? { search } : {} });
+export const getToolkitById = (id: number) =>
+  api.get<Toolkit>(`/toolkit/${id}`);
 
 export const getTutorials = () => api.get<Tutorial[]>("/tutorials");
 
 export const getArticles = () => api.get<Article[]>("/articles");
 export const getArticleById = (id: number) =>
   api.get<Article>(`/articles/${id}`);
-
-export const getToolkit = () => api.get<Toolkit[]>("/toolkit");
-export const getToolkitById = (id: number) =>
-  api.get<Toolkit>(`/toolkit/${id}`);
 
 export const getUserProfile = () => api.get<User>("/users/profile");
 export const updateUserProfile = (data: Partial<User>) =>

@@ -2,7 +2,6 @@ import {useEffect, useRef, useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-// ── Types — unchanged from original; match backend Question/Answer models exactly ──
 interface Message {
     text: string;
     isUser: boolean;

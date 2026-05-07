@@ -194,3 +194,10 @@ pub struct PythonChatRequest {
 pub struct PythonChatResponse {
     pub answer: String,
 }
+
+#[derive(Debug, Deserialize, Default)]
+pub struct ListQuery {
+    pub search: Option<String>,
+    pub tag: Option<String>,
+    pub sector: Option<String>,
+}

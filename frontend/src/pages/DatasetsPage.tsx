@@ -9,33 +9,20 @@ export default function DatasetsPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    const fetchDatasets = async () => {
+    setLoading(true);
+    const timer = setTimeout(async () => {
       try {
-        const response = await getDatasets();
+        const response = await getDatasets(searchTerm || undefined);
         setDatasets(response.data);
       } catch (error) {
         console.error('Error fetching datasets:', error);
       } finally {
         setLoading(false);
       }
-    };
+    }, 300); // 300ms debounce
 
-    fetchDatasets();
-  }, []);
-
-  const filteredDatasets = datasets.filter((dataset) =>
-    dataset.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    dataset.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    dataset.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-orange-500"></div>
-      </div>
-    );
-  }
+    return () => clearTimeout(timer);
+  }, [searchTerm]); // key change: depends on searchTerm
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -44,7 +31,6 @@ export default function DatasetsPage() {
         <p className="text-lg text-gray-600 mb-6">
           Search and access datasets for your AI projects
         </p>
-
         <div className="max-w-2xl">
           <input
             type="text"
@@ -56,19 +42,23 @@ export default function DatasetsPage() {
         </div>
       </div>
 
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6">
         <p className="text-gray-600">
-          Showing <span className="font-semibold">{filteredDatasets.length}</span> datasets
+          Showing <span className="font-semibold">{datasets.length}</span> datasets
         </p>
       </div>
 
-      {filteredDatasets.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-orange-500" />
+        </div>
+      ) : datasets.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-500 text-lg">No datasets found matching your search.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredDatasets.map((dataset) => (
+          {datasets.map((dataset) => (
             <DatasetCard key={dataset.id} dataset={dataset} />
           ))}
         </div>
