@@ -22,21 +22,33 @@ const api = axios.create({
 export const getDashboard = () => api.get<Dashboard>("/dashboard");
 
 export const getDatasets = (search?: string) =>
-  api.get<Dataset[]>("/datasets", { params: search ? { search } : {} });
+  api.get<Dataset[]>("/datasets", {
+    params: search ? { search } : {},
+  });
+
 export const getDatasetById = (id: number) =>
   api.get<Dataset>(`/datasets/${id}`);
 
 export const getModels = (search?: string) =>
-  api.get<Model[]>("/models", { params: search ? { search } : {} });
+  api.get<Model[]>("/models", {
+    params: search ? { search } : {},
+  });
+
 export const getModelById = (id: number) => api.get<Model>(`/models/${id}`);
 
 export const getUseCases = (search?: string) =>
-  api.get<UseCase[]>("/usecases", { params: search ? { search } : {} });
+  api.get<UseCase[]>("/usecases", {
+    params: search ? { search } : {},
+  });
+
 export const getUseCaseById = (id: number) =>
   api.get<UseCase>(`/usecases/${id}`);
 
 export const getToolkit = (search?: string) =>
-  api.get<Toolkit[]>("/toolkit", { params: search ? { search } : {} });
+  api.get<Toolkit[]>("/toolkit", {
+    params: search ? { search } : {},
+  });
+
 export const getToolkitById = (id: number) =>
   api.get<Toolkit>(`/toolkit/${id}`);
 

@@ -19,7 +19,7 @@ export default function DatasetsPage() {
       } finally {
         setLoading(false);
       }
-    }, 300); // 300ms debounce
+    }, 150); // 150ms debounce
 
     return () => clearTimeout(timer);
   }, [searchTerm]); // key change: depends on searchTerm

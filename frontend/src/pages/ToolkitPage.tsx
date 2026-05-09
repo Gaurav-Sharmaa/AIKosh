@@ -19,7 +19,7 @@ export default function ToolkitPage() {
       } finally {
         setLoading(false);
       }
-    }, 300);
+    }, 150);
 
     return () => clearTimeout(timer);
   }, [searchTerm]);

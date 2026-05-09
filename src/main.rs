@@ -1,36 +1,42 @@
+mod config;
 mod errors;
 mod handlers;
 mod models;
 mod state;
 
 use axum::{
+    http::HeaderValue,
     routing::{get, patch, post},
     Router,
 };
-use std::sync::Arc;
+use std::{error::Error, sync::Arc};
 use tower_http::cors::{Any, CorsLayer};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
-use crate::{handlers::health_check, state::AppState};
+use crate::{config::Config, handlers::health_check, state::AppState};
 
 #[tokio::main]
-async fn main() {
-    tracing_subscriber::registry() // Central Hub of logs
+async fn main() -> Result<(), Box<dyn Error>> {
+    dotenvy::dotenv().ok();
+
+    tracing_subscriber::registry()
         .with(
-            tracing_subscriber::EnvFilter::try_from_default_env() // EnvFilter = Noise filter, types of logs = debug
+            tracing_subscriber::EnvFilter::try_from_default_env()
                 .unwrap_or_else(|_| "aikosh_backend=debug,tower_http=debug".into()),
         )
-        .with(tracing_subscriber::fmt::layer()) // Format the logs from raw data
+        .with(tracing_subscriber::fmt::layer())
         .init();
 
+    let config = Config::from_env()?;
+    let bind_addr = format!("{}:{}", config.server_host, config.server_port);
+    let frontend_origin: HeaderValue = config.frontend_origin.parse()?;
+
     let cors = CorsLayer::new()
-        .allow_origin(Any)
+        .allow_origin(frontend_origin)
         .allow_methods(Any)
         .allow_headers(Any);
 
-    let state = AppState::load();
-
-    let shared_state = Arc::new(state);
+    let shared_state = Arc::new(AppState::load(config));
 
     let app = Router::new()
         .route("/health", get(health_check))
@@ -52,18 +58,39 @@ async fn main() {
         .with_state(shared_state)
         .layer(cors);
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
-        .await
-        .expect("TcpListener Failed to bind to port 3000.");
-
-    tracing::info!(
-        "Server listening on http://{}",
-        listener
-            .local_addr()
-            .expect("Failed to get local address from listener.")
-    );
+    let listener = tokio::net::TcpListener::bind(&bind_addr).await?;
+    tracing::info!("Server listening on http://{}", listener.local_addr()?);
 
     axum::serve(listener, app)
-        .await
-        .expect("Failed to start the server.");
+        .with_graceful_shutdown(shutdown_signal())
+        .await?;
+    Ok(())
+}
+
+async fn shutdown_signal() {
+    let ctrl_c = async {
+        tokio::signal::ctrl_c()
+            .await
+            .expect("Failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
+            .expect("Failed to install SIGTERM handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(not(unix))]
+    let terminate = std::future::pending::<()>();
+
+    tokio::select! {
+        _ = ctrl_c => {
+            tracing::info!("Ctrl+C received, starting graceful shutdown");
+        }
+        _ = terminate => {
+            tracing::info!("SIGTERM received, starting graceful shutdown");
+        }
+    }
 }

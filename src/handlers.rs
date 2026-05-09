@@ -13,37 +13,6 @@ use crate::models::*;
 use crate::state::AppState;
 
 const PYTHON_CHATBOT_URL: &str = "http://localhost:8000/ask";
-const DEFAULT_PER_PAGE: usize = 20;
-const MAX_PER_PAGE: usize = 100;
-
-fn paginate<T: Clone>(items: Vec<T>, page: Option<usize>, per_page: Option<usize>) -> Paginated<T> {
-    let per_page = per_page.unwrap_or(DEFAULT_PER_PAGE).clamp(1, MAX_PER_PAGE);
-    let page = page.unwrap_or(1).max(1);
-    let total = items.len();
-    let total_pages = if total == 0 {
-        0
-    } else {
-        total.div_ceil(per_page)
-    };
-
-    let start = (page - 1) * per_page;
-    let page_items = if start >= total {
-        Vec::new()
-    } else {
-        let end = (start + per_page).min(total);
-        items[start..end].to_vec()
-    };
-
-    Paginated {
-        items: page_items,
-        meta: PageMeta {
-            page,
-            per_page,
-            total,
-            total_pages,
-        },
-    }
-}
 
 pub async fn chat_stream(
     Json(payload): Json<ChatMessage>,
@@ -118,8 +87,8 @@ pub async fn get_dashboard(State(state): State<Arc<AppState>>) -> Json<Dashboard
 pub async fn get_datasets(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Paginated<Dataset>> {
-    let filtered = state
+) -> Json<Vec<Dataset>> {
+    let result = state
         .datasets
         .iter()
         .filter(|datasets| {
@@ -139,7 +108,7 @@ pub async fn get_datasets(
             }
             if let Some(sector) = &params.sector {
                 let sector = sector.to_lowercase();
-                if !datasets.sector.contains(&sector) {
+                if !datasets.sector.to_lowercase().contains(&sector) {
                     return false;
                 }
             }
@@ -148,7 +117,7 @@ pub async fn get_datasets(
         .cloned()
         .collect();
 
-    Json(paginate(filtered, params.page, params.per_page))
+    Json(result)
 }
 
 pub async fn get_dataset_by_id(
@@ -167,8 +136,8 @@ pub async fn get_dataset_by_id(
 pub async fn get_models(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Paginated<Model>> {
-    let filtered = state
+) -> Json<Vec<Model>> {
+    let result = state
         .models
         .iter()
         .filter(|models| {
@@ -188,7 +157,7 @@ pub async fn get_models(
             }
             if let Some(sector) = &params.sector {
                 let sector = sector.to_lowercase();
-                if !models.sector.contains(&sector) {
+                if !models.sector.to_lowercase().contains(&sector) {
                     return false;
                 }
             }
@@ -197,7 +166,7 @@ pub async fn get_models(
         .cloned()
         .collect();
 
-    Json(paginate(filtered, params.page, params.per_page))
+    Json(result)
 }
 
 pub async fn get_model_by_id(
@@ -216,8 +185,8 @@ pub async fn get_model_by_id(
 pub async fn get_toolkit(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Paginated<Toolkit>> {
-    let filtered = state
+) -> Json<Vec<Toolkit>> {
+    let result = state
         .toolkit
         .iter()
         .filter(|toolkit| {
@@ -234,7 +203,7 @@ pub async fn get_toolkit(
         })
         .cloned()
         .collect();
-    Json(paginate(filtered, params.page, params.per_page))
+    Json(result)
 }
 
 pub async fn get_toolkit_by_id(
@@ -253,8 +222,8 @@ pub async fn get_toolkit_by_id(
 pub async fn get_usecases(
     State(state): State<Arc<AppState>>,
     Query(params): Query<ListQuery>,
-) -> Json<Paginated<UseCase>> {
-    let filtered = state
+) -> Json<Vec<UseCase>> {
+    let result = state
         .usecases
         .iter()
         .filter(|usecases| {
@@ -274,7 +243,7 @@ pub async fn get_usecases(
             }
             if let Some(sector) = &params.sector {
                 let sector = sector.to_lowercase();
-                if !usecases.sector.contains(&sector) {
+                if !usecases.sector.to_lowercase().contains(&sector) {
                     return false;
                 }
             }
@@ -282,7 +251,7 @@ pub async fn get_usecases(
         })
         .cloned()
         .collect();
-    Json(paginate(filtered, params.page, params.per_page))
+    Json(result)
 }
 
 pub async fn get_usecase_by_id(
@@ -348,7 +317,8 @@ pub async fn update_user_profile(
     }
 
     let json_string = serde_json::to_string_pretty(&*user)?;
-    fs::write("data/user.json", json_string)?;
+    let user_path = std::path::Path::new(&state.config.data_dir).join("user.json");
+    fs::write(&user_path, json_string)?;
 
     Ok(Json(user.clone()))
 }
