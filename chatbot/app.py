@@ -1,18 +1,20 @@
-import os
-import re
 import json
 import logging
-import numpy as np
+import os
+import re
+from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import List, Dict, Any, Optional
-from sentence_transformers import SentenceTransformer
+from typing import Any, Dict, List, Optional
+
 import faiss
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+import numpy as np
 import requests
 import uvicorn
 from dotenv import load_dotenv
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -20,14 +22,16 @@ logger = logging.getLogger(__name__)
 
 SARVAM_API_KEY = os.getenv("SARVAM_API_KEY")
 if not SARVAM_API_KEY:
-    raise ValueError("SARVAM_API_KEY not found in environment variables. Please check your .env file.")
+    raise ValueError(
+        "SARVAM_API_KEY not found in environment variables. Please check your .env file."
+    )
 SARVAM_API_URL = "https://api.sarvam.ai/v1/chat/completions"
 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 EMBEDDING_DIM = 384
 TOP_K = 4
 MAX_CHARS = 1200
-DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "seed")
 
 LLM_PARAMS = {
     "model": "sarvam-m",
@@ -39,36 +43,107 @@ LLM_PARAMS = {
 }
 
 CASUAL_PHRASES = {
-    "hello", "hi", "hey", "hii", "hiii", "hiiii",
-    "thanks", "thank you", "thankyou", "thank u", "ty",
-    "bye", "goodbye", "see you", "see ya", "cya",
-    "good morning", "good evening", "good night", "good afternoon",
-    "how are you", "how r u", "how are u", "wassup", "what's up", "whats up",
-    "ok", "okay", "k", "kk", "alright", "sure", "got it", "noted",
-    "wow", "nice", "cool", "great", "awesome", "amazing", "perfect",
-    "yes", "no", "nope", "yep", "yeah", "yup",
-    "haha", "lol", "hehe",
-    "test", "testing",
+    "hello",
+    "hi",
+    "hey",
+    "hii",
+    "hiii",
+    "hiiii",
+    "thanks",
+    "thank you",
+    "thankyou",
+    "thank u",
+    "ty",
+    "bye",
+    "goodbye",
+    "see you",
+    "see ya",
+    "cya",
+    "good morning",
+    "good evening",
+    "good night",
+    "good afternoon",
+    "how are you",
+    "how r u",
+    "how are u",
+    "wassup",
+    "what's up",
+    "whats up",
+    "ok",
+    "okay",
+    "k",
+    "kk",
+    "alright",
+    "sure",
+    "got it",
+    "noted",
+    "wow",
+    "nice",
+    "cool",
+    "great",
+    "awesome",
+    "amazing",
+    "perfect",
+    "yes",
+    "no",
+    "nope",
+    "yep",
+    "yeah",
+    "yup",
+    "haha",
+    "lol",
+    "hehe",
+    "test",
+    "testing",
 }
 
 CAPABILITY_PHRASES = {
-    "what can you do", "what do you do", "help me", "help",
-    "how do you work", "how does this work", "what is this",
-    "what are you", "who are you", "what is aikosh",
-    "tell me about yourself", "introduce yourself",
-    "what can i ask", "what should i ask",
+    "what can you do",
+    "what do you do",
+    "help me",
+    "help",
+    "how do you work",
+    "how does this work",
+    "what is this",
+    "what are you",
+    "who are you",
+    "what is aikosh",
+    "tell me about yourself",
+    "introduce yourself",
+    "what can i ask",
+    "what should i ask",
 }
 
 OUT_OF_SCOPE_KEYWORDS = {
-    "weather", "stock", "cricket", "ipl", "movie", "recipe", "joke",
-    "news", "sports", "politics", "song", "music", "translate",
-    "capital of", "who is the president", "population of",
+    "weather",
+    "stock",
+    "cricket",
+    "ipl",
+    "movie",
+    "recipe",
+    "joke",
+    "news",
+    "sports",
+    "politics",
+    "song",
+    "music",
+    "translate",
+    "capital of",
+    "who is the president",
+    "population of",
 }
 
 FRUSTRATION_PHRASES = {
-    "this is useless", "you are stupid", "bad bot", "worst chatbot",
-    "not helpful", "you don't understand", "terrible",
-    "shut up", "stop", "enough",
+    "this is useless",
+    "you are stupid",
+    "bad bot",
+    "worst chatbot",
+    "not helpful",
+    "you don't understand",
+    "terrible",
+    "shut up",
+    "stop",
+    "enough",
 }
 
 
@@ -83,7 +158,7 @@ def detect_intent(question: str) -> str:
     """
     q = question.strip().lower()
 
-    q_clean = re.sub(r'[^\w\s]', '', q)
+    q_clean = re.sub(r"[^\w\s]", "", q)
 
     if q_clean in CASUAL_PHRASES:
         return "CASUAL"
@@ -105,26 +180,27 @@ def detect_intent(question: str) -> str:
 
 
 class Message(BaseModel):
-    role: str   # "user" 
+    role: str  # "user"
     content: str
+
 
 class Question(BaseModel):
     question: str
-    history: Optional[List[Message]] = []  # conversation history 
+    history: Optional[List[Message]] = []  # conversation history
+
 
 class Answer(BaseModel):
     answer: str
     sources: List[Dict[str, Any]]
 
 
-
 class RAGChatbot:
-    def __init__(self, data_dir: str = None):
+    def __init__(self, data_dir: Optional[str] = None):
         self.data_dir = Path(data_dir) if data_dir else Path(DATA_DIR)
         self.embedding_model = SentenceTransformer(EMBEDDING_MODEL)
-        self.chunks = []
-        self.metadata = []
-        self.index = None
+        self.chunks: List[str] = []
+        self.metadata: List[Dict] = []
+        self.index: Optional[faiss.IndexFlatL2] = None
 
         logger.info(f"Initializing RAG Chatbot with data from: {self.data_dir}")
         self._load_data()
@@ -134,17 +210,24 @@ class RAGChatbot:
     def _load_data(self):
         """Load and chunk all JSON files"""
         json_files = [
-            "articles.json", "dashboard.json", "datasets.json",
-            "models.json", "toolkit.json", "tutorials.json", "usecases.json"
+            "articles.json",
+            "dashboard.json",
+            "datasets.json",
+            "models.json",
+            "toolkit.json",
+            "tutorials.json",
+            "usecases.json",
         ]
 
         for filename in json_files:
             filepath = self.data_dir / filename
             if not filepath.exists():
-                logger.warning(f"Warning: {filename} not found at {filepath}, skipping...")
+                logger.warning(
+                    f"Warning: {filename} not found at {filepath}, skipping..."
+                )
                 continue
 
-            with open(filepath, 'r', encoding='utf-8') as f:
+            with open(filepath, "r", encoding="utf-8") as f:
                 data = json.load(f)
 
             if isinstance(data, list):
@@ -161,24 +244,24 @@ class RAGChatbot:
         """Process a single item and create searchable chunk"""
         text_parts = []
 
-        if 'title' in item:
+        if "title" in item:
             text_parts.append(f"Title: {item['title']}")
-        if 'description' in item:
+        if "description" in item:
             text_parts.append(f"Description: {item['description']}")
-        if 'about_dataset' in item:
+        if "about_dataset" in item:
             text_parts.append(f"About: {item['about_dataset']}")
-        if 'about_model' in item:
+        if "about_model" in item:
             text_parts.append(f"About: {item['about_model']}")
-        if 'about_use_case' in item:
+        if "about_use_case" in item:
             text_parts.append(f"About: {item['about_use_case']}")
-        if 'content' in item:
+        if "content" in item:
             text_parts.append(f"Content: {item['content']}")
-        if 'overview' in item:
+        if "overview" in item:
             text_parts.append(f"Overview: {item['overview']}")
-        if 'key_capabilities' in item:
+        if "key_capabilities" in item:
             text_parts.append(f"Key Capabilities: {item['key_capabilities']}")
 
-        if 'tags' in item and item['tags']:
+        if "tags" in item and item["tags"]:
             try:
                 text_parts.append(f"Tags: {', '.join(item['tags'])}")
             except Exception:
@@ -189,47 +272,44 @@ class RAGChatbot:
 
         if chunk_text.strip():
             self.chunks.append(chunk_text)
-            self.metadata.append({
-                "source": source,
-                "id": item.get('id', 'N/A'),
-                "title": item.get('title', 'N/A'),
-                "type": source.replace('.json', '')
-            })
+            self.metadata.append(
+                {
+                    "source": source,
+                    "id": item.get("id", "N/A"),
+                    "title": item.get("title", "N/A"),
+                    "type": source.replace(".json", ""),
+                }
+            )
+
+            """Build FAISS index from chunks"""
 
     def _build_index(self):
-        """Build FAISS index from chunks"""
         logger.info("Building FAISS index...")
-
-        embeddings = self.embedding_model.encode(
-            self.chunks,
-            show_progress_bar=True,
-            convert_to_numpy=True
+        embeddings: np.ndarray = self.embedding_model.encode(
+            self.chunks, show_progress_bar=True, convert_to_numpy=True
         )
-
         self.index = faiss.IndexFlatL2(EMBEDDING_DIM)
-        self.index.add(embeddings.astype('float32'))
-
+        self.index.add(embeddings.astype("float32"))  # type: ignore[arg-type]
         logger.info(f"FAISS index built with {len(self.chunks)} vectors")
 
     def retrieve(self, question: str) -> List[Dict[str, Any]]:
-        """Retrieve top-k relevant chunks — only called for RESOURCE intent"""
-        question_embedding = self.embedding_model.encode(
-            [question],
-            convert_to_numpy=True
+        assert self.index is not None, "FAISS index not built yet"
+        question_embedding: np.ndarray = self.embedding_model.encode(
+            [question], convert_to_numpy=True
         )
-
-        distances, indices = self.index.search(
-            question_embedding.astype('float32'),
-            TOP_K
+        distances, indices = self.index.search(  # type: ignore[call-arg]
+            question_embedding.astype("float32"), TOP_K
         )
 
         results = []
         for i, idx in enumerate(indices[0]):
-            results.append({
-                "text": self.chunks[idx],
-                "metadata": self.metadata[idx],
-                "distance": float(distances[0][i])
-            })
+            results.append(
+                {
+                    "text": self.chunks[idx],
+                    "metadata": self.metadata[idx],
+                    "distance": float(distances[0][i]),
+                }
+            )
 
         return results
 
@@ -237,25 +317,31 @@ class RAGChatbot:
         """Call Sarvam API and return parsed JSON"""
         headers = {
             "api-subscription-key": SARVAM_API_KEY,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
         payload = {"messages": messages, **LLM_PARAMS}
         try:
-            response = requests.post(SARVAM_API_URL, headers=headers, json=payload, timeout=100)
+            response = requests.post(
+                SARVAM_API_URL, headers=headers, json=payload, timeout=100
+            )
             response.raise_for_status()
             raw = response.json()
             logger.info("Sarvam call successful.")
             return raw
         except requests.exceptions.RequestException as e:
             logger.exception("Error calling Sarvam API: %s", str(e))
-            raise HTTPException(status_code=500, detail=f"Error calling Sarvam API: {str(e)}")
+            raise HTTPException(
+                status_code=500, detail=f"Error calling Sarvam API: {str(e)}"
+            )
 
     def _strip_think_tags(self, text: str) -> str:
-        text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
-        text = re.sub(r'<think>.*', '', text, flags=re.DOTALL)
+        text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+        text = re.sub(r"<think>.*", "", text, flags=re.DOTALL)
         return text.strip()
 
-    def generate_answer(self, question: str, context: List[Dict], history: List[Message]) -> Dict[str, Any]:
+    def generate_answer(
+        self, question: str, context: List[Dict], history: List[Message]
+    ) -> Dict[str, Any]:
         """
         Generate answer using Sarvam API.
         - history: previous turns so the model has memory of the conversation
@@ -263,10 +349,12 @@ class RAGChatbot:
         """
 
         if context:
-            context_text = "\n\n".join([
-                f'**{c["metadata"]["type"].upper()}** — {c["metadata"]["title"]}:\n{c["text"]}'
-                for c in context
-            ])
+            context_text = "\n\n".join(
+                [
+                    f"**{c['metadata']['type'].upper()}** — {c['metadata']['title']}:\n{c['text']}"
+                    for c in context
+                ]
+            )
             context_section = f"\n\nAIKosh Database Context:\n{context_text}"
         else:
             context_section = ""
@@ -332,63 +420,72 @@ HARD RULES FOR ALL RESPONSES:
 
         raw = self._call_sarvam(messages)
 
-        if 'choices' not in raw or not raw['choices']:
+        if "choices" not in raw or not raw["choices"]:
             logger.error("Sarvam returned no choices: %s", raw)
             raise HTTPException(status_code=500, detail="Sarvam returned no choices")
 
-        choice = raw['choices'][0]
-        answer = choice.get('message', {}).get('content', '')
-        finish_reason = choice.get('finish_reason')
+        choice = raw["choices"][0]
+        answer = choice.get("message", {}).get("content", "")
+        finish_reason = choice.get("finish_reason")
 
         logger.info("finish_reason=%s", finish_reason)
 
         max_continuations = 1
         continuations = 0
 
-        while finish_reason == 'length' and continuations < max_continuations:
+        while finish_reason == "length" and continuations < max_continuations:
             continuations += 1
             logger.info("Continuation attempt %d", continuations)
 
             messages.append({"role": "assistant", "content": answer})
-            messages.append({"role": "user", "content": "Please continue your previous answer from where you left off. Do not repeat anything."})
+            messages.append(
+                {
+                    "role": "user",
+                    "content": "Please continue your previous answer from where you left off. Do not repeat anything.",
+                }
+            )
 
             raw = self._call_sarvam(messages)
-            if 'choices' not in raw or not raw['choices']:
+            if "choices" not in raw or not raw["choices"]:
                 break
 
-            choice = raw['choices'][0]
-            more = choice.get('message', {}).get('content', '')
-            finish_reason = choice.get('finish_reason')
+            choice = raw["choices"][0]
+            more = choice.get("message", {}).get("content", "")
+            finish_reason = choice.get("finish_reason")
             answer = answer + "\n" + more
 
         answer = self._strip_think_tags(answer)
 
         return {
             "answer": answer,
-            "sources": [c['metadata'] for c in context],
+            "sources": [c["metadata"] for c in context],
         }
+
+
+rag = None
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global rag
+    rag = RAGChatbot()
+    yield  # app runs here
 
 
 app = FastAPI(
     title="AIKosh RAG Chatbot",
     description="AI-powered chatbot with RAG using Sarvam API",
-    version="2.0.0"
+    version="2.0.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-rag = None
-
-@app.on_event("startup")
-async def startup_event():
-    global rag
-    rag = RAGChatbot()
 
 
 @app.get("/health")
@@ -397,7 +494,7 @@ async def health_check():
     return {
         "status": "healthy",
         "chunks": len(rag.chunks) if rag else 0,
-        "model": EMBEDDING_MODEL
+        "model": EMBEDDING_MODEL,
     }
 
 
@@ -414,7 +511,10 @@ async def ask_question(question: Question):
         raise HTTPException(status_code=400, detail="Question cannot be empty")
 
     if len(raw) > 500:
-        raise HTTPException(status_code=400, detail="Question is too long. Please keep it under 500 characters.")
+        raise HTTPException(
+            status_code=400,
+            detail="Question is too long. Please keep it under 500 characters.",
+        )
 
     intent = detect_intent(raw)
     logger.info("Detected intent: %s for question: %s", intent, raw)
@@ -422,7 +522,7 @@ async def ask_question(question: Question):
     if intent == "RESOURCE":
         context = rag.retrieve(raw)
     else:
-        context = []  
+        context = []
 
     result = rag.generate_answer(raw, context, question.history or [])
 
@@ -434,19 +534,10 @@ async def root():
     """Root endpoint with API info"""
     return {
         "message": "AIKosh RAG Chatbot API v2",
-        "endpoints": {
-            "health": "GET /health",
-            "ask": "POST /ask",
-            "docs": "GET /docs"
-        }
+        "endpoints": {"health": "GET /health", "ask": "POST /ask", "docs": "GET /docs"},
     }
 
 
 if __name__ == "__main__":
     print("AIKosh RAG Chatbot - Sarvam AI")
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=8000,
-        log_level="info"
-    )
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
