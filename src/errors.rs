@@ -4,43 +4,42 @@ use axum::{
     Json,
 };
 use serde_json::json;
+use thiserror::Error;
 
+#[derive(Debug, Error)]
 pub enum AppError {
+    #[error("not found")]
     NotFound,
-    InternalServerError(String),
+
+    #[error("validation error: {0}")]
     ValidationError(String),
+
+    #[error("database error: {0}")]
+    Database(#[from] sqlx::Error),
+
+    #[error("json error: {0}")]
+    Json(#[from] serde_json::Error),
+
+    #[error("io error: {0}")]
+    Io(#[from] std::io::Error),
 }
 
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
-        let (status, error_message) = match self {
-            AppError::NotFound => (StatusCode::NOT_FOUND, "Resource not found".to_string()),
-            AppError::InternalServerError(msg) => {
-                tracing::error!("Internal server error: {}", msg);
+        let (status, message) = match &self {
+            AppError::NotFound => (StatusCode::NOT_FOUND, "Not Found".to_string()),
+            AppError::Database(sqlx::Error::RowNotFound) => {
+                (StatusCode::NOT_FOUND, "Not Found".to_string())
+            }
+            AppError::ValidationError(m) => (StatusCode::BAD_REQUEST, m.clone()),
+            AppError::Database(_) | AppError::Json(_) | AppError::Io(_) => {
+                tracing::error!("internal error: {self}");
                 (
                     StatusCode::INTERNAL_SERVER_ERROR,
-                    "Internal server error".to_string(),
+                    "Internal Server Error".to_string(),
                 )
             }
-            AppError::ValidationError(msg) => (StatusCode::BAD_REQUEST, msg),
         };
-
-        let body = Json(json!({
-            "error": error_message,
-        }));
-
-        (status, body).into_response()
-    }
-}
-
-impl From<std::io::Error> for AppError {
-    fn from(err: std::io::Error) -> Self {
-        AppError::InternalServerError(err.to_string())
-    }
-}
-
-impl From<serde_json::Error> for AppError {
-    fn from(err: serde_json::Error) -> Self {
-        AppError::InternalServerError(err.to_string())
+        (status, Json(json!({ "error": message }))).into_response()
     }
 }

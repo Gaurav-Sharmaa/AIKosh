@@ -36,7 +36,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .allow_methods(Any)
         .allow_headers(Any);
 
-    let shared_state = Arc::new(AppState::load(config));
+    let shared_state = Arc::new(AppState::init(config).await?);
 
     let app = Router::new()
         .route("/health", get(health_check))
@@ -54,6 +54,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .route("/api/toolkit/:id", get(handlers::get_toolkit_by_id))
         .route("/api/users/profile", get(handlers::get_user_profile))
         .route("/api/users/profile", patch(handlers::update_user_profile))
+        .route("/api/sectors", get(handlers::get_sectors))
+        .route("/api/organizations", get(handlers::get_organizations))
         .route("/api/chat/stream", post(handlers::chat_stream))
         .with_state(shared_state)
         .layer(cors);
@@ -64,6 +66,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await?;
+
     Ok(())
 }
 
