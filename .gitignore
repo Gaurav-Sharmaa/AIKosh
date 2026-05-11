@@ -17,3 +17,9 @@ chatbot/.pytest_cache/
 # IDE
 .vscode/
 .idea/
+
+# SQLite database files 
+data/aikosh.db
+data/aikosh.db-shm
+data/aikosh.db-wal
+data/aikosh.db-journal
